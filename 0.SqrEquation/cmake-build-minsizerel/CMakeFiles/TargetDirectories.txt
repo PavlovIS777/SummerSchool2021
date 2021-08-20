@@ -1,3 +1,3 @@
-/cygdrive/d/CLion 2021.2/SqrEquation/cmake-build-minsizerel/CMakeFiles/rebuild_cache.dir
-/cygdrive/d/CLion 2021.2/SqrEquation/cmake-build-minsizerel/CMakeFiles/edit_cache.dir
-/cygdrive/d/CLion 2021.2/SqrEquation/cmake-build-minsizerel/CMakeFiles/SqrEquation.dir
+/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-minsizerel/CMakeFiles/rebuild_cache.dir
+/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-minsizerel/CMakeFiles/edit_cache.dir
+/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-minsizerel/CMakeFiles/SqrEquation.dir

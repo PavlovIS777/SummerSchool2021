@@ -57,10 +57,10 @@ RM = "/cygdrive/c/Users/Vanushka Ogli Pushka/AppData/Local/JetBrains/CLion2021.2
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/cygdrive/d/CLion 2021.2/SqrEquation"
+CMAKE_SOURCE_DIR = /cygdrive/d/Git/SummerSchool2021/0.SqrEquation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/cygdrive/d/CLion 2021.2/SqrEquation/cmake-build-relwithdebinfo"
+CMAKE_BINARY_DIR = /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/d/CLion 2021.2/SqrEquation/cmake-build-relwithdebinfo/CMakeFiles" "/cygdrive/d/CLion 2021.2/SqrEquation/cmake-build-relwithdebinfo//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo/CMakeFiles /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/d/CLion 2021.2/SqrEquation/cmake-build-relwithdebinfo/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

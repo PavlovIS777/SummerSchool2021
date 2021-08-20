@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+
+//binRoot documentation.
+//type: function.
+//description: double function that's finding root from number using bin search method.
+//             Returns double root from number.
+//example: binRoot(4), returns 2.
 double binRoot(double d){
     double start = 0;
     double end = d;
@@ -17,13 +23,13 @@ double binRoot(double d){
     }
     return mid;
 }
+
 int main() {
     double a = 0, b = 0, c = 0, d;
     _Bool real = 1;
-    printf("Hello, user! Please, enter the coef\n");
+    printf("Hello, user! Please, enter the coefficients.\nExample: For equation x^2 + 2x + 1 = 0\nWrite: 1 2 1.\n");
     scanf("%lf %lf %lf", &a, &b, &c);
-    //printf("%lf %lf %lf", a, b, c);
-    d = b*b - 4*a*c;
+    d = b*b - 4 * a * c;
     if (d < 0){
         real = 0;
         printf("Roots are complex!\n");
