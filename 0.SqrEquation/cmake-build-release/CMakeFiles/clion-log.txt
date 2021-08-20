@@ -1,0 +1,10 @@
+"C:\Users\Vanushka Ogli Pushka\AppData\Local\JetBrains\CLion2021.2\cygwin_cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" "/cygdrive/d/CLion 2021.2/SqrEquation"
+-- The C compiler identification is GNU 10.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /cygdrive/d/CLion 2021.2/SqrEquation/cmake-build-release
