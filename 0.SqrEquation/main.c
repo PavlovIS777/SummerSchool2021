@@ -102,6 +102,11 @@ int sqrSolution(double *a, double *b, double *c)
         printf("x belongs R");
         return 0;
     }
+    if ((*a) == 0 && (*b) == 0)
+    {
+        printf("Root doesn't exist :^(");
+        return 0;
+    }
     if ((*a) == 0)
     {
         LinSolution(b, c);
