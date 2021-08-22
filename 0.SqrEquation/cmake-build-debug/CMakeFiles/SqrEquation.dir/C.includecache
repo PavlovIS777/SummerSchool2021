@@ -9,4 +9,8 @@
 /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/main.c
 stdio.h
 -
+math.h
+-
+stdlib.h
+-
 
