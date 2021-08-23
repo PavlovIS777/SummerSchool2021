@@ -74,6 +74,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/Equation.c">
+			<Option target="SqrEquation"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/Equation.h">
+			<Option target="SqrEquation"/>
+		</Unit>
 		<Unit filename="/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/main.c">
 			<Option target="SqrEquation"/>
 		</Unit>

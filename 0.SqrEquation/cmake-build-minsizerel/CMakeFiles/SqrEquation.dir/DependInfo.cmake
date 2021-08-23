@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/Equation.c" "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-minsizerel/CMakeFiles/SqrEquation.dir/Equation.c.o"
   "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/main.c" "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-minsizerel/CMakeFiles/SqrEquation.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

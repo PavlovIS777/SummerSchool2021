@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/SqrEquation.dir/Equation.c.o"
   "CMakeFiles/SqrEquation.dir/main.c.o"
   "SqrEquation.exe"
   "SqrEquation.pdb"

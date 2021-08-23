@@ -129,6 +129,30 @@ SqrEquation/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/build
 .PHONY : SqrEquation/fast
 
+Equation.o: Equation.c.o
+.PHONY : Equation.o
+
+# target to build an object file
+Equation.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/Equation.c.o
+.PHONY : Equation.c.o
+
+Equation.i: Equation.c.i
+.PHONY : Equation.i
+
+# target to preprocess a source file
+Equation.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/Equation.c.i
+.PHONY : Equation.c.i
+
+Equation.s: Equation.c.s
+.PHONY : Equation.s
+
+# target to generate assembly for a file
+Equation.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/Equation.c.s
+.PHONY : Equation.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... SqrEquation"
+	@echo "... Equation.o"
+	@echo "... Equation.i"
+	@echo "... Equation.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

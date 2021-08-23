@@ -3,4 +3,4 @@ project(SqrEquation C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(SqrEquation main.c)
+add_executable(SqrEquation main.c Equation.h Equation.c)
