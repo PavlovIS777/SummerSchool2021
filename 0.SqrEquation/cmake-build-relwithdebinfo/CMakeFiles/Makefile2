@@ -81,12 +81,12 @@ clean: CMakeFiles/SqrEquation.dir/clean
 CMakeFiles/SqrEquation.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo/CMakeFiles --progress-num=1,2,3 "Built target SqrEquation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo/CMakeFiles --progress-num=1,2,3,4 "Built target SqrEquation"
 .PHONY : CMakeFiles/SqrEquation.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SqrEquation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/SqrEquation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo/CMakeFiles 0
 .PHONY : CMakeFiles/SqrEquation.dir/rule

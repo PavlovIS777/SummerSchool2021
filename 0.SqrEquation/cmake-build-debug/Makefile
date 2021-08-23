@@ -177,6 +177,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/main.c.s
 .PHONY : main.c.s
 
+test_system.o: test_system.c.o
+.PHONY : test_system.o
+
+# target to build an object file
+test_system.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/test_system.c.o
+.PHONY : test_system.c.o
+
+test_system.i: test_system.c.i
+.PHONY : test_system.i
+
+# target to preprocess a source file
+test_system.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/test_system.c.i
+.PHONY : test_system.c.i
+
+test_system.s: test_system.c.s
+.PHONY : test_system.s
+
+# target to generate assembly for a file
+test_system.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SqrEquation.dir/build.make CMakeFiles/SqrEquation.dir/test_system.c.s
+.PHONY : test_system.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +216,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... test_system.o"
+	@echo "... test_system.i"
+	@echo "... test_system.s"
 .PHONY : help
 
 

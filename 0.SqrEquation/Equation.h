@@ -8,6 +8,8 @@
 #endif //MAIN_C_EQUATION_H
 struct EqRoots;
 
+enum condition;
+
 int greeting(void);
 
 int getNumbersSqr(double *a, double *b, double *c);
@@ -20,3 +22,4 @@ void LinSolution(double *a, double *b, struct EqRoots* roots);
 
 void interface(double *a, double *b, double *c);
 
+int equalToZero(double *d);

@@ -6,15 +6,24 @@ struct EqRoots{
     int condition;
 };
 
+int equalToZero(double* d)
+{
+    double eps = 1e-12;
+    if (fabs((*d)) < eps)
+        return 1;
+    else
+        return 0;
+}
+
 void LinSolution(double *a, double *b, struct EqRoots* roots)
 {
-    if ((*b) == 0 && (*a) == 0)
+    if (equalToZero(a) && equalToZero(b))
     {
         roots->condition = infinite;
         return;
     }
 
-    if ((*a) == 0)
+    if (equalToZero(a))
     {
         roots->condition = nonExistent;
         return;
@@ -73,7 +82,7 @@ int getNumbersLin(double *a, double *b)
 
 void sqrSolution(double *a, double *b, double *c,  struct EqRoots* roots)
 {
-    if ((*a) == 0)
+    if (equalToZero(a))
     {
         LinSolution(b, c, roots);
         return;
@@ -83,7 +92,7 @@ void sqrSolution(double *a, double *b, double *c,  struct EqRoots* roots)
     (*disc) = (*b) * (*b) - 4 * (*a) * (*c);
     roots->bPart = -(*b)/(2*(*a));
 
-    if ((*disc) == 0)
+    if (equalToZero(disc))
     {
         roots->condition = linearExist;
         return;

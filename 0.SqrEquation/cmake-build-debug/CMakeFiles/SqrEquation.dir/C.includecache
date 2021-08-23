@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/Equation.c
-Equation.h
-/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/Equation.h
-
 /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/Equation.h
 stdio.h
 -
@@ -17,4 +13,12 @@ math.h
 -
 stdlib.h
 -
+
+/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/test_system.c
+test_system.h
+/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/test_system.h
+
+/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/test_system.h
+Equation.h
+/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/Equation.h
 

@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/Equation.c" "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-debug/CMakeFiles/SqrEquation.dir/Equation.c.o"
   "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/main.c" "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-debug/CMakeFiles/SqrEquation.dir/main.c.o"
+  "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/test_system.c" "/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-debug/CMakeFiles/SqrEquation.dir/test_system.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

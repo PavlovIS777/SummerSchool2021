@@ -83,6 +83,12 @@
 		<Unit filename="/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/main.c">
 			<Option target="SqrEquation"/>
 		</Unit>
+		<Unit filename="/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/test_system.c">
+			<Option target="SqrEquation"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/test_system.h">
+			<Option target="SqrEquation"/>
+		</Unit>
 		<Unit filename="/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
