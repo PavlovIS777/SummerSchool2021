@@ -12,16 +12,16 @@ enum condition;
 
 void getCoefficients(double* a, double* b, double* c);
 
-void Solve(double *a, double *b, double *c, struct Equation* Equation);
+void Solve(double a, double b, double c, struct Equation* Equation);
 
-struct Equation solveLin(double *a, double *b, struct Equation* Equation);
+void solveLin(double a, double b, struct Equation* Equation);
 
-struct Equation solveSqr(double* a, double* b, double* c, struct Equation* Equation);
+void solveSqr(double a, double b, double c, struct Equation* Equation);
 
-void inputOutput(double *a, double *b, double *c);
+void QuadEquationCLI(double* a, double* b, double* c);
 
-int isEqualToZero(double *d);
+int isEqualDouble(double one, double two);
 
-void checkTest(struct Equation* test, double a, double b, double c);
+void testSys();
 
-void testSys(double* testArr, size_t testsCount);
+void greeting(double* a, double* b, double* c);

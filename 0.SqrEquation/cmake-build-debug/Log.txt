@@ -1,3 +1,18 @@
-success test
-success test
-success test
+*===Test 1====*
+Test passed!
+*============*
+
+*===Test 2====*
+Test passed!
+*============*
+
+*===Test 3====*
+Wrong answer.
+Expected: bPart = -1.000000, dPart = 4.000000, condition = 0
+Get: bPart = -1.000000, dPart = 2.000000, condition = 0
+*============*
+
+*===Test 4====*
+Test passed!
+*============*
+
