@@ -1,7 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/SqrEquation.dir/Equation.c.o"
   "CMakeFiles/SqrEquation.dir/main.c.o"
-  "CMakeFiles/SqrEquation.dir/test_system.c.o"
   "SqrEquation.exe"
   "SqrEquation.pdb"
   "libSqrEquation.dll.a"

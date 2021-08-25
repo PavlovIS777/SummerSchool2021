@@ -1,1 +1,1 @@
-/usr/bin/cc -O3 -DNDEBUG -Wl,--enable-auto-import CMakeFiles/SqrEquation.dir/main.c.o CMakeFiles/SqrEquation.dir/Equation.c.o CMakeFiles/SqrEquation.dir/test_system.c.o -o SqrEquation.exe -Wl,--out-implib,libSqrEquation.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+/usr/bin/cc -O3 -DNDEBUG -Wl,--enable-auto-import CMakeFiles/SqrEquation.dir/main.c.o CMakeFiles/SqrEquation.dir/Equation.c.o -o SqrEquation.exe -Wl,--out-implib,libSqrEquation.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
