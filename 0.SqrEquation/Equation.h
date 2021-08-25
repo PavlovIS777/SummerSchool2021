@@ -1,11 +1,11 @@
-#ifndef MAIN_C_EQUATION_H
-#define MAIN_C_EQUATION_H
+#ifndef EQUATION_H
+#define EQUATION_H
+#endif //EQUATION_H
 
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
-#endif //MAIN_C_EQUATION_H
 struct Equation;
 
 enum condition;
