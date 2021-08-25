@@ -6,20 +6,22 @@
 #include <stdlib.h>
 
 #endif //MAIN_C_EQUATION_H
-struct EqRoots;
+struct Equation;
 
 enum condition;
 
-int greeting(void);
+void getCoefficients(double* a, double* b, double* c);
 
-int getNumbersSqr(double *a, double *b, double *c);
+void Solve(double *a, double *b, double *c, struct Equation* Equation);
 
-int getNumbersLin(double *a, double *b);
+struct Equation solveLin(double *a, double *b, struct Equation* Equation);
 
-void sqrSolution(double *a, double *b, double *c, struct EqRoots* roots);
+struct Equation solveSqr(double* a, double* b, double* c, struct Equation* Equation);
 
-void LinSolution(double *a, double *b, struct EqRoots* roots);
+void inputOutput(double *a, double *b, double *c);
 
-void interface(double *a, double *b, double *c);
+int isEqualToZero(double *d);
 
-int equalToZero(double *d);
+void checkTest(struct Equation* test, double a, double b, double c);
+
+void testSys(double* testArr, size_t testsCount);

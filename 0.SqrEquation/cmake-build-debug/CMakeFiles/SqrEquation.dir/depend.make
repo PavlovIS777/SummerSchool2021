@@ -6,9 +6,4 @@ CMakeFiles/SqrEquation.dir/Equation.c.o: \
  ../Equation.h
 CMakeFiles/SqrEquation.dir/main.c.o: \
  ../Equation.h \
- ../main.c \
- ../test_system.h
-CMakeFiles/SqrEquation.dir/test_system.c.o: \
- ../Equation.h \
- ../test_system.c \
- ../test_system.h
+ ../main.c
