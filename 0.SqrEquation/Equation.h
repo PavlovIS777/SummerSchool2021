@@ -5,13 +5,13 @@
 #include <math.h>
 #include <stdlib.h>
 
-struct EquationSolutionStatus
+struct QuadraticEquationSolutionStatus
 {
     double bPart, dPart;
     int condition;
 };
 
-enum CONDITION
+enum QUADRATIC_EQUATION_SOLUTION_CONDITION
 {
     UNDEF = -1    ,
     COMPLEX       ,
@@ -21,27 +21,29 @@ enum CONDITION
     NON_EXISTENT
 };
 
-enum MODE
+enum MODE_OF_QUADRATIC_EQUATION_PROGRAM
 {
     TESTING_MODE = 'T'  ,
     EXECUTING_MODE = 'E'
 };
 
-enum DOUBLE_COMPARE
+enum DOUBLE_COMPARE_STATUS
 {
-    NON_EQUAL = 0 ,
-    EQUAL = 1
+    EQUAL = 0   ,
+    GREATER     ,
+    LESS
+
 };
 
 void getCoefficients(double* a, double* b, double* c);
 
-struct EquationSolutionStatus solveLinearCase(double a, double b);
+struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b);
 
-struct EquationSolutionStatus solveQuadCase(double a, double b, double c);
+struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double c);
 
-void QuadEquationSolution();
+struct QuadraticEquationSolutionStatus QuadEquationSolution();
 
-int isEqualDouble(double one, double two);
+int compareDouble(double one, double two);
 
 void unitTest();
 

@@ -1,26 +1,28 @@
 #include "Equation.h"
-#include <assert.h>
 
-int isEqualDouble(double one, double two)
+int compareDouble(double one, double two)
 {
     double eps = 1e-12;
     if (fabs(one - two)  < eps)
         return EQUAL;
+    else if (one - two < 0.0)
+        return LESS;
     else
-        return NON_EQUAL;
+        return GREATER;
 }
 
-struct EquationSolutionStatus solveQuadCase(double a, double b, double c)
+struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double c)
 {
+    struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
+    if (isnan(a) || isnan(b) || isnan(c))
+        return Equation;
 
-    if (isEqualDouble(a, 0.0))
-    {
+    if (compareDouble(a, 0.0) == EQUAL)
         return solveLinearCase(b, c);
-    }
-    struct EquationSolutionStatus Equation = {NAN, NAN, UNDEF};
+
     double disc = b * b - 4 * a * c;
     Equation.bPart = -(b)/(2 * a);
-    if (isEqualDouble(disc, 0.0))
+    if (compareDouble(disc, 0.0) == EQUAL)
     {
         Equation.condition = LINEAR_EXISTS;
         Equation.dPart = 0;
@@ -41,18 +43,19 @@ struct EquationSolutionStatus solveQuadCase(double a, double b, double c)
     return Equation;
 }
 
-struct EquationSolutionStatus solveLinearCase(double a, double b)
+struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
 {
-    struct EquationSolutionStatus Equation = {NAN, NAN, UNDEF};
+    struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
     Equation.dPart = 0;
-    if (isEqualDouble(a, 0.0) && isEqualDouble(b, 0.0))
+    if ((compareDouble(a, 0.0) == EQUAL) &&
+    (compareDouble(b, 0.0) == EQUAL))
     {
         Equation.condition = INF;
         Equation.bPart = 0;
         return Equation;
     }
 
-    if (isEqualDouble(a, 0.0))
+    if (compareDouble(a, 0.0) == EQUAL)
     {
         Equation.bPart = 0;
         Equation.condition = NON_EXISTENT;
@@ -86,36 +89,14 @@ void getCoefficients(double* a, double* b, double* c)
     }
 }
 
-void QuadEquationSolution()
+struct QuadraticEquationSolutionStatus  QuadEquationSolution()
 {
     double a = NAN, b = NAN, c = NAN;
     getCoefficients(&a, &b, &c);
-    assert(a == NAN); assert(b == NAN); assert(c == NAN);
 
-    struct EquationSolutionStatus Equation = {NAN, NAN, UNDEF};
+    struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
     Equation = solveQuadCase(a, b, c);
-    switch (Equation.condition) {
-        case RATIONAL:
-            printf("Roots are rational.\n"
-                   "x1 = %lf and x2 = %lf", Equation.bPart - Equation.dPart,
-                   Equation.bPart + Equation.dPart);
-            break;
-        case LINEAR_EXISTS:
-            printf("Root is rational.\n"
-                   "x = %lf", Equation.bPart);
-                break;
-        case COMPLEX:
-            printf("Roots are complex.\n"
-                   "x1 = %lf - %lf""i and x2 = %lf + %lf""i",
-                   Equation.bPart, Equation.dPart, Equation.bPart, Equation.dPart);
-            break;
-        case INF:
-            printf("x belongs R");
-            break;
-        case NON_EXISTENT:
-            printf("There's no solution.");
-            break;
-    }
+    return Equation;
 }
 
 void unitTest()
@@ -143,10 +124,6 @@ void unitTest()
 
     fscanf(input, "%d", &testsCount);
 
-//    double** testsArr = malloc(sizeof (double*)*testsCount);
-//    for (size_t i = 0; i < testsCount; ++i)
-//        testsArr[i] = malloc(sizeof (double) * 3);
-
     for (size_t i = 0; i < testsCount; ++i)
     {
         fscanf(input, "%lf %lf %lf %d %lf %lf", &a, &b, &c, &condition, &bPart, &dPart);
@@ -156,9 +133,11 @@ void unitTest()
             return;
         }
 
-        struct EquationSolutionStatus test = {NAN, NAN, UNDEF};
+        struct QuadraticEquationSolutionStatus test = {NAN, NAN, UNDEF};
         test = solveQuadCase(a, b, c);
-        if (!(isEqualDouble(test.bPart, bPart) && isEqualDouble(test.dPart, dPart) && test.condition == condition))
+        if (!((compareDouble(test.bPart, bPart) == EQUAL) &&
+                (compareDouble(test.dPart, dPart) == EQUAL) &&
+        test.condition == condition))
         {
             fprintf(output,"*===Test %d====*\n"
                            "Wrong answer.\n"
@@ -204,5 +183,32 @@ void commandLineInterface(){
     if (mode == (char)TESTING_MODE)
         unitTest();
     else
-        QuadEquationSolution();
+    {
+        struct QuadraticEquationSolutionStatus Equation = QuadEquationSolution();
+        switch (Equation.condition) {
+            case UNDEF:
+                printf("Wrong input.");
+                break;
+            case RATIONAL:
+                printf("Roots are rational.\n"
+                       "x1 = %lf and x2 = %lf", Equation.bPart - Equation.dPart,
+                       Equation.bPart + Equation.dPart);
+                break;
+            case LINEAR_EXISTS:
+                printf("Root is rational.\n"
+                       "x = %lf", Equation.bPart);
+                break;
+            case COMPLEX:
+                printf("Roots are complex.\n"
+                       "x1 = %lf - %lf""i and x2 = %lf + %lf""i",
+                       Equation.bPart, Equation.dPart, Equation.bPart, Equation.dPart);
+                break;
+            case INF:
+                printf("x belongs R");
+                break;
+            case NON_EXISTENT:
+                printf("There's no solution.");
+                break;
+        }
+    }
 }
