@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['secondrationalroot_0',['secondRationalRoot',['../struct_quadratic_equation_solution_status.html#a49c8286f5d2dbcb076ce3ceb053587ce',1,'QuadraticEquationSolutionStatus']]]
+  ['root_0',['root',['../struct_linear_equation_solution_status.html#a2971b8b829179fe317a76d4ece48fa13',1,'LinearEquationSolutionStatus']]]
 ];

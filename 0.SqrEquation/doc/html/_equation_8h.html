@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Quadratic Equation Solution: D:/Git/SummerSchool2021/0.SqrEquation/Equation.h File Reference</title>
+<title>Quadratic Equation Solution: Equation.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,7 +98,11 @@ $(document).ready(function(){initNavTree('_equation_8h.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">struct for solving linear case.  <a href="struct_linear_equation_solution_status.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">struct for solving quadratic case.  <a href="struct_quadratic_equation_solution_status.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -110,55 +114,66 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:aeff6e1b0a8bacd5a8a58f17fd7360288"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a> { <br />
-&#160;&#160;<a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288a632fa39438c1676b435ec43e6a0f9647">UNDEF</a> = -1
-, <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288a5374e1234e4d55af346d6ae6263ad573">COMPLEX</a>
-, <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288a377f16802c1551a0b91bbe8d470b660a">RATIONAL</a>
-, <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288a81eee1e76c4cddfdec000fff9292cdd3">LINEAR_EXISTS</a>
+<tr class="memitem:a278d63eb3021b2904f952c737925a79b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a> { <br />
+&#160;&#160;<a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79ba632fa39438c1676b435ec43e6a0f9647">UNDEF</a> = -1
+, <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79ba5374e1234e4d55af346d6ae6263ad573">COMPLEX</a>
+, <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79ba377f16802c1551a0b91bbe8d470b660a">RATIONAL</a>
+, <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79ba81eee1e76c4cddfdec000fff9292cdd3">LINEAR_EXISTS</a>
 , <br />
-&#160;&#160;<a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288a2e6059d72d8fde88f3127eb147e4eff8">INF</a>
-, <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288a7dd7b3f40bbdc50ef86a623103c46298">NON_EXISTENT</a>
+&#160;&#160;<a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79ba2e6059d72d8fde88f3127eb147e4eff8">INF</a>
+, <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79ba7dd7b3f40bbdc50ef86a623103c46298">NON_EXISTENT</a>
 <br />
  }</td></tr>
-<tr class="separator:aeff6e1b0a8bacd5a8a58f17fd7360288"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a278d63eb3021b2904f952c737925a79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equation mod. Roots condition.  <a href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">More...</a><br /></td></tr>
+<tr class="separator:a278d63eb3021b2904f952c737925a79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af76664567ebc8dbf2d45a7ef29b5bce7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#af76664567ebc8dbf2d45a7ef29b5bce7">MODE_OF_QUADRATIC_EQUATION_PROGRAM</a> { <a class="el" href="_equation_8h.html#af76664567ebc8dbf2d45a7ef29b5bce7a4645179fb4a4eccbdb21bd9ecbd51858">TESTING_MODE</a> = 1
 , <a class="el" href="_equation_8h.html#af76664567ebc8dbf2d45a7ef29b5bce7a97fbfc43222844cbaaf5e6c7f80c40c5">EXECUTING_MODE</a>
  }</td></tr>
+<tr class="memdesc:af76664567ebc8dbf2d45a7ef29b5bce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equation mod. Status of the mod, that's executing solution of the equation or providing tests.  <a href="_equation_8h.html#af76664567ebc8dbf2d45a7ef29b5bce7">More...</a><br /></td></tr>
 <tr class="separator:af76664567ebc8dbf2d45a7ef29b5bce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9384fd619b01d57e46a7f534e65a1750"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a9384fd619b01d57e46a7f534e65a1750">MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS</a> { <a class="el" href="_equation_8h.html#a9384fd619b01d57e46a7f534e65a1750a1f7a5574b76195a27b04152509632efc">CONSOLE</a> = 1
 , <a class="el" href="_equation_8h.html#a9384fd619b01d57e46a7f534e65a1750acd7ffe737ad5fb21fbd7499886934910">LOG</a>
  }</td></tr>
+<tr class="memdesc:a9384fd619b01d57e46a7f534e65a1750"><td class="mdescLeft">&#160;</td><td class="mdescRight">output mod. Status of output mod.  <a href="_equation_8h.html#a9384fd619b01d57e46a7f534e65a1750">More...</a><br /></td></tr>
 <tr class="separator:a9384fd619b01d57e46a7f534e65a1750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1495d9986694e1c8b9e88e4e0def1b93"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a1495d9986694e1c8b9e88e4e0def1b93">TESTING_DATA_INPUT_MODE</a> { <a class="el" href="_equation_8h.html#a1495d9986694e1c8b9e88e4e0def1b93adc101ebf31c49c2d4b80b7c6f59f22cb">LINEAR</a> = 1
+, <a class="el" href="_equation_8h.html#a1495d9986694e1c8b9e88e4e0def1b93ae1a12d53590e4fd25c9fd9006f19ab5c">QUAD</a>
+ }</td></tr>
+<tr class="memdesc:a1495d9986694e1c8b9e88e4e0def1b93"><td class="mdescLeft">&#160;</td><td class="mdescRight">input mode. Status of input file for test-system.  <a href="_equation_8h.html#a1495d9986694e1c8b9e88e4e0def1b93">More...</a><br /></td></tr>
+<tr class="separator:a1495d9986694e1c8b9e88e4e0def1b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39be858521a08b1a95f41de84df34342"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a39be858521a08b1a95f41de84df34342">DOUBLE_COMPARE_STATUS</a> { <a class="el" href="_equation_8h.html#a39be858521a08b1a95f41de84df34342a59a84258a4cb9025b567ee5139455029">EQUAL</a> = 0
 , <a class="el" href="_equation_8h.html#a39be858521a08b1a95f41de84df34342a25b5ca2f56d99ba6ffcb5316adac34c1">GREATER</a>
 , <a class="el" href="_equation_8h.html#a39be858521a08b1a95f41de84df34342a95c736070f99b99eb80d1eac1f4ca60f">LESS</a>
  }</td></tr>
+<tr class="memdesc:a39be858521a08b1a95f41de84df34342"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare status. Status of comparing two double numbers.  <a href="_equation_8h.html#a39be858521a08b1a95f41de84df34342">More...</a><br /></td></tr>
 <tr class="separator:a39be858521a08b1a95f41de84df34342"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a6a1eedd89ebad5e93563be37d2d4b0a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a6a1eedd89ebad5e93563be37d2d4b0a0">getCoefficients</a> (double *a, double *b, double *c)</td></tr>
 <tr class="separator:a6a1eedd89ebad5e93563be37d2d4b0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d042185846095b5cefec9ef012880c5"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a1d042185846095b5cefec9ef012880c5">solveLinearCase</a> (const double a, const double b)</td></tr>
-<tr class="separator:a1d042185846095b5cefec9ef012880c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a494210a2217c5af12b13977f06cdb"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ad2a494210a2217c5af12b13977f06cdb">solveLinearCase</a> (const double a, const double b)</td></tr>
+<tr class="separator:ad2a494210a2217c5af12b13977f06cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6cce36e244274f3385da9def4812df2"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#af6cce36e244274f3385da9def4812df2">solveQuadCase</a> (const double a, const double b, const double c)</td></tr>
 <tr class="separator:af6cce36e244274f3385da9def4812df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97cd6beb5d4ce054dc280a4544a5b01d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a97cd6beb5d4ce054dc280a4544a5b01d">quadEquationSolution</a> ()</td></tr>
-<tr class="separator:a97cd6beb5d4ce054dc280a4544a5b01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3444b22e3af571155f5444df4b4fda0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ab3444b22e3af571155f5444df4b4fda0">compareDouble</a> (const double lhs, const double rhs)</td></tr>
 <tr class="separator:ab3444b22e3af571155f5444df4b4fda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad36c4b2c7080a1289f22f17233075394"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ad36c4b2c7080a1289f22f17233075394">unitTest</a> ()</td></tr>
 <tr class="separator:ad36c4b2c7080a1289f22f17233075394"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20bbd4d45e3f01305dd709f5a9cc9952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a20bbd4d45e3f01305dd709f5a9cc9952">clearBuffer</a> ()</td></tr>
 <tr class="separator:a20bbd4d45e3f01305dd709f5a9cc9952"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5873e58e44f30d6e898fc4ee526ebfca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a5873e58e44f30d6e898fc4ee526ebfca">fileTestOutput</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> test, double bPart, double dPart, double firstRational, double secondRational, FILE *output, enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a> condition, int testNumber)</td></tr>
-<tr class="separator:a5873e58e44f30d6e898fc4ee526ebfca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad33cd4620a3f7e4300539c3ef7bc2b0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ad33cd4620a3f7e4300539c3ef7bc2b0f">consoleTestOutput</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> test, double bPart, double dPart, double firstRational, double secondRational, enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a> condition, int testNumber)</td></tr>
-<tr class="separator:ad33cd4620a3f7e4300539c3ef7bc2b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26d5f3704784e3562c7c75e210072ae8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a26d5f3704784e3562c7c75e210072ae8">fileQuadTestOutput</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> test, double bPart, double dPart, double firstRational, double secondRational, FILE *output, enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a> condition, int testNumber)</td></tr>
+<tr class="separator:a26d5f3704784e3562c7c75e210072ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3195842a0ded345086a991d565582f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ab3195842a0ded345086a991d565582f9">consoleQuadTestOutput</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> test, double bPart, double dPart, double firstRational, double secondRational, enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a> condition, int testNumber)</td></tr>
+<tr class="separator:ab3195842a0ded345086a991d565582f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8843773b33c7469c4860f18c0cb08b03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a8843773b33c7469c4860f18c0cb08b03">solveQuadEquationCLI</a> ()</td></tr>
 <tr class="separator:a8843773b33c7469c4860f18c0cb08b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a442216a51ee4c6aa31f4fc2a5550f856"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a442216a51ee4c6aa31f4fc2a5550f856">printRoots</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> Equations)</td></tr>
-<tr class="separator:a442216a51ee4c6aa31f4fc2a5550f856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaf7a0ced21a16a09dcddf00dc2456ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#aaaf7a0ced21a16a09dcddf00dc2456ae">printRoots</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> Equations, struct <a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a> LinEquation)</td></tr>
+<tr class="separator:aaaf7a0ced21a16a09dcddf00dc2456ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a606cb8eed56b36d13d7c7193ebe439dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a606cb8eed56b36d13d7c7193ebe439dc">fileLinearTestOutput</a> (struct <a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a> test, FILE *output, enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a> condition, double root, int testNumber)</td></tr>
+<tr class="separator:a606cb8eed56b36d13d7c7193ebe439dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b178d16632419f52dfab7b35249c1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a36b178d16632419f52dfab7b35249c1e">consoleLinearTestOutput</a> (struct <a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a> test, enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a> condition, double root, int testNumber)</td></tr>
+<tr class="separator:a36b178d16632419f52dfab7b35249c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a6ebf6899d6c1c8b7b9d09be872c05aae" name="a6ebf6899d6c1c8b7b9d09be872c05aae"></a>
@@ -201,10 +216,36 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>compare status. Status of comparing two double numbers. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a39be858521a08b1a95f41de84df34342a59a84258a4cb9025b567ee5139455029" name="a39be858521a08b1a95f41de84df34342a59a84258a4cb9025b567ee5139455029"></a>EQUAL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a39be858521a08b1a95f41de84df34342a25b5ca2f56d99ba6ffcb5316adac34c1" name="a39be858521a08b1a95f41de84df34342a25b5ca2f56d99ba6ffcb5316adac34c1"></a>GREATER&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a39be858521a08b1a95f41de84df34342a95c736070f99b99eb80d1eac1f4ca60f" name="a39be858521a08b1a95f41de84df34342a95c736070f99b99eb80d1eac1f4ca60f"></a>LESS&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a278d63eb3021b2904f952c737925a79b" name="a278d63eb3021b2904f952c737925a79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a278d63eb3021b2904f952c737925a79b">&#9670;&nbsp;</a></span>EQUATION_SOLUTION_CONDITION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Equation mod. Roots condition. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a278d63eb3021b2904f952c737925a79ba632fa39438c1676b435ec43e6a0f9647" name="a278d63eb3021b2904f952c737925a79ba632fa39438c1676b435ec43e6a0f9647"></a>UNDEF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a278d63eb3021b2904f952c737925a79ba5374e1234e4d55af346d6ae6263ad573" name="a278d63eb3021b2904f952c737925a79ba5374e1234e4d55af346d6ae6263ad573"></a>COMPLEX&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a278d63eb3021b2904f952c737925a79ba377f16802c1551a0b91bbe8d470b660a" name="a278d63eb3021b2904f952c737925a79ba377f16802c1551a0b91bbe8d470b660a"></a>RATIONAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a278d63eb3021b2904f952c737925a79ba81eee1e76c4cddfdec000fff9292cdd3" name="a278d63eb3021b2904f952c737925a79ba81eee1e76c4cddfdec000fff9292cdd3"></a>LINEAR_EXISTS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a278d63eb3021b2904f952c737925a79ba2e6059d72d8fde88f3127eb147e4eff8" name="a278d63eb3021b2904f952c737925a79ba2e6059d72d8fde88f3127eb147e4eff8"></a>INF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a278d63eb3021b2904f952c737925a79ba7dd7b3f40bbdc50ef86a623103c46298" name="a278d63eb3021b2904f952c737925a79ba7dd7b3f40bbdc50ef86a623103c46298"></a>NON_EXISTENT&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -220,6 +261,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Equation mod. Status of the mod, that's executing solution of the equation or providing tests. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af76664567ebc8dbf2d45a7ef29b5bce7a4645179fb4a4eccbdb21bd9ecbd51858" name="af76664567ebc8dbf2d45a7ef29b5bce7a4645179fb4a4eccbdb21bd9ecbd51858"></a>TESTING_MODE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af76664567ebc8dbf2d45a7ef29b5bce7a97fbfc43222844cbaaf5e6c7f80c40c5" name="af76664567ebc8dbf2d45a7ef29b5bce7a97fbfc43222844cbaaf5e6c7f80c40c5"></a>EXECUTING_MODE&#160;</td><td class="fielddoc"></td></tr>
@@ -238,6 +281,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>output mod. Status of output mod. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9384fd619b01d57e46a7f534e65a1750a1f7a5574b76195a27b04152509632efc" name="a9384fd619b01d57e46a7f534e65a1750a1f7a5574b76195a27b04152509632efc"></a>CONSOLE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a9384fd619b01d57e46a7f534e65a1750acd7ffe737ad5fb21fbd7499886934910" name="a9384fd619b01d57e46a7f534e65a1750acd7ffe737ad5fb21fbd7499886934910"></a>LOG&#160;</td><td class="fielddoc"></td></tr>
@@ -245,24 +290,22 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aeff6e1b0a8bacd5a8a58f17fd7360288" name="aeff6e1b0a8bacd5a8a58f17fd7360288"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeff6e1b0a8bacd5a8a58f17fd7360288">&#9670;&nbsp;</a></span>QUADRATIC_EQUATION_SOLUTION_CONDITION</h2>
+<a id="a1495d9986694e1c8b9e88e4e0def1b93" name="a1495d9986694e1c8b9e88e4e0def1b93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1495d9986694e1c8b9e88e4e0def1b93">&#9670;&nbsp;</a></span>TESTING_DATA_INPUT_MODE</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a></td>
+          <td class="memname">enum <a class="el" href="_equation_8h.html#a1495d9986694e1c8b9e88e4e0def1b93">TESTING_DATA_INPUT_MODE</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>input mode. Status of input file for test-system. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aeff6e1b0a8bacd5a8a58f17fd7360288a632fa39438c1676b435ec43e6a0f9647" name="aeff6e1b0a8bacd5a8a58f17fd7360288a632fa39438c1676b435ec43e6a0f9647"></a>UNDEF&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aeff6e1b0a8bacd5a8a58f17fd7360288a5374e1234e4d55af346d6ae6263ad573" name="aeff6e1b0a8bacd5a8a58f17fd7360288a5374e1234e4d55af346d6ae6263ad573"></a>COMPLEX&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aeff6e1b0a8bacd5a8a58f17fd7360288a377f16802c1551a0b91bbe8d470b660a" name="aeff6e1b0a8bacd5a8a58f17fd7360288a377f16802c1551a0b91bbe8d470b660a"></a>RATIONAL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aeff6e1b0a8bacd5a8a58f17fd7360288a81eee1e76c4cddfdec000fff9292cdd3" name="aeff6e1b0a8bacd5a8a58f17fd7360288a81eee1e76c4cddfdec000fff9292cdd3"></a>LINEAR_EXISTS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aeff6e1b0a8bacd5a8a58f17fd7360288a2e6059d72d8fde88f3127eb147e4eff8" name="aeff6e1b0a8bacd5a8a58f17fd7360288a2e6059d72d8fde88f3127eb147e4eff8"></a>INF&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aeff6e1b0a8bacd5a8a58f17fd7360288a7dd7b3f40bbdc50ef86a623103c46298" name="aeff6e1b0a8bacd5a8a58f17fd7360288a7dd7b3f40bbdc50ef86a623103c46298"></a>NON_EXISTENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1495d9986694e1c8b9e88e4e0def1b93adc101ebf31c49c2d4b80b7c6f59f22cb" name="a1495d9986694e1c8b9e88e4e0def1b93adc101ebf31c49c2d4b80b7c6f59f22cb"></a>LINEAR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1495d9986694e1c8b9e88e4e0def1b93ae1a12d53590e4fd25c9fd9006f19ab5c" name="a1495d9986694e1c8b9e88e4e0def1b93ae1a12d53590e4fd25c9fd9006f19ab5c"></a>QUAD&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -313,14 +356,54 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad33cd4620a3f7e4300539c3ef7bc2b0f" name="ad33cd4620a3f7e4300539c3ef7bc2b0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad33cd4620a3f7e4300539c3ef7bc2b0f">&#9670;&nbsp;</a></span>consoleTestOutput()</h2>
+<a id="a36b178d16632419f52dfab7b35249c1e" name="a36b178d16632419f52dfab7b35249c1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b178d16632419f52dfab7b35249c1e">&#9670;&nbsp;</a></span>consoleLinearTestOutput()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void consoleTestOutput </td>
+          <td class="memname">void consoleLinearTestOutput </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a>&#160;</td>
+          <td class="paramname"><em>test</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a>&#160;</td>
+          <td class="paramname"><em>condition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>testNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab3195842a0ded345086a991d565582f9" name="ab3195842a0ded345086a991d565582f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3195842a0ded345086a991d565582f9">&#9670;&nbsp;</a></span>consoleQuadTestOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void consoleQuadTestOutput </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td>
           <td class="paramname"><em>test</em>, </td>
@@ -352,7 +435,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a>&#160;</td>
+          <td class="paramtype">enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a>&#160;</td>
           <td class="paramname"><em>condition</em>, </td>
         </tr>
         <tr>
@@ -371,14 +454,60 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5873e58e44f30d6e898fc4ee526ebfca" name="a5873e58e44f30d6e898fc4ee526ebfca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5873e58e44f30d6e898fc4ee526ebfca">&#9670;&nbsp;</a></span>fileTestOutput()</h2>
+<a id="a606cb8eed56b36d13d7c7193ebe439dc" name="a606cb8eed56b36d13d7c7193ebe439dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a606cb8eed56b36d13d7c7193ebe439dc">&#9670;&nbsp;</a></span>fileLinearTestOutput()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void fileTestOutput </td>
+          <td class="memname">void fileLinearTestOutput </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a>&#160;</td>
+          <td class="paramname"><em>test</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a>&#160;</td>
+          <td class="paramname"><em>condition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>testNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26d5f3704784e3562c7c75e210072ae8" name="a26d5f3704784e3562c7c75e210072ae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26d5f3704784e3562c7c75e210072ae8">&#9670;&nbsp;</a></span>fileQuadTestOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fileQuadTestOutput </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td>
           <td class="paramname"><em>test</em>, </td>
@@ -416,7 +545,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a>&#160;</td>
+          <td class="paramtype">enum <a class="el" href="_equation_8h.html#a278d63eb3021b2904f952c737925a79b">EQUATION_SOLUTION_CONDITION</a>&#160;</td>
           <td class="paramname"><em>condition</em>, </td>
         </tr>
         <tr>
@@ -469,8 +598,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a442216a51ee4c6aa31f4fc2a5550f856" name="a442216a51ee4c6aa31f4fc2a5550f856"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a442216a51ee4c6aa31f4fc2a5550f856">&#9670;&nbsp;</a></span>printRoots()</h2>
+<a id="aaaf7a0ced21a16a09dcddf00dc2456ae" name="aaaf7a0ced21a16a09dcddf00dc2456ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaf7a0ced21a16a09dcddf00dc2456ae">&#9670;&nbsp;</a></span>printRoots()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -479,39 +608,32 @@ Functions</h2></td></tr>
           <td class="memname">void printRoots </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td>
-          <td class="paramname"><em>Equations</em></td><td>)</td>
+          <td class="paramname"><em>Equations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a>&#160;</td>
+          <td class="paramname"><em>LinEquation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a97cd6beb5d4ce054dc280a4544a5b01d" name="a97cd6beb5d4ce054dc280a4544a5b01d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97cd6beb5d4ce054dc280a4544a5b01d">&#9670;&nbsp;</a></span>quadEquationSolution()</h2>
+<a id="ad2a494210a2217c5af12b13977f06cdb" name="ad2a494210a2217c5af12b13977f06cdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a494210a2217c5af12b13977f06cdb">&#9670;&nbsp;</a></span>solveLinearCase()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> quadEquationSolution </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1d042185846095b5cefec9ef012880c5" name="a1d042185846095b5cefec9ef012880c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d042185846095b5cefec9ef012880c5">&#9670;&nbsp;</a></span>solveLinearCase()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> solveLinearCase </td>
+          <td class="memname">struct <a class="el" href="struct_linear_equation_solution_status.html">LinearEquationSolutionStatus</a> solveLinearCase </td>
           <td>(</td>
           <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>a</em>, </td>
@@ -605,7 +727,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_f3e248e6bc052bc0d2333a824c548491.html">Git</a></li><li class="navelem"><a class="el" href="dir_768aba693f821739bc3d5afbe43475f4.html">SummerSchool2021</a></li><li class="navelem"><a class="el" href="dir_72a343106c0758dd8a5a4388d87ce646.html">0.SqrEquation</a></li><li class="navelem"><a class="el" href="_equation_8h.html">Equation.h</a></li>
+    <li class="navelem"><a class="el" href="_equation_8h.html">Equation.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

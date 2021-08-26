@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['quadequationsolution_0',['quadEquationSolution',['../_equation_8c.html#a97cd6beb5d4ce054dc280a4544a5b01d',1,'quadEquationSolution():&#160;Equation.c'],['../_equation_8h.html#a97cd6beb5d4ce054dc280a4544a5b01d',1,'quadEquationSolution():&#160;Equation.c']]]
+  ['solvelinearcase_0',['solveLinearCase',['../_equation_8c.html#adafa02cf990b67470a55b66e359ad0da',1,'solveLinearCase(double a, double b):&#160;Equation.c'],['../_equation_8h.html#ad2a494210a2217c5af12b13977f06cdb',1,'solveLinearCase(const double a, const double b):&#160;Equation.c']]],
+  ['solvequadcase_1',['solveQuadCase',['../_equation_8c.html#a5ca5f5d928acb499d5ec68e8ad80ec7b',1,'solveQuadCase(double a, double b, double c):&#160;Equation.c'],['../_equation_8h.html#af6cce36e244274f3385da9def4812df2',1,'solveQuadCase(const double a, const double b, const double c):&#160;Equation.c']]],
+  ['solvequadequationcli_2',['solveQuadEquationCLI',['../_equation_8c.html#a8843773b33c7469c4860f18c0cb08b03',1,'solveQuadEquationCLI():&#160;Equation.c'],['../_equation_8h.html#a8843773b33c7469c4860f18c0cb08b03',1,'solveQuadEquationCLI():&#160;Equation.c']]]
 ];

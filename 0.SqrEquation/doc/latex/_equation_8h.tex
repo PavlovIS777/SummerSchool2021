@@ -1,13 +1,15 @@
-\hypertarget{_equation_8h}{}\doxysection{D\+:/\+Git/\+Summer\+School2021/0.Sqr\+Equation/\+Equation.h File Reference}
-\label{_equation_8h}\index{D:/Git/SummerSchool2021/0.SqrEquation/Equation.h@{D:/Git/SummerSchool2021/0.SqrEquation/Equation.h}}
+\hypertarget{_equation_8h}{}\doxysection{Equation.\+h File Reference}
+\label{_equation_8h}\index{Equation.h@{Equation.h}}
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$math.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}}
+\begin{DoxyCompactList}\small\item\em struct for solving linear case. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em struct for solving quadratic case. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -18,39 +20,41 @@ struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Eq
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} \{ \newline
-\mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a632fa39438c1676b435ec43e6a0f9647}{UNDEF}} = -\/1
-, \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a5374e1234e4d55af346d6ae6263ad573}{COMPLEX}}
-, \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a377f16802c1551a0b91bbe8d470b660a}{RATIONAL}}
-, \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a81eee1e76c4cddfdec000fff9292cdd3}{LINEAR\+\_\+\+EXISTS}}
+enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} \{ \newline
+\mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79ba632fa39438c1676b435ec43e6a0f9647}{UNDEF}} = -\/1
+, \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79ba5374e1234e4d55af346d6ae6263ad573}{COMPLEX}}
+, \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79ba377f16802c1551a0b91bbe8d470b660a}{RATIONAL}}
+, \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79ba81eee1e76c4cddfdec000fff9292cdd3}{LINEAR\+\_\+\+EXISTS}}
 , \newline
-\mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a2e6059d72d8fde88f3127eb147e4eff8}{INF}}
-, \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a7dd7b3f40bbdc50ef86a623103c46298}{NON\+\_\+\+EXISTENT}}
+\mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79ba2e6059d72d8fde88f3127eb147e4eff8}{INF}}
+, \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79ba7dd7b3f40bbdc50ef86a623103c46298}{NON\+\_\+\+EXISTENT}}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em Equation mod. Roots condition. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{_equation_8h_af76664567ebc8dbf2d45a7ef29b5bce7}{MODE\+\_\+\+OF\+\_\+\+QUADRATIC\+\_\+\+EQUATION\+\_\+\+PROGRAM}} \{ \mbox{\hyperlink{_equation_8h_af76664567ebc8dbf2d45a7ef29b5bce7a4645179fb4a4eccbdb21bd9ecbd51858}{TESTING\+\_\+\+MODE}} = 1
 , \mbox{\hyperlink{_equation_8h_af76664567ebc8dbf2d45a7ef29b5bce7a97fbfc43222844cbaaf5e6c7f80c40c5}{EXECUTING\+\_\+\+MODE}}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em Equation mod. Status of the mod, that\textquotesingle{}s executing solution of the equation or providing tests. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{_equation_8h_a9384fd619b01d57e46a7f534e65a1750}{MODE\+\_\+\+OF\+\_\+\+QUADRATIC\+\_\+\+EQUATION\+\_\+\+PROGRAM\+\_\+\+TESTS}} \{ \mbox{\hyperlink{_equation_8h_a9384fd619b01d57e46a7f534e65a1750a1f7a5574b76195a27b04152509632efc}{CONSOLE}} = 1
 , \mbox{\hyperlink{_equation_8h_a9384fd619b01d57e46a7f534e65a1750acd7ffe737ad5fb21fbd7499886934910}{LOG}}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em output mod. Status of output mod. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93}{TESTING\+\_\+\+DATA\+\_\+\+INPUT\+\_\+\+MODE}} \{ \mbox{\hyperlink{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93adc101ebf31c49c2d4b80b7c6f59f22cb}{LINEAR}} = 1
+, \mbox{\hyperlink{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93ae1a12d53590e4fd25c9fd9006f19ab5c}{QUAD}}
+ \}
+\begin{DoxyCompactList}\small\item\em input mode. Status of input file for test-\/system. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{_equation_8h_a39be858521a08b1a95f41de84df34342}{DOUBLE\+\_\+\+COMPARE\+\_\+\+STATUS}} \{ \mbox{\hyperlink{_equation_8h_a39be858521a08b1a95f41de84df34342a59a84258a4cb9025b567ee5139455029}{EQUAL}} = 0
 , \mbox{\hyperlink{_equation_8h_a39be858521a08b1a95f41de84df34342a25b5ca2f56d99ba6ffcb5316adac34c1}{GREATER}}
 , \mbox{\hyperlink{_equation_8h_a39be858521a08b1a95f41de84df34342a95c736070f99b99eb80d1eac1f4ca60f}{LESS}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em compare status. Status of comparing two double numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{_equation_8h_a6a1eedd89ebad5e93563be37d2d4b0a0}{get\+Coefficients}} (double $\ast$a, double $\ast$b, double $\ast$c)
 \item 
-struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} \mbox{\hyperlink{_equation_8h_a1d042185846095b5cefec9ef012880c5}{solve\+Linear\+Case}} (const double a, const double b)
+struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} \mbox{\hyperlink{_equation_8h_ad2a494210a2217c5af12b13977f06cdb}{solve\+Linear\+Case}} (const double a, const double b)
 \item 
 struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} \mbox{\hyperlink{_equation_8h_af6cce36e244274f3385da9def4812df2}{solve\+Quad\+Case}} (const double a, const double b, const double c)
-\item 
-struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} \mbox{\hyperlink{_equation_8h_a97cd6beb5d4ce054dc280a4544a5b01d}{quad\+Equation\+Solution}} ()
 \item 
 int \mbox{\hyperlink{_equation_8h_ab3444b22e3af571155f5444df4b4fda0}{compare\+Double}} (const double lhs, const double rhs)
 \item 
@@ -58,13 +62,17 @@ void \mbox{\hyperlink{_equation_8h_ad36c4b2c7080a1289f22f17233075394}{unit\+Test
 \item 
 void \mbox{\hyperlink{_equation_8h_a20bbd4d45e3f01305dd709f5a9cc9952}{clear\+Buffer}} ()
 \item 
-void \mbox{\hyperlink{_equation_8h_a5873e58e44f30d6e898fc4ee526ebfca}{file\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double b\+Part, double d\+Part, double first\+Rational, double second\+Rational, FILE $\ast$output, enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
+void \mbox{\hyperlink{_equation_8h_a26d5f3704784e3562c7c75e210072ae8}{file\+Quad\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double b\+Part, double d\+Part, double first\+Rational, double second\+Rational, FILE $\ast$output, enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
 \item 
-void \mbox{\hyperlink{_equation_8h_ad33cd4620a3f7e4300539c3ef7bc2b0f}{console\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double b\+Part, double d\+Part, double first\+Rational, double second\+Rational, enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
+void \mbox{\hyperlink{_equation_8h_ab3195842a0ded345086a991d565582f9}{console\+Quad\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double b\+Part, double d\+Part, double first\+Rational, double second\+Rational, enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
 \item 
 void \mbox{\hyperlink{_equation_8h_a8843773b33c7469c4860f18c0cb08b03}{solve\+Quad\+Equation\+CLI}} ()
 \item 
-void \mbox{\hyperlink{_equation_8h_a442216a51ee4c6aa31f4fc2a5550f856}{print\+Roots}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} Equations)
+void \mbox{\hyperlink{_equation_8h_aaaf7a0ced21a16a09dcddf00dc2456ae}{print\+Roots}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} Equations, struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} Lin\+Equation)
+\item 
+void \mbox{\hyperlink{_equation_8h_a606cb8eed56b36d13d7c7193ebe439dc}{file\+Linear\+Test\+Output}} (struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} test, FILE $\ast$output, enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, double root, int test\+Number)
+\item 
+void \mbox{\hyperlink{_equation_8h_a36b178d16632419f52dfab7b35249c1e}{console\+Linear\+Test\+Output}} (struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} test, enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, double root, int test\+Number)
 \end{DoxyCompactItemize}
 
 
@@ -90,6 +98,10 @@ void \mbox{\hyperlink{_equation_8h_a442216a51ee4c6aa31f4fc2a5550f856}{print\+Roo
 \doxysubsubsection{\texorpdfstring{DOUBLE\_COMPARE\_STATUS}{DOUBLE\_COMPARE\_STATUS}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{_equation_8h_a39be858521a08b1a95f41de84df34342}{DOUBLE\+\_\+\+COMPARE\+\_\+\+STATUS}}}
 
+
+
+compare status. Status of comparing two double numbers. 
+
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EQUAL@{EQUAL}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!EQUAL@{EQUAL}}}\mbox{\Hypertarget{_equation_8h_a39be858521a08b1a95f41de84df34342a59a84258a4cb9025b567ee5139455029}\label{_equation_8h_a39be858521a08b1a95f41de84df34342a59a84258a4cb9025b567ee5139455029}} 
 EQUAL&\\
@@ -104,11 +116,51 @@ LESS&\\
 \hline
 
 \end{DoxyEnumFields}
+\mbox{\Hypertarget{_equation_8h_a278d63eb3021b2904f952c737925a79b}\label{_equation_8h_a278d63eb3021b2904f952c737925a79b}} 
+\index{Equation.h@{Equation.h}!EQUATION\_SOLUTION\_CONDITION@{EQUATION\_SOLUTION\_CONDITION}}
+\index{EQUATION\_SOLUTION\_CONDITION@{EQUATION\_SOLUTION\_CONDITION}!Equation.h@{Equation.h}}
+\doxysubsubsection{\texorpdfstring{EQUATION\_SOLUTION\_CONDITION}{EQUATION\_SOLUTION\_CONDITION}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}
+
+
+
+Equation mod. Roots condition. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNDEF@{UNDEF}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!UNDEF@{UNDEF}}}\mbox{\Hypertarget{_equation_8h_a278d63eb3021b2904f952c737925a79ba632fa39438c1676b435ec43e6a0f9647}\label{_equation_8h_a278d63eb3021b2904f952c737925a79ba632fa39438c1676b435ec43e6a0f9647}} 
+UNDEF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPLEX@{COMPLEX}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!COMPLEX@{COMPLEX}}}\mbox{\Hypertarget{_equation_8h_a278d63eb3021b2904f952c737925a79ba5374e1234e4d55af346d6ae6263ad573}\label{_equation_8h_a278d63eb3021b2904f952c737925a79ba5374e1234e4d55af346d6ae6263ad573}} 
+COMPLEX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RATIONAL@{RATIONAL}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!RATIONAL@{RATIONAL}}}\mbox{\Hypertarget{_equation_8h_a278d63eb3021b2904f952c737925a79ba377f16802c1551a0b91bbe8d470b660a}\label{_equation_8h_a278d63eb3021b2904f952c737925a79ba377f16802c1551a0b91bbe8d470b660a}} 
+RATIONAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LINEAR\_EXISTS@{LINEAR\_EXISTS}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!LINEAR\_EXISTS@{LINEAR\_EXISTS}}}\mbox{\Hypertarget{_equation_8h_a278d63eb3021b2904f952c737925a79ba81eee1e76c4cddfdec000fff9292cdd3}\label{_equation_8h_a278d63eb3021b2904f952c737925a79ba81eee1e76c4cddfdec000fff9292cdd3}} 
+LINEAR\+\_\+\+EXISTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INF@{INF}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!INF@{INF}}}\mbox{\Hypertarget{_equation_8h_a278d63eb3021b2904f952c737925a79ba2e6059d72d8fde88f3127eb147e4eff8}\label{_equation_8h_a278d63eb3021b2904f952c737925a79ba2e6059d72d8fde88f3127eb147e4eff8}} 
+INF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NON\_EXISTENT@{NON\_EXISTENT}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!NON\_EXISTENT@{NON\_EXISTENT}}}\mbox{\Hypertarget{_equation_8h_a278d63eb3021b2904f952c737925a79ba7dd7b3f40bbdc50ef86a623103c46298}\label{_equation_8h_a278d63eb3021b2904f952c737925a79ba7dd7b3f40bbdc50ef86a623103c46298}} 
+NON\+\_\+\+EXISTENT&\\
+\hline
+
+\end{DoxyEnumFields}
 \mbox{\Hypertarget{_equation_8h_af76664567ebc8dbf2d45a7ef29b5bce7}\label{_equation_8h_af76664567ebc8dbf2d45a7ef29b5bce7}} 
 \index{Equation.h@{Equation.h}!MODE\_OF\_QUADRATIC\_EQUATION\_PROGRAM@{MODE\_OF\_QUADRATIC\_EQUATION\_PROGRAM}}
 \index{MODE\_OF\_QUADRATIC\_EQUATION\_PROGRAM@{MODE\_OF\_QUADRATIC\_EQUATION\_PROGRAM}!Equation.h@{Equation.h}}
 \doxysubsubsection{\texorpdfstring{MODE\_OF\_QUADRATIC\_EQUATION\_PROGRAM}{MODE\_OF\_QUADRATIC\_EQUATION\_PROGRAM}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{_equation_8h_af76664567ebc8dbf2d45a7ef29b5bce7}{MODE\+\_\+\+OF\+\_\+\+QUADRATIC\+\_\+\+EQUATION\+\_\+\+PROGRAM}}}
+
+
+
+Equation mod. Status of the mod, that\textquotesingle{}s executing solution of the equation or providing tests. 
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{TESTING\_MODE@{TESTING\_MODE}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!TESTING\_MODE@{TESTING\_MODE}}}\mbox{\Hypertarget{_equation_8h_af76664567ebc8dbf2d45a7ef29b5bce7a4645179fb4a4eccbdb21bd9ecbd51858}\label{_equation_8h_af76664567ebc8dbf2d45a7ef29b5bce7a4645179fb4a4eccbdb21bd9ecbd51858}} 
@@ -126,6 +178,10 @@ EXECUTING\+\_\+\+MODE&\\
 \doxysubsubsection{\texorpdfstring{MODE\_OF\_QUADRATIC\_EQUATION\_PROGRAM\_TESTS}{MODE\_OF\_QUADRATIC\_EQUATION\_PROGRAM\_TESTS}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{_equation_8h_a9384fd619b01d57e46a7f534e65a1750}{MODE\+\_\+\+OF\+\_\+\+QUADRATIC\+\_\+\+EQUATION\+\_\+\+PROGRAM\+\_\+\+TESTS}}}
 
+
+
+output mod. Status of output mod. 
+
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{CONSOLE@{CONSOLE}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!CONSOLE@{CONSOLE}}}\mbox{\Hypertarget{_equation_8h_a9384fd619b01d57e46a7f534e65a1750a1f7a5574b76195a27b04152509632efc}\label{_equation_8h_a9384fd619b01d57e46a7f534e65a1750a1f7a5574b76195a27b04152509632efc}} 
 CONSOLE&\\
@@ -136,35 +192,23 @@ LOG&\\
 \hline
 
 \end{DoxyEnumFields}
-\mbox{\Hypertarget{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}\label{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}} 
-\index{Equation.h@{Equation.h}!QUADRATIC\_EQUATION\_SOLUTION\_CONDITION@{QUADRATIC\_EQUATION\_SOLUTION\_CONDITION}}
-\index{QUADRATIC\_EQUATION\_SOLUTION\_CONDITION@{QUADRATIC\_EQUATION\_SOLUTION\_CONDITION}!Equation.h@{Equation.h}}
-\doxysubsubsection{\texorpdfstring{QUADRATIC\_EQUATION\_SOLUTION\_CONDITION}{QUADRATIC\_EQUATION\_SOLUTION\_CONDITION}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}
+\mbox{\Hypertarget{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93}\label{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93}} 
+\index{Equation.h@{Equation.h}!TESTING\_DATA\_INPUT\_MODE@{TESTING\_DATA\_INPUT\_MODE}}
+\index{TESTING\_DATA\_INPUT\_MODE@{TESTING\_DATA\_INPUT\_MODE}!Equation.h@{Equation.h}}
+\doxysubsubsection{\texorpdfstring{TESTING\_DATA\_INPUT\_MODE}{TESTING\_DATA\_INPUT\_MODE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93}{TESTING\+\_\+\+DATA\+\_\+\+INPUT\+\_\+\+MODE}}}
+
+
+
+input mode. Status of input file for test-\/system. 
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{UNDEF@{UNDEF}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!UNDEF@{UNDEF}}}\mbox{\Hypertarget{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a632fa39438c1676b435ec43e6a0f9647}\label{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a632fa39438c1676b435ec43e6a0f9647}} 
-UNDEF&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LINEAR@{LINEAR}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!LINEAR@{LINEAR}}}\mbox{\Hypertarget{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93adc101ebf31c49c2d4b80b7c6f59f22cb}\label{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93adc101ebf31c49c2d4b80b7c6f59f22cb}} 
+LINEAR&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPLEX@{COMPLEX}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!COMPLEX@{COMPLEX}}}\mbox{\Hypertarget{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a5374e1234e4d55af346d6ae6263ad573}\label{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a5374e1234e4d55af346d6ae6263ad573}} 
-COMPLEX&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{RATIONAL@{RATIONAL}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!RATIONAL@{RATIONAL}}}\mbox{\Hypertarget{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a377f16802c1551a0b91bbe8d470b660a}\label{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a377f16802c1551a0b91bbe8d470b660a}} 
-RATIONAL&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{LINEAR\_EXISTS@{LINEAR\_EXISTS}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!LINEAR\_EXISTS@{LINEAR\_EXISTS}}}\mbox{\Hypertarget{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a81eee1e76c4cddfdec000fff9292cdd3}\label{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a81eee1e76c4cddfdec000fff9292cdd3}} 
-LINEAR\+\_\+\+EXISTS&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INF@{INF}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!INF@{INF}}}\mbox{\Hypertarget{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a2e6059d72d8fde88f3127eb147e4eff8}\label{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a2e6059d72d8fde88f3127eb147e4eff8}} 
-INF&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{NON\_EXISTENT@{NON\_EXISTENT}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!NON\_EXISTENT@{NON\_EXISTENT}}}\mbox{\Hypertarget{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a7dd7b3f40bbdc50ef86a623103c46298}\label{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a7dd7b3f40bbdc50ef86a623103c46298}} 
-NON\+\_\+\+EXISTENT&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{QUAD@{QUAD}!Equation.h@{Equation.h}}\index{Equation.h@{Equation.h}!QUAD@{QUAD}}}\mbox{\Hypertarget{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93ae1a12d53590e4fd25c9fd9006f19ab5c}\label{_equation_8h_a1495d9986694e1c8b9e88e4e0def1b93ae1a12d53590e4fd25c9fd9006f19ab5c}} 
+QUAD&\\
 \hline
 
 \end{DoxyEnumFields}
@@ -183,17 +227,29 @@ NON\+\_\+\+EXISTENT&\\
 \doxysubsubsection{\texorpdfstring{compareDouble()}{compareDouble()}}
 {\footnotesize\ttfamily int compare\+Double (\begin{DoxyParamCaption}\item[{const double}]{lhs,  }\item[{const double}]{rhs }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_equation_8h_ad33cd4620a3f7e4300539c3ef7bc2b0f}\label{_equation_8h_ad33cd4620a3f7e4300539c3ef7bc2b0f}} 
-\index{Equation.h@{Equation.h}!consoleTestOutput@{consoleTestOutput}}
-\index{consoleTestOutput@{consoleTestOutput}!Equation.h@{Equation.h}}
-\doxysubsubsection{\texorpdfstring{consoleTestOutput()}{consoleTestOutput()}}
-{\footnotesize\ttfamily void console\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{b\+Part,  }\item[{double}]{d\+Part,  }\item[{double}]{first\+Rational,  }\item[{double}]{second\+Rational,  }\item[{enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{_equation_8h_a36b178d16632419f52dfab7b35249c1e}\label{_equation_8h_a36b178d16632419f52dfab7b35249c1e}} 
+\index{Equation.h@{Equation.h}!consoleLinearTestOutput@{consoleLinearTestOutput}}
+\index{consoleLinearTestOutput@{consoleLinearTestOutput}!Equation.h@{Equation.h}}
+\doxysubsubsection{\texorpdfstring{consoleLinearTestOutput()}{consoleLinearTestOutput()}}
+{\footnotesize\ttfamily void console\+Linear\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}}}]{test,  }\item[{enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{double}]{root,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_equation_8h_a5873e58e44f30d6e898fc4ee526ebfca}\label{_equation_8h_a5873e58e44f30d6e898fc4ee526ebfca}} 
-\index{Equation.h@{Equation.h}!fileTestOutput@{fileTestOutput}}
-\index{fileTestOutput@{fileTestOutput}!Equation.h@{Equation.h}}
-\doxysubsubsection{\texorpdfstring{fileTestOutput()}{fileTestOutput()}}
-{\footnotesize\ttfamily void file\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{b\+Part,  }\item[{double}]{d\+Part,  }\item[{double}]{first\+Rational,  }\item[{double}]{second\+Rational,  }\item[{FILE $\ast$}]{output,  }\item[{enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{_equation_8h_ab3195842a0ded345086a991d565582f9}\label{_equation_8h_ab3195842a0ded345086a991d565582f9}} 
+\index{Equation.h@{Equation.h}!consoleQuadTestOutput@{consoleQuadTestOutput}}
+\index{consoleQuadTestOutput@{consoleQuadTestOutput}!Equation.h@{Equation.h}}
+\doxysubsubsection{\texorpdfstring{consoleQuadTestOutput()}{consoleQuadTestOutput()}}
+{\footnotesize\ttfamily void console\+Quad\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{b\+Part,  }\item[{double}]{d\+Part,  }\item[{double}]{first\+Rational,  }\item[{double}]{second\+Rational,  }\item[{enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8h_a606cb8eed56b36d13d7c7193ebe439dc}\label{_equation_8h_a606cb8eed56b36d13d7c7193ebe439dc}} 
+\index{Equation.h@{Equation.h}!fileLinearTestOutput@{fileLinearTestOutput}}
+\index{fileLinearTestOutput@{fileLinearTestOutput}!Equation.h@{Equation.h}}
+\doxysubsubsection{\texorpdfstring{fileLinearTestOutput()}{fileLinearTestOutput()}}
+{\footnotesize\ttfamily void file\+Linear\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}}}]{test,  }\item[{FILE $\ast$}]{output,  }\item[{enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{double}]{root,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8h_a26d5f3704784e3562c7c75e210072ae8}\label{_equation_8h_a26d5f3704784e3562c7c75e210072ae8}} 
+\index{Equation.h@{Equation.h}!fileQuadTestOutput@{fileQuadTestOutput}}
+\index{fileQuadTestOutput@{fileQuadTestOutput}!Equation.h@{Equation.h}}
+\doxysubsubsection{\texorpdfstring{fileQuadTestOutput()}{fileQuadTestOutput()}}
+{\footnotesize\ttfamily void file\+Quad\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{b\+Part,  }\item[{double}]{d\+Part,  }\item[{double}]{first\+Rational,  }\item[{double}]{second\+Rational,  }\item[{FILE $\ast$}]{output,  }\item[{enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{_equation_8h_a6a1eedd89ebad5e93563be37d2d4b0a0}\label{_equation_8h_a6a1eedd89ebad5e93563be37d2d4b0a0}} 
 \index{Equation.h@{Equation.h}!getCoefficients@{getCoefficients}}
@@ -201,23 +257,17 @@ NON\+\_\+\+EXISTENT&\\
 \doxysubsubsection{\texorpdfstring{getCoefficients()}{getCoefficients()}}
 {\footnotesize\ttfamily void get\+Coefficients (\begin{DoxyParamCaption}\item[{double $\ast$}]{a,  }\item[{double $\ast$}]{b,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_equation_8h_a442216a51ee4c6aa31f4fc2a5550f856}\label{_equation_8h_a442216a51ee4c6aa31f4fc2a5550f856}} 
+\mbox{\Hypertarget{_equation_8h_aaaf7a0ced21a16a09dcddf00dc2456ae}\label{_equation_8h_aaaf7a0ced21a16a09dcddf00dc2456ae}} 
 \index{Equation.h@{Equation.h}!printRoots@{printRoots}}
 \index{printRoots@{printRoots}!Equation.h@{Equation.h}}
 \doxysubsubsection{\texorpdfstring{printRoots()}{printRoots()}}
-{\footnotesize\ttfamily void print\+Roots (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{Equations }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void print\+Roots (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{Equations,  }\item[{struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}}}]{Lin\+Equation }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_equation_8h_a97cd6beb5d4ce054dc280a4544a5b01d}\label{_equation_8h_a97cd6beb5d4ce054dc280a4544a5b01d}} 
-\index{Equation.h@{Equation.h}!quadEquationSolution@{quadEquationSolution}}
-\index{quadEquationSolution@{quadEquationSolution}!Equation.h@{Equation.h}}
-\doxysubsubsection{\texorpdfstring{quadEquationSolution()}{quadEquationSolution()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} quad\+Equation\+Solution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{_equation_8h_a1d042185846095b5cefec9ef012880c5}\label{_equation_8h_a1d042185846095b5cefec9ef012880c5}} 
+\mbox{\Hypertarget{_equation_8h_ad2a494210a2217c5af12b13977f06cdb}\label{_equation_8h_ad2a494210a2217c5af12b13977f06cdb}} 
 \index{Equation.h@{Equation.h}!solveLinearCase@{solveLinearCase}}
 \index{solveLinearCase@{solveLinearCase}!Equation.h@{Equation.h}}
 \doxysubsubsection{\texorpdfstring{solveLinearCase()}{solveLinearCase()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} solve\+Linear\+Case (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} solve\+Linear\+Case (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{b }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{_equation_8h_af6cce36e244274f3385da9def4812df2}\label{_equation_8h_af6cce36e244274f3385da9def4812df2}} 
 \index{Equation.h@{Equation.h}!solveQuadCase@{solveQuadCase}}

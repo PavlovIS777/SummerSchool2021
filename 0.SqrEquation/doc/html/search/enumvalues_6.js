@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rational_0',['RATIONAL',['../_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288a377f16802c1551a0b91bbe8d470b660a',1,'Equation.h']]]
+  ['quad_0',['QUAD',['../_equation_8h.html#a1495d9986694e1c8b9e88e4e0def1b93ae1a12d53590e4fd25c9fd9006f19ab5c',1,'Equation.h']]]
 ];
