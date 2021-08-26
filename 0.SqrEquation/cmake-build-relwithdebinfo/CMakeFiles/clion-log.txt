@@ -1,4 +1,0 @@
-"C:\Users\Vanushka Ogli Pushka\AppData\Local\JetBrains\CLion2021.2\cygwin_cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /cygdrive/d/Git/SummerSchool2021/0.SqrEquation
--- Configuring done
--- Generating done
--- Build files have been written to: /cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-relwithdebinfo

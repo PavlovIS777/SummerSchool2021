@@ -1,3 +1,0 @@
-/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-release/CMakeFiles/rebuild_cache.dir
-/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-release/CMakeFiles/edit_cache.dir
-/cygdrive/d/Git/SummerSchool2021/0.SqrEquation/cmake-build-release/CMakeFiles/SqrEquation.dir
