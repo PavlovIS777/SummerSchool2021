@@ -42,11 +42,12 @@ struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double 
     }
 
     double disc = b * b - 4 * a * c;
-    Equation.bCoefficientPart = -(b)/(2 * a);
+    Equation.bCoefficientPart = -(b)/ (2 * a);
 
     if (compareDouble(disc, 0.0) == EQUAL) {
         Equation.condition = LINEAR_EXISTS;
         Equation.discriminantPart = 0;
+
         return Equation;
     }
 
@@ -61,6 +62,7 @@ struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double 
 
     disc_sqrt = sqrt(disc);
     Equation.discriminantPart = disc_sqrt/(2 * a);
+
     return Equation;
 }
 /*!
@@ -90,16 +92,19 @@ struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
         (compareDouble(b, 0.0) == EQUAL)) {
         Equation.condition = INF;
         Equation.bCoefficientPart = 0;
+
         return Equation;
     }
 
     if (compareDouble(a, 0.0) == EQUAL) {
         Equation.bCoefficientPart = 0;
         Equation.condition = NON_EXISTENT;
+
         return Equation;
     } else {
         Equation.condition = LINEAR_EXISTS;
         Equation.bCoefficientPart = -b / a;
+
         return Equation;
     }
 }
@@ -115,11 +120,12 @@ void getCoefficients(double* a, double* b, double* c)
     printf("\tPlease, enter the coefficients.\n"
            "\tExample: For equation x^2 + 2.1x + 1 = 0\n"
            "\tWrite: 1 2.1 1\n");
-    int attemptsCount = 5;
+    int attemptsCount = MAX_ATTEMPTS_COUNT;
     while(scanf("%lf %lf %lf", a, b, c) != 3) {
         --attemptsCount;
         if (attemptsCount == 0) {
             printf("\tMaximum number of attempts WASTED.");
+
             return;
         }
 
@@ -270,6 +276,41 @@ void unitTest()
         }
     }
 }
+/*!
+ * \brief print Roots function.
+ *        Function prints roots in console.
+ * \returns void
+ * \example printRoots(struct QuadraticEquationSolutionStatus Equation)
+*/
+void printRoots(struct QuadraticEquationSolutionStatus Equation)
+{
+    switch (Equation.condition) {
+        case UNDEF:
+            printf("Wrong input.");
+            break;
+        case RATIONAL:
+            printf("Roots are rational.\n"
+                   "x1 = %lf and x2 = %lf", Equation.bCoefficientPart - Equation.discriminantPart,
+                   Equation.bCoefficientPart + Equation.discriminantPart);
+            break;
+        case LINEAR_EXISTS:
+            printf("Root is rational.\n"
+                   "x = %lf", Equation.bCoefficientPart);
+            break;
+        case COMPLEX:
+            printf("Roots are complex.\n"
+                   "x1 = %lf - %lf""i and x2 = %lf + %lf""i",
+                   Equation.bCoefficientPart, Equation.discriminantPart, Equation.bCoefficientPart,
+                   Equation.discriminantPart);
+            break;
+        case INF:
+            printf("x belongs R");
+            break;
+        case NON_EXISTENT:
+            printf("There's no solution.");
+            break;
+    }
+}
 
 /*!
  * \brief Function of solving quadratic equation.
@@ -280,11 +321,11 @@ void unitTest()
  * \returns void
  * \example solveQuadEquation()
 */
-    void solveQuadEquation() {
+void solveQuadEquationCLI() {
     printf("\tHello, user! Please, choose program mode.\n "
            "\tType \"1\" for testing and \"2\" "
            "for the program executing.\n");
-    char mode = ' ';
+    enum MODE_OF_QUADRATIC_EQUATION_PROGRAM mode = -1;
     int attemptCounts = MAX_ATTEMPTS_COUNT;
     do {
         scanf("%d", &mode);
@@ -304,31 +345,6 @@ void unitTest()
         unitTest();
     } else {
         struct QuadraticEquationSolutionStatus Equation = quadEquationSolution();
-        switch (Equation.condition) {
-            case UNDEF:
-                printf("Wrong input.");
-                break;
-            case RATIONAL:
-                printf("Roots are rational.\n"
-                       "x1 = %lf and x2 = %lf", Equation.bCoefficientPart - Equation.discriminantPart,
-                       Equation.bCoefficientPart + Equation.discriminantPart);
-                break;
-            case LINEAR_EXISTS:
-                printf("Root is rational.\n"
-                       "x = %lf", Equation.bCoefficientPart);
-                break;
-            case COMPLEX:
-                printf("Roots are complex.\n"
-                       "x1 = %lf - %lf""i and x2 = %lf + %lf""i",
-                       Equation.bCoefficientPart, Equation.discriminantPart, Equation.bCoefficientPart,
-                       Equation.discriminantPart);
-                break;
-            case INF:
-                printf("x belongs R");
-                break;
-            case NON_EXISTENT:
-                printf("There's no solution.");
-                break;
-        }
+        printRoots(Equation);
     }
 }

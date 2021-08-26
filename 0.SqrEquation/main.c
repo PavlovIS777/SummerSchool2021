@@ -1,6 +1,6 @@
 #include "Equation.h"
 
 int main() {
-    solveQuadEquation();
+    solveQuadEquationCLI();
     return 0;
 }

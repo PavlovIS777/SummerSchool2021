@@ -1,5 +1,4 @@
 \hypertarget{_equation_8h_source}{}\doxysection{Equation.\+h}
-\label{_equation_8h_source}\index{D:/Git/SummerSchool2021/0.SqrEquation/Equation.h@{D:/Git/SummerSchool2021/0.SqrEquation/Equation.h}}
 \mbox{\hyperlink{_equation_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef EQUATION\_H}}
@@ -9,14 +8,14 @@
 \DoxyCodeLine{5 \textcolor{preprocessor}{\#include <math.h>}}
 \DoxyCodeLine{6 \textcolor{preprocessor}{\#include <stdlib.h>}}
 \DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#define EPS 1e-\/12}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define EPS 1e-\/12 }\textcolor{comment}{//машинный ноль}}
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#define MAX\_ATTEMPTS\_COUNT 5}}
 \DoxyCodeLine{10 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_quadratic_equation_solution_status}{QuadraticEquationSolutionStatus}}}
 \DoxyCodeLine{11 \{}
 \DoxyCodeLine{12     \textcolor{keywordtype}{double} \mbox{\hyperlink{struct_quadratic_equation_solution_status_a2ce59778efaaec661264daf82e1486a1}{bCoefficientPart}}, \mbox{\hyperlink{struct_quadratic_equation_solution_status_a5f97f17910df23ec7e92a4adf3bc91a2}{discriminantPart}};}
 \DoxyCodeLine{13     \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_quadratic_equation_solution_status_a7ae0ba088695a0270f5f1e68e4840200}{condition}};}
 \DoxyCodeLine{14 \};}
-\DoxyCodeLine{15 }
+\DoxyCodeLine{15 \textcolor{comment}{//документация сюда, структура.}}
 \DoxyCodeLine{16 \textcolor{keyword}{enum} \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\_EQUATION\_SOLUTION\_CONDITION}}}
 \DoxyCodeLine{17 \{}
 \DoxyCodeLine{18     \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288a632fa39438c1676b435ec43e6a0f9647}{UNDEF}} = -\/1    ,}
@@ -49,13 +48,13 @@
 \DoxyCodeLine{45 }
 \DoxyCodeLine{46 \textcolor{keywordtype}{void} \mbox{\hyperlink{_equation_8h_a6a1eedd89ebad5e93563be37d2d4b0a0}{getCoefficients}}(\textcolor{keywordtype}{double}* a, \textcolor{keywordtype}{double}* b, \textcolor{keywordtype}{double}* c);}
 \DoxyCodeLine{47 }
-\DoxyCodeLine{48 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_quadratic_equation_solution_status}{QuadraticEquationSolutionStatus}} \mbox{\hyperlink{_equation_8h_ad5a404d4ebb1b96e7c9b5266239bd605}{solveLinearCase}}(double a, double b);}
+\DoxyCodeLine{48 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_quadratic_equation_solution_status}{QuadraticEquationSolutionStatus}} \mbox{\hyperlink{_equation_8h_a1d042185846095b5cefec9ef012880c5}{solveLinearCase}}(const double a,const double b);}
 \DoxyCodeLine{49 }
-\DoxyCodeLine{50 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_quadratic_equation_solution_status}{QuadraticEquationSolutionStatus}} \mbox{\hyperlink{_equation_8h_a5ca5f5d928acb499d5ec68e8ad80ec7b}{solveQuadCase}}(double a, double b, double c);}
+\DoxyCodeLine{50 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_quadratic_equation_solution_status}{QuadraticEquationSolutionStatus}} \mbox{\hyperlink{_equation_8h_af6cce36e244274f3385da9def4812df2}{solveQuadCase}}(const double a, const double b, const double c);}
 \DoxyCodeLine{51 }
 \DoxyCodeLine{52 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_quadratic_equation_solution_status}{QuadraticEquationSolutionStatus}} \mbox{\hyperlink{_equation_8h_a97cd6beb5d4ce054dc280a4544a5b01d}{quadEquationSolution}}();}
 \DoxyCodeLine{53 }
-\DoxyCodeLine{54 \textcolor{keywordtype}{int} \mbox{\hyperlink{_equation_8h_ac184d0d83be9ea23e1eba96c97524608}{compareDouble}}(\textcolor{keywordtype}{double} one, \textcolor{keywordtype}{double} two);}
+\DoxyCodeLine{54 \textcolor{keywordtype}{int} \mbox{\hyperlink{_equation_8h_ab3444b22e3af571155f5444df4b4fda0}{compareDouble}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} lhs, \textcolor{keyword}{const} \textcolor{keywordtype}{double} rhs);}
 \DoxyCodeLine{55 }
 \DoxyCodeLine{56 \textcolor{keywordtype}{void} \mbox{\hyperlink{_equation_8h_ad36c4b2c7080a1289f22f17233075394}{unitTest}}();}
 \DoxyCodeLine{57 }
@@ -67,7 +66,9 @@
 \DoxyCodeLine{63 \textcolor{keywordtype}{void} \mbox{\hyperlink{_equation_8h_a032b6bb9f7c457e6da9bb33f9d0b117b}{consoleTestOutput}} (\textcolor{keyword}{struct} \mbox{\hyperlink{struct_quadratic_equation_solution_status}{QuadraticEquationSolutionStatus}} test, \textcolor{keywordtype}{double} bPart, \textcolor{keywordtype}{double} dPart,}
 \DoxyCodeLine{64                         \textcolor{keyword}{enum} \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\_EQUATION\_SOLUTION\_CONDITION}} \mbox{\hyperlink{struct_quadratic_equation_solution_status_a7ae0ba088695a0270f5f1e68e4840200}{condition}}, \textcolor{keywordtype}{int} testNumber);}
 \DoxyCodeLine{65 }
-\DoxyCodeLine{66 \textcolor{keywordtype}{void} \mbox{\hyperlink{_equation_8h_a6eb4bce7cedba5fb7ed6f601eded4b97}{solveQuadEquation}}();}
-\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//EQUATION\_H`}}
+\DoxyCodeLine{66 \textcolor{keywordtype}{void} \mbox{\hyperlink{_equation_8h_a8843773b33c7469c4860f18c0cb08b03}{solveQuadEquationCLI}}();}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{keywordtype}{void} \mbox{\hyperlink{_equation_8h_a442216a51ee4c6aa31f4fc2a5550f856}{printRoots}}(\textcolor{keyword}{struct} \mbox{\hyperlink{struct_quadratic_equation_solution_status}{QuadraticEquationSolutionStatus}} Equations);}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//EQUATION\_H`}}
 
 \end{DoxyCode}

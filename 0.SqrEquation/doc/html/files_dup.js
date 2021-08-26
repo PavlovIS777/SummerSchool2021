@@ -1,4 +1,6 @@
 var files_dup =
 [
-    [ "D:", "dir_275089585c7fc1b5fd5d7d42c69cb1da.html", "dir_275089585c7fc1b5fd5d7d42c69cb1da" ]
+    [ "Equation.c", "_equation_8c.html", "_equation_8c" ],
+    [ "Equation.h", "_equation_8h.html", "_equation_8h" ],
+    [ "main.c", "main_8c.html", "main_8c" ]
 ];

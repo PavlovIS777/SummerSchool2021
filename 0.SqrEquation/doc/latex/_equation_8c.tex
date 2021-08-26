@@ -1,5 +1,5 @@
-\hypertarget{_equation_8c}{}\doxysection{D\+:/\+Git/\+Summer\+School2021/0.Sqr\+Equation/\+Equation.c File Reference}
-\label{_equation_8c}\index{D:/Git/SummerSchool2021/0.SqrEquation/Equation.c@{D:/Git/SummerSchool2021/0.SqrEquation/Equation.c}}
+\hypertarget{_equation_8c}{}\doxysection{Equation.\+c File Reference}
+\label{_equation_8c}\index{Equation.c@{Equation.c}}
 {\ttfamily \#include \char`\"{}Equation.\+h\char`\"{}}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -22,7 +22,9 @@ void \mbox{\hyperlink{_equation_8c_a032b6bb9f7c457e6da9bb33f9d0b117b}{console\+T
 \item 
 void \mbox{\hyperlink{_equation_8c_ad36c4b2c7080a1289f22f17233075394}{unit\+Test}} ()
 \item 
-void \mbox{\hyperlink{_equation_8c_a6eb4bce7cedba5fb7ed6f601eded4b97}{solve\+Quad\+Equation}} ()
+void \mbox{\hyperlink{_equation_8c_af16f509663c0258d3cce390443d31ce1}{print\+Roots}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} Equation)
+\item 
+void \mbox{\hyperlink{_equation_8c_a8843773b33c7469c4860f18c0cb08b03}{solve\+Quad\+Equation\+CLI}} ()
 \end{DoxyCompactItemize}
 
 
@@ -57,6 +59,12 @@ void \mbox{\hyperlink{_equation_8c_a6eb4bce7cedba5fb7ed6f601eded4b97}{solve\+Qua
 \doxysubsubsection{\texorpdfstring{getCoefficients()}{getCoefficients()}}
 {\footnotesize\ttfamily void get\+Coefficients (\begin{DoxyParamCaption}\item[{double $\ast$}]{a,  }\item[{double $\ast$}]{b,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{_equation_8c_af16f509663c0258d3cce390443d31ce1}\label{_equation_8c_af16f509663c0258d3cce390443d31ce1}} 
+\index{Equation.c@{Equation.c}!printRoots@{printRoots}}
+\index{printRoots@{printRoots}!Equation.c@{Equation.c}}
+\doxysubsubsection{\texorpdfstring{printRoots()}{printRoots()}}
+{\footnotesize\ttfamily void print\+Roots (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{Equation }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{_equation_8c_a97cd6beb5d4ce054dc280a4544a5b01d}\label{_equation_8c_a97cd6beb5d4ce054dc280a4544a5b01d}} 
 \index{Equation.c@{Equation.c}!quadEquationSolution@{quadEquationSolution}}
 \index{quadEquationSolution@{quadEquationSolution}!Equation.c@{Equation.c}}
@@ -75,11 +83,11 @@ void \mbox{\hyperlink{_equation_8c_a6eb4bce7cedba5fb7ed6f601eded4b97}{solve\+Qua
 \doxysubsubsection{\texorpdfstring{solveQuadCase()}{solveQuadCase()}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} solve\+Quad\+Case (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_equation_8c_a6eb4bce7cedba5fb7ed6f601eded4b97}\label{_equation_8c_a6eb4bce7cedba5fb7ed6f601eded4b97}} 
-\index{Equation.c@{Equation.c}!solveQuadEquation@{solveQuadEquation}}
-\index{solveQuadEquation@{solveQuadEquation}!Equation.c@{Equation.c}}
-\doxysubsubsection{\texorpdfstring{solveQuadEquation()}{solveQuadEquation()}}
-{\footnotesize\ttfamily void solve\+Quad\+Equation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{_equation_8c_a8843773b33c7469c4860f18c0cb08b03}\label{_equation_8c_a8843773b33c7469c4860f18c0cb08b03}} 
+\index{Equation.c@{Equation.c}!solveQuadEquationCLI@{solveQuadEquationCLI}}
+\index{solveQuadEquationCLI@{solveQuadEquationCLI}!Equation.c@{Equation.c}}
+\doxysubsubsection{\texorpdfstring{solveQuadEquationCLI()}{solveQuadEquationCLI()}}
+{\footnotesize\ttfamily void solve\+Quad\+Equation\+CLI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{_equation_8c_ad36c4b2c7080a1289f22f17233075394}\label{_equation_8c_ad36c4b2c7080a1289f22f17233075394}} 
 \index{Equation.c@{Equation.c}!unitTest@{unitTest}}

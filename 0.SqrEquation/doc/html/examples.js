@@ -9,5 +9,6 @@ var examples =
     [ "fileTestOutput", "file_test_output-example.html", null ],
     [ "consoleTestOutput", "console_test_output-example.html", null ],
     [ "uniTest", "uni_test-example.html", null ],
+    [ "printRoots", "print_roots-example.html", null ],
     [ "solveQuadEquation", "solve_quad_equation-example.html", null ]
 ];

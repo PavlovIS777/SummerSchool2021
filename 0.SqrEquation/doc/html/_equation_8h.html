@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SqrEquation: D:/Git/SummerSchool2021/0.SqrEquation/Equation.h File Reference</title>
+<title>SqrEquation: Equation.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -139,14 +139,14 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a6a1eedd89ebad5e93563be37d2d4b0a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a6a1eedd89ebad5e93563be37d2d4b0a0">getCoefficients</a> (double *a, double *b, double *c)</td></tr>
 <tr class="separator:a6a1eedd89ebad5e93563be37d2d4b0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5a404d4ebb1b96e7c9b5266239bd605"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ad5a404d4ebb1b96e7c9b5266239bd605">solveLinearCase</a> (double a, double b)</td></tr>
-<tr class="separator:ad5a404d4ebb1b96e7c9b5266239bd605"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ca5f5d928acb499d5ec68e8ad80ec7b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a5ca5f5d928acb499d5ec68e8ad80ec7b">solveQuadCase</a> (double a, double b, double c)</td></tr>
-<tr class="separator:a5ca5f5d928acb499d5ec68e8ad80ec7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d042185846095b5cefec9ef012880c5"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a1d042185846095b5cefec9ef012880c5">solveLinearCase</a> (const double a, const double b)</td></tr>
+<tr class="separator:a1d042185846095b5cefec9ef012880c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6cce36e244274f3385da9def4812df2"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#af6cce36e244274f3385da9def4812df2">solveQuadCase</a> (const double a, const double b, const double c)</td></tr>
+<tr class="separator:af6cce36e244274f3385da9def4812df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97cd6beb5d4ce054dc280a4544a5b01d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a97cd6beb5d4ce054dc280a4544a5b01d">quadEquationSolution</a> ()</td></tr>
 <tr class="separator:a97cd6beb5d4ce054dc280a4544a5b01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac184d0d83be9ea23e1eba96c97524608"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ac184d0d83be9ea23e1eba96c97524608">compareDouble</a> (double one, double two)</td></tr>
-<tr class="separator:ac184d0d83be9ea23e1eba96c97524608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3444b22e3af571155f5444df4b4fda0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ab3444b22e3af571155f5444df4b4fda0">compareDouble</a> (const double lhs, const double rhs)</td></tr>
+<tr class="separator:ab3444b22e3af571155f5444df4b4fda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad36c4b2c7080a1289f22f17233075394"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#ad36c4b2c7080a1289f22f17233075394">unitTest</a> ()</td></tr>
 <tr class="separator:ad36c4b2c7080a1289f22f17233075394"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20bbd4d45e3f01305dd709f5a9cc9952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a20bbd4d45e3f01305dd709f5a9cc9952">clearBuffer</a> ()</td></tr>
@@ -155,8 +155,10 @@ Functions</h2></td></tr>
 <tr class="separator:a79f22702ec8a00df74b083d81d0f128d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a032b6bb9f7c457e6da9bb33f9d0b117b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a032b6bb9f7c457e6da9bb33f9d0b117b">consoleTestOutput</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> test, double bPart, double dPart, enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a> condition, int testNumber)</td></tr>
 <tr class="separator:a032b6bb9f7c457e6da9bb33f9d0b117b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eb4bce7cedba5fb7ed6f601eded4b97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a6eb4bce7cedba5fb7ed6f601eded4b97">solveQuadEquation</a> ()</td></tr>
-<tr class="separator:a6eb4bce7cedba5fb7ed6f601eded4b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8843773b33c7469c4860f18c0cb08b03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a8843773b33c7469c4860f18c0cb08b03">solveQuadEquationCLI</a> ()</td></tr>
+<tr class="separator:a8843773b33c7469c4860f18c0cb08b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442216a51ee4c6aa31f4fc2a5550f856"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8h.html#a442216a51ee4c6aa31f4fc2a5550f856">printRoots</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> Equations)</td></tr>
+<tr class="separator:a442216a51ee4c6aa31f4fc2a5550f856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a6ebf6899d6c1c8b7b9d09be872c05aae" name="a6ebf6899d6c1c8b7b9d09be872c05aae"></a>
@@ -283,8 +285,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac184d0d83be9ea23e1eba96c97524608" name="ac184d0d83be9ea23e1eba96c97524608"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac184d0d83be9ea23e1eba96c97524608">&#9670;&nbsp;</a></span>compareDouble()</h2>
+<a id="ab3444b22e3af571155f5444df4b4fda0" name="ab3444b22e3af571155f5444df4b4fda0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3444b22e3af571155f5444df4b4fda0">&#9670;&nbsp;</a></span>compareDouble()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,14 +294,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int compareDouble </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>one</em>, </td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>two</em>&#160;</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -443,6 +445,24 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a442216a51ee4c6aa31f4fc2a5550f856" name="a442216a51ee4c6aa31f4fc2a5550f856"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a442216a51ee4c6aa31f4fc2a5550f856">&#9670;&nbsp;</a></span>printRoots()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printRoots </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td>
+          <td class="paramname"><em>Equations</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a97cd6beb5d4ce054dc280a4544a5b01d" name="a97cd6beb5d4ce054dc280a4544a5b01d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a97cd6beb5d4ce054dc280a4544a5b01d">&#9670;&nbsp;</a></span>quadEquationSolution()</h2>
 
@@ -460,8 +480,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad5a404d4ebb1b96e7c9b5266239bd605" name="ad5a404d4ebb1b96e7c9b5266239bd605"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5a404d4ebb1b96e7c9b5266239bd605">&#9670;&nbsp;</a></span>solveLinearCase()</h2>
+<a id="a1d042185846095b5cefec9ef012880c5" name="a1d042185846095b5cefec9ef012880c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d042185846095b5cefec9ef012880c5">&#9670;&nbsp;</a></span>solveLinearCase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -469,13 +489,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> solveLinearCase </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -488,8 +508,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5ca5f5d928acb499d5ec68e8ad80ec7b" name="a5ca5f5d928acb499d5ec68e8ad80ec7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ca5f5d928acb499d5ec68e8ad80ec7b">&#9670;&nbsp;</a></span>solveQuadCase()</h2>
+<a id="af6cce36e244274f3385da9def4812df2" name="af6cce36e244274f3385da9def4812df2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6cce36e244274f3385da9def4812df2">&#9670;&nbsp;</a></span>solveQuadCase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -497,19 +517,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> solveQuadCase </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>c</em>&#160;</td>
         </tr>
         <tr>
@@ -522,14 +542,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6eb4bce7cedba5fb7ed6f601eded4b97" name="a6eb4bce7cedba5fb7ed6f601eded4b97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6eb4bce7cedba5fb7ed6f601eded4b97">&#9670;&nbsp;</a></span>solveQuadEquation()</h2>
+<a id="a8843773b33c7469c4860f18c0cb08b03" name="a8843773b33c7469c4860f18c0cb08b03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8843773b33c7469c4860f18c0cb08b03">&#9670;&nbsp;</a></span>solveQuadEquationCLI()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void solveQuadEquation </td>
+          <td class="memname">void solveQuadEquationCLI </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -561,7 +581,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_f3e248e6bc052bc0d2333a824c548491.html">Git</a></li><li class="navelem"><a class="el" href="dir_768aba693f821739bc3d5afbe43475f4.html">SummerSchool2021</a></li><li class="navelem"><a class="el" href="dir_72a343106c0758dd8a5a4388d87ce646.html">0.SqrEquation</a></li><li class="navelem"><a class="el" href="_equation_8h.html">Equation.h</a></li>
+    <li class="navelem"><a class="el" href="_equation_8h.html">Equation.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

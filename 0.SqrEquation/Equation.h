@@ -5,14 +5,14 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define EPS 1e-12
+#define EPS 1e-12 //машинный ноль
 #define MAX_ATTEMPTS_COUNT 5
 struct QuadraticEquationSolutionStatus
 {
     double bCoefficientPart, discriminantPart;
     int condition;
 };
-
+//документация сюда, структура.
 enum QUADRATIC_EQUATION_SOLUTION_CONDITION
 {
     UNDEF = -1    ,
@@ -45,13 +45,13 @@ enum DOUBLE_COMPARE_STATUS
 
 void getCoefficients(double* a, double* b, double* c);
 
-struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b);
+struct QuadraticEquationSolutionStatus solveLinearCase(const double a,const double b);
 
-struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double c);
+struct QuadraticEquationSolutionStatus solveQuadCase(const double a, const double b, const double c);
 
 struct QuadraticEquationSolutionStatus quadEquationSolution();
 
-int compareDouble(double one, double two);
+int compareDouble(const double lhs, const double rhs);
 
 void unitTest();
 
@@ -63,5 +63,7 @@ void fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, d
 void consoleTestOutput (struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
                         enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition, int testNumber);
 
-void solveQuadEquation();
+void solveQuadEquationCLI();
+
+void printRoots(struct QuadraticEquationSolutionStatus Equations);
 #endif //EQUATION_H`
