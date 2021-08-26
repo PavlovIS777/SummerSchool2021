@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = SqrEquation
+PROJECT_NAME           = "Quadratic Equation Solution"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -363,7 +363,7 @@ BUILTIN_STL_SUPPORT    = NO
 # enable parsing support.
 # The default value is: NO.
 
-CPP_CLI_SUPPORT        = YES
+CPP_CLI_SUPPORT        = NO
 
 # Set the SIP_SUPPORT tag to YES if your project consists of sip (see:
 # https://www.riverbankcomputing.com/software/sip/intro) sources only. Doxygen
@@ -960,22 +960,15 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                = D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-relwithdebinfo \
-                         D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-relwithdebinfo \
-                         D:\Git\SummerSchool2021\0.SqrEquation\.idea \
+EXCLUDE                = D:\Git\SummerSchool2021\0.SqrEquation\.idea \
                          D:\Git\SummerSchool2021\0.SqrEquation\.idea \
                          D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-debug \
-                         D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-debug \
-                         D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-minsizerel \
                          D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-minsizerel \
                          D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-release \
-                         D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-release \
                          D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-relwithdebinfo \
-                         D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-relwithdebinfo \
-                         D:\Git\SummerSchool2021\0.SqrEquation\html \
-                         D:\Git\SummerSchool2021\0.SqrEquation\html \
-                         D:\Git\SummerSchool2021\0.SqrEquation\latex \
-                         D:\Git\SummerSchool2021\0.SqrEquation\latex
+                         D:\Git\SummerSchool2021\0.SqrEquation\.gitignore \
+                         D:\Git\SummerSchool2021\0.SqrEquation\CMakeLists.txt \
+                         D:\Git\SummerSchool2021\0.SqrEquation\Doxyfile
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded

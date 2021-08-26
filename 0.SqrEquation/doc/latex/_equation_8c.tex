@@ -1,5 +1,5 @@
-\hypertarget{_equation_8c}{}\doxysection{Equation.\+c File Reference}
-\label{_equation_8c}\index{Equation.c@{Equation.c}}
+\hypertarget{_equation_8c}{}\doxysection{D\+:/\+Git/\+Summer\+School2021/0.Sqr\+Equation/\+Equation.c File Reference}
+\label{_equation_8c}\index{D:/Git/SummerSchool2021/0.SqrEquation/Equation.c@{D:/Git/SummerSchool2021/0.SqrEquation/Equation.c}}
 {\ttfamily \#include \char`\"{}Equation.\+h\char`\"{}}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -16,9 +16,9 @@ void \mbox{\hyperlink{_equation_8c_a6a1eedd89ebad5e93563be37d2d4b0a0}{get\+Coeff
 \item 
 struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} \mbox{\hyperlink{_equation_8c_a97cd6beb5d4ce054dc280a4544a5b01d}{quad\+Equation\+Solution}} ()
 \item 
-void \mbox{\hyperlink{_equation_8c_a79f22702ec8a00df74b083d81d0f128d}{file\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double b\+Part, double d\+Part, FILE $\ast$output, enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
+void \mbox{\hyperlink{_equation_8c_a5873e58e44f30d6e898fc4ee526ebfca}{file\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double b\+Part, double d\+Part, double first\+Rational, double second\+Rational, FILE $\ast$output, enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
 \item 
-void \mbox{\hyperlink{_equation_8c_a032b6bb9f7c457e6da9bb33f9d0b117b}{console\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double b\+Part, double d\+Part, enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
+void \mbox{\hyperlink{_equation_8c_ad33cd4620a3f7e4300539c3ef7bc2b0f}{console\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double b\+Part, double d\+Part, double first\+Rational, double second\+Rational, enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
 \item 
 void \mbox{\hyperlink{_equation_8c_ad36c4b2c7080a1289f22f17233075394}{unit\+Test}} ()
 \item 
@@ -41,17 +41,17 @@ void \mbox{\hyperlink{_equation_8c_a8843773b33c7469c4860f18c0cb08b03}{solve\+Qua
 \doxysubsubsection{\texorpdfstring{compareDouble()}{compareDouble()}}
 {\footnotesize\ttfamily int compare\+Double (\begin{DoxyParamCaption}\item[{double}]{lhs,  }\item[{double}]{rhs }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_equation_8c_a032b6bb9f7c457e6da9bb33f9d0b117b}\label{_equation_8c_a032b6bb9f7c457e6da9bb33f9d0b117b}} 
+\mbox{\Hypertarget{_equation_8c_ad33cd4620a3f7e4300539c3ef7bc2b0f}\label{_equation_8c_ad33cd4620a3f7e4300539c3ef7bc2b0f}} 
 \index{Equation.c@{Equation.c}!consoleTestOutput@{consoleTestOutput}}
 \index{consoleTestOutput@{consoleTestOutput}!Equation.c@{Equation.c}}
 \doxysubsubsection{\texorpdfstring{consoleTestOutput()}{consoleTestOutput()}}
-{\footnotesize\ttfamily void console\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{b\+Part,  }\item[{double}]{d\+Part,  }\item[{enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void console\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{b\+Part,  }\item[{double}]{d\+Part,  }\item[{double}]{first\+Rational,  }\item[{double}]{second\+Rational,  }\item[{enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{_equation_8c_a79f22702ec8a00df74b083d81d0f128d}\label{_equation_8c_a79f22702ec8a00df74b083d81d0f128d}} 
+\mbox{\Hypertarget{_equation_8c_a5873e58e44f30d6e898fc4ee526ebfca}\label{_equation_8c_a5873e58e44f30d6e898fc4ee526ebfca}} 
 \index{Equation.c@{Equation.c}!fileTestOutput@{fileTestOutput}}
 \index{fileTestOutput@{fileTestOutput}!Equation.c@{Equation.c}}
 \doxysubsubsection{\texorpdfstring{fileTestOutput()}{fileTestOutput()}}
-{\footnotesize\ttfamily void file\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{b\+Part,  }\item[{double}]{d\+Part,  }\item[{FILE $\ast$}]{output,  }\item[{enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void file\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{b\+Part,  }\item[{double}]{d\+Part,  }\item[{double}]{first\+Rational,  }\item[{double}]{second\+Rational,  }\item[{FILE $\ast$}]{output,  }\item[{enum \mbox{\hyperlink{_equation_8h_aeff6e1b0a8bacd5a8a58f17fd7360288}{QUADRATIC\+\_\+\+EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{_equation_8c_a6a1eedd89ebad5e93563be37d2d4b0a0}\label{_equation_8c_a6a1eedd89ebad5e93563be37d2d4b0a0}} 
 \index{Equation.c@{Equation.c}!getCoefficients@{getCoefficients}}

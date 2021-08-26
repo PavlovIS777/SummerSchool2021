@@ -1,15 +1,5 @@
-/*!
- * \file
- */
-
 #include "Equation.h"
 
-/*!
- * \brief Double compare function.
- *        Comparison of numbers of the double type.
- * \returns the enum value from DOUBLE_COMPARE_STATUS.
- * \example compareDouble(3.4, 4.1)
-*/
 int compareDouble(double lhs, double rhs)
 {
     if (fabs(lhs - rhs)  < EPS) {
@@ -21,13 +11,6 @@ int compareDouble(double lhs, double rhs)
     }
 }
 
-/*!
- * \brief A Quadratic case function.
- *        A function that records the solutions of equations and the state of the roots
- *       the QuadraticEquationSolutionStatus structure in the linear case.
- * \returns struct with Quadratic Equation statement and parts of values.
- * \example solveQuadCase(3.4, 4.1, 5.8)
-*/
 struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double c)
 {
     struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
@@ -42,79 +25,66 @@ struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double 
     }
 
     double disc = b * b - 4 * a * c;
-    Equation.bCoefficientPart = -(b)/ (2 * a);
 
     if (compareDouble(disc, 0.0) == EQUAL) {
         Equation.condition = LINEAR_EXISTS;
         Equation.discriminantPart = 0;
-
-        return Equation;
-    }
-
-    double disc_sqrt = NAN;
-
-    if (disc < 0) {
+        Equation.bCoefficientPart = 0;
+        Equation.firstRationalRoot = (-b) / (2 * a);
+        Equation.secondRationalRoot = 0;
+    } else if (compareDouble(disc, 0 ) == LESS) {
         disc *= -1;
         Equation.condition = COMPLEX;
+        Equation.discriminantPart = sqrt(disc) / (2 * a);
+        Equation.bCoefficientPart = -(b) / (2 * a);
+        Equation.firstRationalRoot = 0;
+        Equation.secondRationalRoot = 0;
     } else {
         Equation.condition = RATIONAL;
+        Equation.firstRationalRoot = ((-b) - sqrt(disc)) / (2 * a);
+        Equation.secondRationalRoot = ((-b) + sqrt(disc)) / (2 * a);
+        Equation.discriminantPart = 0;
+        Equation.bCoefficientPart = 0;
     }
-
-    disc_sqrt = sqrt(disc);
-    Equation.discriminantPart = disc_sqrt/(2 * a);
 
     return Equation;
 }
-/*!
- * \brief Функция решения квадратного уравнения.
- *        Function that clears the scanf() buffer.
- * \returns void
- * \example clearBuffer()
-*/
+
 void clearBuffer()
 {
     char temp = 0;
     while((temp = fgetc(stdin)) != '\n');
 }
 
-/*!
- * \brief A Linear case function.
- *        A function that records the solutions of equations and the state of the roots
- *       the QuadraticEquationSolutionStatus structure in the linear case.
- * \returns struct with Linear Equation statement and value.
- * \example solveLinearCase(3.4, 4.1)
-*/
 struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
 {
     struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
     Equation.discriminantPart = 0;
+    Equation.bCoefficientPart = 0;
     if ((compareDouble(a, 0.0) == EQUAL) &&
         (compareDouble(b, 0.0) == EQUAL)) {
         Equation.condition = INF;
-        Equation.bCoefficientPart = 0;
+        Equation.firstRationalRoot = 0;
+        Equation.secondRationalRoot = 0;
 
         return Equation;
     }
 
     if (compareDouble(a, 0.0) == EQUAL) {
-        Equation.bCoefficientPart = 0;
+        Equation.firstRationalRoot = 0;
+        Equation.secondRationalRoot = 0;
         Equation.condition = NON_EXISTENT;
 
         return Equation;
     } else {
         Equation.condition = LINEAR_EXISTS;
-        Equation.bCoefficientPart = -b / a;
+        Equation.firstRationalRoot = -b / a;
+        Equation.secondRationalRoot = 0;
 
         return Equation;
     }
 }
 
-/*!
- * \brief Getting coefficients of the equation function.
- *        Function records the coefficients entered by the user, according to the pointer.
- * \returns void
- * \example getCoefficients(a, b, c)
-*/
 void getCoefficients(double* a, double* b, double* c)
 {
     printf("\tPlease, enter the coefficients.\n"
@@ -134,13 +104,6 @@ void getCoefficients(double* a, double* b, double* c)
     }
 }
 
-/*!
- * \brief struct Function of Quadratic Equation coefficients.
-         The function creates variables and a structure in which the coefficients
- *       of the equation, the solution and the state of the roots are written, respectively.
- * \returns struct with Quadratic or Linear Equation coefficients
- * \example QuadEquationSolution()
-*/
 struct QuadraticEquationSolutionStatus  quadEquationSolution()
 {
     double a = NAN, b = NAN, c = NAN;
@@ -151,14 +114,8 @@ struct QuadraticEquationSolutionStatus  quadEquationSolution()
     return Equation;
 }
 
-/*!
- * \brief Test result output into file.
- *        A function of the console interface that provides
- *        outputs the result test proving to the file.
- * \returns void
- * \example fileTestOutput()
-*/
 void fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
+                    double firstRational, double secondRational,
                     FILE* output,enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition,int testNumber)
 {
     if (!((compareDouble(test.bCoefficientPart, bPart) == EQUAL) &&
@@ -166,11 +123,14 @@ void fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, d
           test.condition == condition)) {
         fprintf(output, "\t*===Test %d====*\n"
                         "\tWrong answer.\n"
-                        "\tExpected: bPart = %lf, dPart = %lf, condition = %d\n"
-                        "\tResult: bPart = %lf, dPart = %lf, condition = %d\n"
+                        "\tExpected: rational(complex) = %lf, Complex disc = %lf, rationalRoot_1 = %lf,"
+                        "rationalRoot_2 = %lf condition = %d\n"
+                        "\tResult: rational(complex) = %lf, Complex disc = %lf, rationalRoot_1 = %lf,"
+                        "rationalRoot_2 = %lf condition = %d\n"
                         "\t*=============*\n\n",
-                testNumber, bPart, dPart, condition,
-                test.bCoefficientPart, test.discriminantPart, test.condition);
+                testNumber, bPart, dPart, firstRational, secondRational,  condition,
+                test.bCoefficientPart, test.discriminantPart, test.firstRationalRoot,
+                test.secondRationalRoot, test.condition);
         return;
     } else {
         fprintf(output, "\t*===Test %d====*\n"
@@ -179,25 +139,23 @@ void fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, d
     }
 }
 
-/*!
- * \brief Test result output into console.
- *        A function of the console interface that provides
- *        outputs the result test proving to the console.
- * \returns void
- * \example consoleTestOutput()
-*/
 void consoleTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
+                       double firstRational, double secondRational,
                        enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition, int testNumber) {
     if (!((compareDouble(test.bCoefficientPart, bPart) == EQUAL) &&
           (compareDouble(test.discriminantPart, dPart) == EQUAL) &&
-          test.condition == condition)) {
+          test.condition == condition && compareDouble(test.firstRationalRoot, firstRational)
+           && compareDouble(test.secondRationalRoot, secondRational))) {
         printf("\t*===Test %d====*\n"
                "\tWrong answer.\n"
-               "\tExpected: bPart = %lf, dPart = %lf, condition = %d\n"
-               "\tResult: bPart = %lf, dPart = %lf, condition = %d\n"
+               "\tExpected: rational(complex) = %lf, Complex disc = %lf, rationalRoot_1 = %lf,"
+               "rationalRoot_2 = %lf condition = %d\n"
+               "\tResult: rational(complex) = %lf, Complex disc = %lf, rationalRoot_1 = %lf,"
+               "rationalRoot_2 = %lf condition = %d\n"
                "\t*=============*\n\n",
-               testNumber, bPart, dPart, condition,
-               test.bCoefficientPart, test.discriminantPart, test.condition);
+               testNumber, bPart, dPart, firstRational, secondRational, condition,
+               test.bCoefficientPart, test.discriminantPart, test.firstRationalRoot,
+               test.secondRationalRoot, test.condition);
         return;
     } else {
         printf("\t*===Test %d====*\n"
@@ -206,18 +164,12 @@ void consoleTestOutput(struct QuadraticEquationSolutionStatus test, double bPart
     }
 }
 
-/*!
- * \brief unitTest function.
- *        A function of the console interface that provides interaction with the user
- *       and outputs the result of the program execution to the console.
- * \returns void
- * \example uniTest()
-*/
+
 void unitTest()
 {
     FILE *input, *output = NULL;
 
-    input = fopen("testInput.txt", "r");
+    input = fopen("Input.txt", "r");
     output = fopen("Log.txt", "w");
 
     if (input == NULL) {
@@ -230,7 +182,7 @@ void unitTest()
         return;
     }
 
-    double a = NAN, b = NAN, c = NAN, bPart = NAN, dPart = NAN;
+    double a = NAN, b = NAN, c = NAN, bPart = NAN, dPart = NAN, firstRational = NAN, secondRational = NAN;
     enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition = UNDEF;
     enum MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS testMode = -1;
     int testsCount = 0, attemptCounts = MAX_ATTEMPTS_COUNT;;
@@ -257,9 +209,11 @@ void unitTest()
     } while (testMode != CONSOLE && testMode != LOG);
 
     for (int i = 0; i < testsCount; ++i) {
-        fscanf(input, "%lf %lf %lf %d %lf %lf", &a, &b, &c, &condition, &bPart, &dPart);
+        fscanf(input, "%lf %lf %lf %d %lf %lf %lf %lf", &a, &b, &c, &condition, &bPart, &dPart,
+               &firstRational, &secondRational);
 
-        if (isnan(a) || isnan(b) || isnan(c) || isnan(bPart) || isnan(dPart) || condition == UNDEF) {
+        if (isnan(a) || isnan(b) || isnan(c) || isnan(bPart) || isnan(dPart) || condition == UNDEF
+            || isnan(firstRational) || isnan(secondRational)) {
             printf("\t**Wrong test format. Test #%d""**", i + 1);
             continue;
         }
@@ -268,20 +222,15 @@ void unitTest()
 
         switch (testMode) {
             case LOG:
-                fileTestOutput(test, bPart, dPart, output, condition, i + 1);
+                fileTestOutput(test, bPart, dPart, firstRational, secondRational, output, condition, i + 1);
                 break;
             case CONSOLE:
-                consoleTestOutput(test, bPart, dPart, condition, i + 1);
+                consoleTestOutput(test, bPart, dPart, firstRational, secondRational, condition, i + 1);
                 break;
         }
     }
 }
-/*!
- * \brief print Roots function.
- *        Function prints roots in console.
- * \returns void
- * \example printRoots(struct QuadraticEquationSolutionStatus Equation)
-*/
+
 void printRoots(struct QuadraticEquationSolutionStatus Equation)
 {
     switch (Equation.condition) {
@@ -290,12 +239,11 @@ void printRoots(struct QuadraticEquationSolutionStatus Equation)
             break;
         case RATIONAL:
             printf("Roots are rational.\n"
-                   "x1 = %lf and x2 = %lf", Equation.bCoefficientPart - Equation.discriminantPart,
-                   Equation.bCoefficientPart + Equation.discriminantPart);
+                   "x1 = %lf and x2 = %lf", Equation.firstRationalRoot, Equation.secondRationalRoot);
             break;
         case LINEAR_EXISTS:
             printf("Root is rational.\n"
-                   "x = %lf", Equation.bCoefficientPart);
+                   "x = %lf", Equation.firstRationalRoot);
             break;
         case COMPLEX:
             printf("Roots are complex.\n"
@@ -312,15 +260,6 @@ void printRoots(struct QuadraticEquationSolutionStatus Equation)
     }
 }
 
-/*!
- * \brief Function of solving quadratic equation.
- * \author Ivan Pavlov
- * \date 26.08.2021
-         A function of the console interface that provides interaction with the user
- *       and outputs the result of the program execution to the console.
- * \returns void
- * \example solveQuadEquation()
-*/
 void solveQuadEquationCLI() {
     printf("\tHello, user! Please, choose program mode.\n "
            "\tType \"1\" for testing and \"2\" "

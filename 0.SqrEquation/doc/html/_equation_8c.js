@@ -2,8 +2,8 @@ var _equation_8c =
 [
     [ "clearBuffer", "_equation_8c.html#a20bbd4d45e3f01305dd709f5a9cc9952", null ],
     [ "compareDouble", "_equation_8c.html#af132ca5d79c10c2611517a4d9ea32a6d", null ],
-    [ "consoleTestOutput", "_equation_8c.html#a032b6bb9f7c457e6da9bb33f9d0b117b", null ],
-    [ "fileTestOutput", "_equation_8c.html#a79f22702ec8a00df74b083d81d0f128d", null ],
+    [ "consoleTestOutput", "_equation_8c.html#ad33cd4620a3f7e4300539c3ef7bc2b0f", null ],
+    [ "fileTestOutput", "_equation_8c.html#a5873e58e44f30d6e898fc4ee526ebfca", null ],
     [ "getCoefficients", "_equation_8c.html#a6a1eedd89ebad5e93563be37d2d4b0a0", null ],
     [ "printRoots", "_equation_8c.html#af16f509663c0258d3cce390443d31ce1", null ],
     [ "quadEquationSolution", "_equation_8c.html#a97cd6beb5d4ce054dc280a4544a5b01d", null ],
