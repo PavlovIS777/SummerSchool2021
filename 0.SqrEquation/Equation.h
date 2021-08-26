@@ -1,9 +1,11 @@
 #ifndef EQUATION_H
 #define EQUATION_H
-
+#define EPS 1e-12
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+
+
 
 struct QuadraticEquationSolutionStatus
 {
@@ -27,6 +29,12 @@ enum MODE_OF_QUADRATIC_EQUATION_PROGRAM
     EXECUTING_MODE = 'E'
 };
 
+enum MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS
+{
+    CONSOLE = 'C' ,
+    LOG = 'L'
+};
+
 enum DOUBLE_COMPARE_STATUS
 {
     EQUAL = 0   ,
@@ -47,6 +55,7 @@ int compareDouble(double one, double two);
 
 void unitTest();
 
-void commandLineInterface();
+void solveQuadEquationInterface();
 
+void clearBuffer();
 #endif //EQUATION_H`

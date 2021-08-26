@@ -1,48 +1,92 @@
+/*!
+ * \file Equation.c
+ */
 #include "Equation.h"
-
-int compareDouble(double one, double two)
+/*!
+ * \brief Функция сравнения.
+ * \author Ivan Pavlov
+ * \date 26.08.2021
+ * \todo Comparison of numbers of the double type.
+ *       Returns the enum value from DOUBLE_COMPARE_STATUS.
+ * \example compareDouble(3.4, 4.1)
+*/
+int compareDouble(double lhs, double rhs)
 {
-    double eps = 1e-12;
-    if (fabs(one - two)  < eps)
+    if (fabs(lhs - rhs)  < EPS)
         return EQUAL;
-    else if (one - two < 0.0)
+    else if (lhs < rhs)
         return LESS;
     else
         return GREATER;
 }
 
+/*!
+ * \brief Функция решения квадратного уравнения.
+ * \author Ivan Pavlov
+ * \date 26.08.2021
+ * A function that records the solutions of equations
+ *       and the state of the roots in the QuadraticEquationSolutionStatus
+ *       structure. Returns a structure containing the solution and their states.
+ * \example solveQuadCase(3.4, 4.1, 5.8)
+*/
 struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double c)
 {
     struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
-    if (isnan(a) || isnan(b) || isnan(c))
+
+    if (isnan(a) || isnan(b) || isnan(c)) {
+        Equation.condition = UNDEF;
         return Equation;
+    }
 
     if (compareDouble(a, 0.0) == EQUAL)
         return solveLinearCase(b, c);
 
     double disc = b * b - 4 * a * c;
     Equation.bPart = -(b)/(2 * a);
+
     if (compareDouble(disc, 0.0) == EQUAL)
     {
         Equation.condition = LINEAR_EXISTS;
         Equation.dPart = 0;
         return Equation;
     }
+    double disc_sqrt = NAN;
     if (disc < 0)
     {
         disc *= -1;
-        disc = sqrt(disc);
         Equation.condition = COMPLEX;
     }
+
     else
     {
-        disc = sqrt(disc);
         Equation.condition = RATIONAL;
     }
-    Equation.dPart = disc/(2 *a );
+    disc_sqrt = sqrt(disc);
+    Equation.dPart = disc_sqrt/(2 * a);
     return Equation;
 }
+/*!
+ * \brief Функция решения квадратного уравнения.
+ * \author Ivan Pavlov
+ * \date 26.08.2021
+    Function that clears the scanf() buffer.
+ * \example clearBuffer()
+*/
+void clearBuffer()
+{
+    char temp;
+    while((temp = fgetc(stdin)) != '\n');
+}
 
+/*!
+ * \brief Функция решения линейного уравнения.
+ * \author Ivan Pavlov
+ * \date 26.08.2021
+         A function that records the solutions of equations and the state of the roots
+ *       the QuadraticEquationSolutionStatus structure in the linear case.
+ *       Returns a structure containing the solution and their states.
+ * \example solveLinearCase(3.4, 4.1)
+*/
 struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
 {
     struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
@@ -64,31 +108,46 @@ struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
     else
     {
         Equation.condition = LINEAR_EXISTS;
-        Equation.bPart = -(b)/(a);
+        Equation.bPart = -b / a;
         return Equation;
     }
 }
 
+/*!
+ * \brief Функция решения квадратного уравнения.
+ * \author Ivan Pavlov
+ * \date 26.08.2021
+    Function records the coefficients entered by the user, according to the pointer.
+ * \example solveQuadCase(a, b, c)
+*/
 void getCoefficients(double* a, double* b, double* c)
 {
-    printf("Please, enter the coefficients.\nExample: For equation x^2 + 2.1x + 1 = 0\n"
-           "Write: 1 2.1 1\n");
+    printf("\tPlease, enter the coefficients.\n"
+           "\tExample: For equation x^2 + 2.1x + 1 = 0\n"
+           "\tWrite: 1 2.1 1\n");
     int attemptsCount = 5;
     while(scanf("%lf %lf %lf", a, b, c) != 3)
     {
         --attemptsCount;
         if (attemptsCount == 0)
         {
-            printf("Maximum number of attempts WASTED.");
+            printf("\tMaximum number of attempts WASTED.");
             return;
         }
 
-        while(fgetc(stdin) != '\n');
-        printf ("Wrong input, try again.\n");
-
+        clearBuffer();
+        printf ("\tWrong input, try again.\n");
     }
 }
 
+/*!
+ * \brief Функция решения квадратного уравнения.
+ * \author Ivan Pavlov
+ * \date 26.08.2021
+         The function creates variables and a structure in which the coefficients
+ *       of the equation, the solution and the state of the roots are written, respectively.
+ * \example QuadEquationSolution()
+*/
 struct QuadraticEquationSolutionStatus  QuadEquationSolution()
 {
     double a = NAN, b = NAN, c = NAN;
@@ -99,6 +158,14 @@ struct QuadraticEquationSolutionStatus  QuadEquationSolution()
     return Equation;
 }
 
+/*!
+ * \brief Функция решения квадратного уравнения.
+ * \author Ivan Pavlov
+ * \date 26.08.2021
+         The function provides unit tests by reading them from a file
+ *       and writing the result to a file Log.txt.
+ * \example unitTest()
+*/
 void unitTest()
 {
     FILE* input;
@@ -109,12 +176,12 @@ void unitTest()
 
     if (input == NULL)
     {
-        printf("Error reading input file.");
+        printf("\tError reading input file.");
         return;
     }
     if (output == NULL)
     {
-        printf("Error writing output file.");
+        printf("\tError writing output file.");
         return;
     }
 
@@ -123,50 +190,101 @@ void unitTest()
     int testsCount = 0;
 
     fscanf(input, "%d", &testsCount);
-
-    for (size_t i = 0; i < testsCount; ++i)
+    printf("\tChoose test output\n"
+           "\tType \"C\" for console output mod or \"L\" for writing Log.txt file.\n");
+    char testMode = ' ';
+    int attemptCounts = 5;
+    clearBuffer();
+    do
     {
-        fscanf(input, "%lf %lf %lf %d %lf %lf", &a, &b, &c, &condition, &bPart, &dPart);
-        if (a == NAN || b == NAN || c == NAN || bPart == NAN || dPart == NAN || condition == UNDEF)
+        scanf("%c", &testMode);
+        if (testMode != (char)CONSOLE && testMode != (char)LOG)
         {
+            fgetc(stdin);
+            if (attemptCounts > 0)
+                printf("\tType \"L\" or \"C\"\n");
+            else
+            {
+                printf("\tMaximum number of attempts WASTED.");
+                return;
+            }
+            --attemptCounts;
+        }
+    } while (testMode != (char)CONSOLE && testMode != (char)LOG);
+
+    for (int i = 0; i < testsCount; ++i) {
+
+        fscanf(input, "%lf %lf %lf %d %lf %lf", &a, &b, &c, &condition, &bPart, &dPart);
+        if (isnan(a) || isnan(b) || isnan(c) || isnan(bPart) || isnan(dPart) || condition == UNDEF) {
             printf("Wrong test format.");
             return;
         }
 
         struct QuadraticEquationSolutionStatus test = {NAN, NAN, UNDEF};
         test = solveQuadCase(a, b, c);
-        if (!((compareDouble(test.bPart, bPart) == EQUAL) &&
-                (compareDouble(test.dPart, dPart) == EQUAL) &&
-        test.condition == condition))
-        {
-            fprintf(output,"*===Test %d====*\n"
-                           "Wrong answer.\n"
-                           "Expected: bPart = %lf, dPart = %lf, condition = %d\n"
-                           "Get: bPart = %lf, dPart = %lf, condition = %d\n"
-                           "*============*\n\n",
-                           i + 1, bPart, dPart, condition,
-                           test.bPart, test.dPart,test.condition);
-            return;
+        if (testMode == (char)LOG) {
+
+            if (!((compareDouble(test.bPart, bPart) == EQUAL) &&
+                  (compareDouble(test.dPart, dPart) == EQUAL) &&
+                  test.condition == condition)) {
+                fprintf(output, "\t*===Test %d====*\n"
+                                "\tWrong answer.\n"
+                                "\tExpected: bPart = %lf, dPart = %lf, condition = %d\n"
+                                "\tResult: bPart = %lf, dPart = %lf, condition = %d\n"
+                                "\t*=============*\n\n",
+                        i + 1, bPart, dPart, condition,
+                        test.bPart, test.dPart, test.condition);
+                return;
+            }
+
+            else {
+                printf("\t*===Test %d====*\n"
+                       "\t  Test passed!\n"
+                       "\t*=============*\n\n", i + 1);
+            }
         }
         else
         {
-            fprintf(output,"*===Test %d====*\n"
-                           "Test passed!\n"
-                           "*============*\n\n", i+1);
+            if (!((compareDouble(test.bPart, bPart) == EQUAL) &&
+                  (compareDouble(test.dPart, dPart) == EQUAL) &&
+                  test.condition == condition)) {
+                printf("\t*===Test %d====*\n"
+                       "\tWrong answer.\n"
+                       "\tExpected: bPart = %lf, dPart = %lf, condition = %d\n"
+                       "\tResult: bPart = %lf, dPart = %lf, condition = %d\n"
+                       "\t*=============*\n\n",
+                        i + 1, bPart, dPart, condition,
+                        test.bPart, test.dPart, test.condition);
+                return;
+            }
+
+            else {
+                printf("\t*===Test %d====*\n"
+                       "\t  Test passed! \n"
+                       "\t*=============*\n\n", i + 1);
+            }
         }
     }
 }
 
-void commandLineInterface(){
-    printf("Hello, user! Please, choose program mode.\n "
-           "Type \"T\" for testing and \"E\" "
-           "for the program executing.\n");
+/*!
+ * \brief Функция решения квадратного уравнения.
+ * \author Ivan Pavlov
+ * \date 26.08.2021
+         A function of the console interface that provides interaction with the user
+ *       and outputs the result of the program execution to the console.
+ * \example commandLineInterface
+*/
+void solveQuadEquationInterface(){
+    printf("\tHello, user! Please, choose program mode.\n "
+           "\tType \"T\" for testing and \"E\" "
+           "\tfor the program executing.\n");
     char mode = ' ';
     int attemptCounts = 5;
     do
     {
         scanf("%c", &mode);
-        if (mode != (char)TESTING_MODE && mode != (char)EXECUTING_MODE)
+        if (mode != (char)TESTING_MODE && mode != (char)EXECUTING_MODE) // char enum
         {
             fgetc(stdin);
             if (attemptCounts > 0)
