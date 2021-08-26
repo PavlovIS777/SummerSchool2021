@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quadequationsolution_0',['QuadEquationSolution',['../_equation_8c.html#ac9999f02736b2a5374a2e6876c6752a1',1,'QuadEquationSolution():&#160;Equation.c'],['../_equation_8h.html#ac9999f02736b2a5374a2e6876c6752a1',1,'QuadEquationSolution():&#160;Equation.c']]]
+  ['main_0',['main',['../main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.c']]]
 ];

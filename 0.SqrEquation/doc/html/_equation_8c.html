@@ -101,12 +101,16 @@ Functions</h2></td></tr>
 <tr class="separator:ad5a404d4ebb1b96e7c9b5266239bd605"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a1eedd89ebad5e93563be37d2d4b0a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8c.html#a6a1eedd89ebad5e93563be37d2d4b0a0">getCoefficients</a> (double *a, double *b, double *c)</td></tr>
 <tr class="separator:a6a1eedd89ebad5e93563be37d2d4b0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9999f02736b2a5374a2e6876c6752a1"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8c.html#ac9999f02736b2a5374a2e6876c6752a1">QuadEquationSolution</a> ()</td></tr>
-<tr class="separator:ac9999f02736b2a5374a2e6876c6752a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97cd6beb5d4ce054dc280a4544a5b01d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8c.html#a97cd6beb5d4ce054dc280a4544a5b01d">quadEquationSolution</a> ()</td></tr>
+<tr class="separator:a97cd6beb5d4ce054dc280a4544a5b01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79f22702ec8a00df74b083d81d0f128d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8c.html#a79f22702ec8a00df74b083d81d0f128d">fileTestOutput</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> test, double bPart, double dPart, FILE *output, enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a> condition, int testNumber)</td></tr>
+<tr class="separator:a79f22702ec8a00df74b083d81d0f128d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a032b6bb9f7c457e6da9bb33f9d0b117b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8c.html#a032b6bb9f7c457e6da9bb33f9d0b117b">consoleTestOutput</a> (struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> test, double bPart, double dPart, enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a> condition, int testNumber)</td></tr>
+<tr class="separator:a032b6bb9f7c457e6da9bb33f9d0b117b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad36c4b2c7080a1289f22f17233075394"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8c.html#ad36c4b2c7080a1289f22f17233075394">unitTest</a> ()</td></tr>
 <tr class="separator:ad36c4b2c7080a1289f22f17233075394"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9c69b25b9164d72300eb70db1423c4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8c.html#ae9c69b25b9164d72300eb70db1423c4f">commandLineInterface</a> ()</td></tr>
-<tr class="separator:ae9c69b25b9164d72300eb70db1423c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eb4bce7cedba5fb7ed6f601eded4b97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_equation_8c.html#a6eb4bce7cedba5fb7ed6f601eded4b97">solveQuadEquation</a> ()</td></tr>
+<tr class="separator:a6eb4bce7cedba5fb7ed6f601eded4b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a20bbd4d45e3f01305dd709f5a9cc9952" name="a20bbd4d45e3f01305dd709f5a9cc9952"></a>
@@ -117,23 +121,6 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void clearBuffer </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae9c69b25b9164d72300eb70db1423c4f" name="ae9c69b25b9164d72300eb70db1423c4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9c69b25b9164d72300eb70db1423c4f">&#9670;&nbsp;</a></span>commandLineInterface()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void commandLineInterface </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -160,6 +147,104 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a032b6bb9f7c457e6da9bb33f9d0b117b" name="a032b6bb9f7c457e6da9bb33f9d0b117b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a032b6bb9f7c457e6da9bb33f9d0b117b">&#9670;&nbsp;</a></span>consoleTestOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void consoleTestOutput </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td>
+          <td class="paramname"><em>test</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>bPart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dPart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a>&#160;</td>
+          <td class="paramname"><em>condition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>testNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a79f22702ec8a00df74b083d81d0f128d" name="a79f22702ec8a00df74b083d81d0f128d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79f22702ec8a00df74b083d81d0f128d">&#9670;&nbsp;</a></span>fileTestOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fileTestOutput </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a>&#160;</td>
+          <td class="paramname"><em>test</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>bPart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dPart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288">QUADRATIC_EQUATION_SOLUTION_CONDITION</a>&#160;</td>
+          <td class="paramname"><em>condition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>testNumber</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -205,14 +290,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac9999f02736b2a5374a2e6876c6752a1" name="ac9999f02736b2a5374a2e6876c6752a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9999f02736b2a5374a2e6876c6752a1">&#9670;&nbsp;</a></span>QuadEquationSolution()</h2>
+<a id="a97cd6beb5d4ce054dc280a4544a5b01d" name="a97cd6beb5d4ce054dc280a4544a5b01d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97cd6beb5d4ce054dc280a4544a5b01d">&#9670;&nbsp;</a></span>quadEquationSolution()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> QuadEquationSolution </td>
+          <td class="memname">struct <a class="el" href="struct_quadratic_equation_solution_status.html">QuadraticEquationSolutionStatus</a> quadEquationSolution </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -278,6 +363,23 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6eb4bce7cedba5fb7ed6f601eded4b97" name="a6eb4bce7cedba5fb7ed6f601eded4b97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6eb4bce7cedba5fb7ed6f601eded4b97">&#9670;&nbsp;</a></span>solveQuadEquation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void solveQuadEquation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

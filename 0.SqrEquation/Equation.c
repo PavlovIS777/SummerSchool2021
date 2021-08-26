@@ -1,32 +1,31 @@
 /*!
- * \file Equation.c
+ * \file
  */
+
 #include "Equation.h"
+
 /*!
- * \brief Функция сравнения.
- * \author Ivan Pavlov
- * \date 26.08.2021
- * \todo Comparison of numbers of the double type.
- *       Returns the enum value from DOUBLE_COMPARE_STATUS.
+ * \brief Double compare function.
+ *        Comparison of numbers of the double type.
+ * \returns the enum value from DOUBLE_COMPARE_STATUS.
  * \example compareDouble(3.4, 4.1)
 */
 int compareDouble(double lhs, double rhs)
 {
-    if (fabs(lhs - rhs)  < EPS)
+    if (fabs(lhs - rhs)  < EPS) {
         return EQUAL;
-    else if (lhs < rhs)
+    } else if (lhs < rhs) {
         return LESS;
-    else
+    } else {
         return GREATER;
+    }
 }
 
 /*!
- * \brief Функция решения квадратного уравнения.
- * \author Ivan Pavlov
- * \date 26.08.2021
- * A function that records the solutions of equations
- *       and the state of the roots in the QuadraticEquationSolutionStatus
- *       structure. Returns a structure containing the solution and their states.
+ * \brief A Quadratic case function.
+ *        A function that records the solutions of equations and the state of the roots
+ *       the QuadraticEquationSolutionStatus structure in the linear case.
+ * \returns struct with Quadratic Equation statement and parts of values.
  * \example solveQuadCase(3.4, 4.1, 5.8)
 */
 struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double c)
@@ -38,39 +37,36 @@ struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double 
         return Equation;
     }
 
-    if (compareDouble(a, 0.0) == EQUAL)
+    if (compareDouble(a, 0.0) == EQUAL) {
         return solveLinearCase(b, c);
+    }
 
     double disc = b * b - 4 * a * c;
-    Equation.
-    bCoefficientPart = -(b)/(2 * a);
+    Equation.bCoefficientPart = -(b)/(2 * a);
 
-    if (compareDouble(disc, 0.0) == EQUAL)
-    {
+    if (compareDouble(disc, 0.0) == EQUAL) {
         Equation.condition = LINEAR_EXISTS;
         Equation.discriminantPart = 0;
         return Equation;
     }
+
     double disc_sqrt = NAN;
-    if (disc < 0)
-    {
+
+    if (disc < 0) {
         disc *= -1;
         Equation.condition = COMPLEX;
-    }
-
-    else
-    {
+    } else {
         Equation.condition = RATIONAL;
     }
+
     disc_sqrt = sqrt(disc);
     Equation.discriminantPart = disc_sqrt/(2 * a);
     return Equation;
 }
 /*!
  * \brief Функция решения квадратного уравнения.
- * \author Ivan Pavlov
- * \date 26.08.2021
-    Function that clears the scanf() buffer.
+ *        Function that clears the scanf() buffer.
+ * \returns void
  * \example clearBuffer()
 */
 void clearBuffer()
@@ -80,12 +76,10 @@ void clearBuffer()
 }
 
 /*!
- * \brief Функция решения линейного уравнения.
- * \author Ivan Pavlov
- * \date 26.08.2021
-         A function that records the solutions of equations and the state of the roots
+ * \brief A Linear case function.
+ *        A function that records the solutions of equations and the state of the roots
  *       the QuadraticEquationSolutionStatus structure in the linear case.
- *       Returns a structure containing the solution and their states.
+ * \returns struct with Linear Equation statement and value.
  * \example solveLinearCase(3.4, 4.1)
 */
 struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
@@ -93,21 +87,17 @@ struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
     struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
     Equation.discriminantPart = 0;
     if ((compareDouble(a, 0.0) == EQUAL) &&
-        (compareDouble(b, 0.0) == EQUAL))
-    {
+        (compareDouble(b, 0.0) == EQUAL)) {
         Equation.condition = INF;
         Equation.bCoefficientPart = 0;
         return Equation;
     }
 
-    if (compareDouble(a, 0.0) == EQUAL)
-    {
+    if (compareDouble(a, 0.0) == EQUAL) {
         Equation.bCoefficientPart = 0;
         Equation.condition = NON_EXISTENT;
         return Equation;
-    }
-    else
-    {
+    } else {
         Equation.condition = LINEAR_EXISTS;
         Equation.bCoefficientPart = -b / a;
         return Equation;
@@ -115,11 +105,10 @@ struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
 }
 
 /*!
- * \brief Функция решения квадратного уравнения.
- * \author Ivan Pavlov
- * \date 26.08.2021
-    Function records the coefficients entered by the user, according to the pointer.
- * \example solveQuadCase(a, b, c)
+ * \brief Getting coefficients of the equation function.
+ *        Function records the coefficients entered by the user, according to the pointer.
+ * \returns void
+ * \example getCoefficients(a, b, c)
 */
 void getCoefficients(double* a, double* b, double* c)
 {
@@ -127,11 +116,9 @@ void getCoefficients(double* a, double* b, double* c)
            "\tExample: For equation x^2 + 2.1x + 1 = 0\n"
            "\tWrite: 1 2.1 1\n");
     int attemptsCount = 5;
-    while(scanf("%lf %lf %lf", a, b, c) != 3)
-    {
+    while(scanf("%lf %lf %lf", a, b, c) != 3) {
         --attemptsCount;
-        if (attemptsCount == 0)
-        {
+        if (attemptsCount == 0) {
             printf("\tMaximum number of attempts WASTED.");
             return;
         }
@@ -142,14 +129,13 @@ void getCoefficients(double* a, double* b, double* c)
 }
 
 /*!
- * \brief Функция решения квадратного уравнения.
- * \author Ivan Pavlov
- * \date 26.08.2021
+ * \brief struct Function of Quadratic Equation coefficients.
          The function creates variables and a structure in which the coefficients
  *       of the equation, the solution and the state of the roots are written, respectively.
+ * \returns struct with Quadratic or Linear Equation coefficients
  * \example QuadEquationSolution()
 */
-struct QuadraticEquationSolutionStatus  QuadEquationSolution()
+struct QuadraticEquationSolutionStatus  quadEquationSolution()
 {
     double a = NAN, b = NAN, c = NAN;
     getCoefficients(&a, &b, &c);
@@ -160,14 +146,12 @@ struct QuadraticEquationSolutionStatus  QuadEquationSolution()
 }
 
 /*!
- * \brief Функция решения квадратного уравнения.
- * \author Ivan Pavlov
- * \date 26.08.2021
-         The function provides unit tests by reading them from a file
- *       and writing the result to a file Log.txt.
- * \example unitTest()
+ * \brief Test result output into file.
+ *        A function of the console interface that provides
+ *        outputs the result test proving to the file.
+ * \returns void
+ * \example fileTestOutput()
 */
-
 void fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
                     FILE* output,enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition,int testNumber)
 {
@@ -189,6 +173,13 @@ void fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, d
     }
 }
 
+/*!
+ * \brief Test result output into console.
+ *        A function of the console interface that provides
+ *        outputs the result test proving to the console.
+ * \returns void
+ * \example consoleTestOutput()
+*/
 void consoleTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
                        enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition, int testNumber) {
     if (!((compareDouble(test.bCoefficientPart, bPart) == EQUAL) &&
@@ -202,16 +193,22 @@ void consoleTestOutput(struct QuadraticEquationSolutionStatus test, double bPart
                testNumber, bPart, dPart, condition,
                test.bCoefficientPart, test.discriminantPart, test.condition);
         return;
-    }
-
-    else
-    {
+    } else {
         printf("\t*===Test %d====*\n"
                "\t  Test passed! \n"
                "\t*=============*\n\n", testNumber);
     }
 }
-void unitTest() {
+
+/*!
+ * \brief unitTest function.
+ *        A function of the console interface that provides interaction with the user
+ *       and outputs the result of the program execution to the console.
+ * \returns void
+ * \example uniTest()
+*/
+void unitTest()
+{
     FILE *input, *output = NULL;
 
     input = fopen("testInput.txt", "r");
@@ -273,13 +270,15 @@ void unitTest() {
         }
     }
 }
+
 /*!
- * \brief Функция решения квадратного уравнения.
+ * \brief Function of solving quadratic equation.
  * \author Ivan Pavlov
  * \date 26.08.2021
          A function of the console interface that provides interaction with the user
  *       and outputs the result of the program execution to the console.
- * \example commandLineInterface
+ * \returns void
+ * \example solveQuadEquation()
 */
     void solveQuadEquation() {
     printf("\tHello, user! Please, choose program mode.\n "
@@ -289,8 +288,7 @@ void unitTest() {
     int attemptCounts = MAX_ATTEMPTS_COUNT;
     do {
         scanf("%d", &mode);
-        if (mode != TESTING_MODE && mode != EXECUTING_MODE)
-        {
+        if (mode != TESTING_MODE && mode != EXECUTING_MODE) {
             fgetc(stdin);
             if (attemptCounts > 0)
                 printf("Type \"1\" for Testing mod and \"2\" for Executing.\n");
@@ -302,9 +300,9 @@ void unitTest() {
         }
     } while (mode != EXECUTING_MODE && mode != TESTING_MODE);
 
-    if (mode == TESTING_MODE)
+    if (mode == TESTING_MODE) {
         unitTest();
-    else {
+    } else {
         struct QuadraticEquationSolutionStatus Equation = quadEquationSolution();
         switch (Equation.condition) {
             case UNDEF:

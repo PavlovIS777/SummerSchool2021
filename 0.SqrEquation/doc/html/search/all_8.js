@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['less_0',['LESS',['../_equation_8h.html#a39be858521a08b1a95f41de84df34342a95c736070f99b99eb80d1eac1f4ca60f',1,'Equation.h']]],
-  ['linear_5fexists_1',['LINEAR_EXISTS',['../_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288a81eee1e76c4cddfdec000fff9292cdd3',1,'Equation.h']]],
-  ['log_2',['LOG',['../_equation_8h.html#a9384fd619b01d57e46a7f534e65a1750acd7ffe737ad5fb21fbd7499886934910',1,'Equation.h']]]
+  ['main_0',['main',['../main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.c']]],
+  ['main_2ec_1',['main.c',['../main_8c.html',1,'']]],
+  ['max_5fattempts_5fcount_2',['MAX_ATTEMPTS_COUNT',['../_equation_8h.html#a6bbbd2b0adeb76acecee1115e1013792',1,'Equation.h']]],
+  ['mode_5fof_5fquadratic_5fequation_5fprogram_3',['MODE_OF_QUADRATIC_EQUATION_PROGRAM',['../_equation_8h.html#af76664567ebc8dbf2d45a7ef29b5bce7',1,'Equation.h']]],
+  ['mode_5fof_5fquadratic_5fequation_5fprogram_5ftests_4',['MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS',['../_equation_8h.html#a9384fd619b01d57e46a7f534e65a1750',1,'Equation.h']]]
 ];

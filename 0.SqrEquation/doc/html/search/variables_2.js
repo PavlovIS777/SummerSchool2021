@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dpart_0',['dPart',['../struct_quadratic_equation_solution_status.html#a7822b1699e81effd38073493baa0267d',1,'QuadraticEquationSolutionStatus']]]
+  ['discriminantpart_0',['discriminantPart',['../struct_quadratic_equation_solution_status.html#a5f97f17910df23ec7e92a4adf3bc91a2',1,'QuadraticEquationSolutionStatus']]]
 ];

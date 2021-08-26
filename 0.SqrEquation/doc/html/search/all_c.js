@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['quadequationsolution_0',['QuadEquationSolution',['../_equation_8c.html#ac9999f02736b2a5374a2e6876c6752a1',1,'QuadEquationSolution():&#160;Equation.c'],['../_equation_8h.html#ac9999f02736b2a5374a2e6876c6752a1',1,'QuadEquationSolution():&#160;Equation.c']]],
-  ['quadratic_5fequation_5fsolution_5fcondition_1',['QUADRATIC_EQUATION_SOLUTION_CONDITION',['../_equation_8h.html#aeff6e1b0a8bacd5a8a58f17fd7360288',1,'Equation.h']]],
-  ['quadraticequationsolutionstatus_2',['QuadraticEquationSolutionStatus',['../struct_quadratic_equation_solution_status.html',1,'']]]
+  ['solvelinearcase_0',['solveLinearCase',['../_equation_8c.html#ad5a404d4ebb1b96e7c9b5266239bd605',1,'solveLinearCase(double a, double b):&#160;Equation.c'],['../_equation_8h.html#ad5a404d4ebb1b96e7c9b5266239bd605',1,'solveLinearCase(double a, double b):&#160;Equation.c']]],
+  ['solvequadcase_1',['solveQuadCase',['../_equation_8c.html#a5ca5f5d928acb499d5ec68e8ad80ec7b',1,'solveQuadCase(double a, double b, double c):&#160;Equation.c'],['../_equation_8h.html#a5ca5f5d928acb499d5ec68e8ad80ec7b',1,'solveQuadCase(double a, double b, double c):&#160;Equation.c']]],
+  ['solvequadequation_2',['solveQuadEquation',['../_equation_8c.html#a6eb4bce7cedba5fb7ed6f601eded4b97',1,'solveQuadEquation():&#160;Equation.c'],['../_equation_8h.html#a6eb4bce7cedba5fb7ed6f601eded4b97',1,'solveQuadEquation():&#160;Equation.c']]]
 ];

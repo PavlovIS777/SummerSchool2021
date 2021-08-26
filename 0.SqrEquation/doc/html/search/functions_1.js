@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getcoefficients_0',['getCoefficients',['../_equation_8c.html#a6a1eedd89ebad5e93563be37d2d4b0a0',1,'getCoefficients(double *a, double *b, double *c):&#160;Equation.c'],['../_equation_8h.html#a6a1eedd89ebad5e93563be37d2d4b0a0',1,'getCoefficients(double *a, double *b, double *c):&#160;Equation.c']]]
+  ['filetestoutput_0',['fileTestOutput',['../_equation_8c.html#a79f22702ec8a00df74b083d81d0f128d',1,'fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart, FILE *output, enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition, int testNumber):&#160;Equation.c'],['../_equation_8h.html#a79f22702ec8a00df74b083d81d0f128d',1,'fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart, FILE *output, enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition, int testNumber):&#160;Equation.c']]]
 ];

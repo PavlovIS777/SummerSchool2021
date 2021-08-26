@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['dec_0',['DEC',['../cmake-build-debug_2_c_make_files_23_820_82_2_compiler_id_c_2_c_make_c_compiler_id_8c.html#ad1280362da42492bbc11aa78cbf776ad',1,'DEC():&#160;CMakeCCompilerId.c'],['../cmake-build-minsizerel_2_c_make_files_23_820_82_2_compiler_id_c_2_c_make_c_compiler_id_8c.html#ad1280362da42492bbc11aa78cbf776ad',1,'DEC():&#160;CMakeCCompilerId.c'],['../cmake-build-release_2_c_make_files_23_820_82_2_compiler_id_c_2_c_make_c_compiler_id_8c.html#ad1280362da42492bbc11aa78cbf776ad',1,'DEC():&#160;CMakeCCompilerId.c'],['../cmake-build-relwithdebinfo_2_c_make_files_23_820_82_2_compiler_id_c_2_c_make_c_compiler_id_8c.html#ad1280362da42492bbc11aa78cbf776ad',1,'DEC():&#160;CMakeCCompilerId.c']]],
-  ['double_5fcompare_5fstatus_1',['DOUBLE_COMPARE_STATUS',['../_equation_8h.html#a39be858521a08b1a95f41de84df34342',1,'Equation.h']]],
-  ['dpart_2',['dPart',['../struct_quadratic_equation_solution_status.html#a7822b1699e81effd38073493baa0267d',1,'QuadraticEquationSolutionStatus']]]
+  ['eps_0',['EPS',['../_equation_8h.html#a6ebf6899d6c1c8b7b9d09be872c05aae',1,'Equation.h']]],
+  ['equal_1',['EQUAL',['../_equation_8h.html#a39be858521a08b1a95f41de84df34342a59a84258a4cb9025b567ee5139455029',1,'Equation.h']]],
+  ['equation_2ec_2',['Equation.c',['../_equation_8c.html',1,'']]],
+  ['equation_2eh_3',['Equation.h',['../_equation_8h.html',1,'']]],
+  ['executing_5fmode_4',['EXECUTING_MODE',['../_equation_8h.html#af76664567ebc8dbf2d45a7ef29b5bce7a97fbfc43222844cbaaf5e6c7f80c40c5',1,'Equation.h']]]
 ];
