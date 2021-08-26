@@ -90,11 +90,7 @@ void QuadEquationSolution()
 {
     double a = NAN, b = NAN, c = NAN;
     getCoefficients(&a, &b, &c);
-
-    if (a == NAN || b == NAN || c == NAN)
-    {
-        return;
-    }
+    assert(a == NAN); assert(b == NAN); assert(c == NAN);
 
     struct EquationSolutionStatus Equation = {NAN, NAN, UNDEF};
     Equation = solveQuadCase(a, b, c);
