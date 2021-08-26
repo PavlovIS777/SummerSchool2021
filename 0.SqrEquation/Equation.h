@@ -1,15 +1,15 @@
 #ifndef EQUATION_H
 #define EQUATION_H
-#define EPS 1e-12
+
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
-
-
+#define EPS 1e-12
+#define MAX_ATTEMPTS_COUNT 5
 struct QuadraticEquationSolutionStatus
 {
-    double bPart, dPart;
+    double bCoefficientPart, discriminantPart;
     int condition;
 };
 
@@ -25,14 +25,14 @@ enum QUADRATIC_EQUATION_SOLUTION_CONDITION
 
 enum MODE_OF_QUADRATIC_EQUATION_PROGRAM
 {
-    TESTING_MODE = 'T'  ,
-    EXECUTING_MODE = 'E'
+    TESTING_MODE = 1  ,
+    EXECUTING_MODE
 };
 
 enum MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS
 {
-    CONSOLE = 'C' ,
-    LOG = 'L'
+    CONSOLE = 1 ,
+    LOG
 };
 
 enum DOUBLE_COMPARE_STATUS
@@ -49,13 +49,19 @@ struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b);
 
 struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double c);
 
-struct QuadraticEquationSolutionStatus QuadEquationSolution();
+struct QuadraticEquationSolutionStatus quadEquationSolution();
 
 int compareDouble(double one, double two);
 
 void unitTest();
 
-void solveQuadEquationInterface();
-
 void clearBuffer();
+
+void fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
+                    FILE* output,enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition,int testNumber);
+
+void consoleTestOutput (struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
+                        enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition, int testNumber);
+
+void solveQuadEquation();
 #endif //EQUATION_H`

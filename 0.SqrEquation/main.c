@@ -1,7 +1,6 @@
 #include "Equation.h"
 
 int main() {
-    solveQuadEquationInterface();
-    getchar();
+    solveQuadEquation();
     return 0;
 }

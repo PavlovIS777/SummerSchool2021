@@ -42,12 +42,13 @@ struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double 
         return solveLinearCase(b, c);
 
     double disc = b * b - 4 * a * c;
-    Equation.bPart = -(b)/(2 * a);
+    Equation.
+    bCoefficientPart = -(b)/(2 * a);
 
     if (compareDouble(disc, 0.0) == EQUAL)
     {
         Equation.condition = LINEAR_EXISTS;
-        Equation.dPart = 0;
+        Equation.discriminantPart = 0;
         return Equation;
     }
     double disc_sqrt = NAN;
@@ -62,7 +63,7 @@ struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double 
         Equation.condition = RATIONAL;
     }
     disc_sqrt = sqrt(disc);
-    Equation.dPart = disc_sqrt/(2 * a);
+    Equation.discriminantPart = disc_sqrt/(2 * a);
     return Equation;
 }
 /*!
@@ -74,7 +75,7 @@ struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double 
 */
 void clearBuffer()
 {
-    char temp;
+    char temp = 0;
     while((temp = fgetc(stdin)) != '\n');
 }
 
@@ -90,25 +91,25 @@ void clearBuffer()
 struct QuadraticEquationSolutionStatus solveLinearCase(double a, double b)
 {
     struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, UNDEF};
-    Equation.dPart = 0;
+    Equation.discriminantPart = 0;
     if ((compareDouble(a, 0.0) == EQUAL) &&
-    (compareDouble(b, 0.0) == EQUAL))
+        (compareDouble(b, 0.0) == EQUAL))
     {
         Equation.condition = INF;
-        Equation.bPart = 0;
+        Equation.bCoefficientPart = 0;
         return Equation;
     }
 
     if (compareDouble(a, 0.0) == EQUAL)
     {
-        Equation.bPart = 0;
+        Equation.bCoefficientPart = 0;
         Equation.condition = NON_EXISTENT;
         return Equation;
     }
     else
     {
         Equation.condition = LINEAR_EXISTS;
-        Equation.bPart = -b / a;
+        Equation.bCoefficientPart = -b / a;
         return Equation;
     }
 }
@@ -166,107 +167,112 @@ struct QuadraticEquationSolutionStatus  QuadEquationSolution()
  *       and writing the result to a file Log.txt.
  * \example unitTest()
 */
-void unitTest()
+
+void fileTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
+                    FILE* output,enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition,int testNumber)
 {
-    FILE* input;
-    FILE* output;
+    if (!((compareDouble(test.bCoefficientPart, bPart) == EQUAL) &&
+          (compareDouble(test.discriminantPart, dPart) == EQUAL) &&
+          test.condition == condition)) {
+        fprintf(output, "\t*===Test %d====*\n"
+                        "\tWrong answer.\n"
+                        "\tExpected: bPart = %lf, dPart = %lf, condition = %d\n"
+                        "\tResult: bPart = %lf, dPart = %lf, condition = %d\n"
+                        "\t*=============*\n\n",
+                testNumber, bPart, dPart, condition,
+                test.bCoefficientPart, test.discriminantPart, test.condition);
+        return;
+    } else {
+        fprintf(output, "\t*===Test %d====*\n"
+                        "\t  Test passed!\n"
+                        "\t*=============*\n\n", testNumber);
+    }
+}
+
+void consoleTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
+                       enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition, int testNumber) {
+    if (!((compareDouble(test.bCoefficientPart, bPart) == EQUAL) &&
+          (compareDouble(test.discriminantPart, dPart) == EQUAL) &&
+          test.condition == condition)) {
+        printf("\t*===Test %d====*\n"
+               "\tWrong answer.\n"
+               "\tExpected: bPart = %lf, dPart = %lf, condition = %d\n"
+               "\tResult: bPart = %lf, dPart = %lf, condition = %d\n"
+               "\t*=============*\n\n",
+               testNumber, bPart, dPart, condition,
+               test.bCoefficientPart, test.discriminantPart, test.condition);
+        return;
+    }
+
+    else
+    {
+        printf("\t*===Test %d====*\n"
+               "\t  Test passed! \n"
+               "\t*=============*\n\n", testNumber);
+    }
+}
+void unitTest() {
+    FILE *input, *output = NULL;
 
     input = fopen("testInput.txt", "r");
     output = fopen("Log.txt", "w");
 
-    if (input == NULL)
-    {
+    if (input == NULL) {
         printf("\tError reading input file.");
         return;
     }
-    if (output == NULL)
-    {
+
+    if (output == NULL) {
         printf("\tError writing output file.");
         return;
     }
 
     double a = NAN, b = NAN, c = NAN, bPart = NAN, dPart = NAN;
-    int condition = UNDEF;
-    int testsCount = 0;
+    enum QUADRATIC_EQUATION_SOLUTION_CONDITION condition = UNDEF;
+    enum MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS testMode = -1;
+    int testsCount = 0, attemptCounts = MAX_ATTEMPTS_COUNT;;
+    struct QuadraticEquationSolutionStatus test = {NAN, NAN, UNDEF};
 
     fscanf(input, "%d", &testsCount);
-    printf("\tChoose test output\n"
-           "\tType \"C\" for console output mod or \"L\" for writing Log.txt file.\n");
-    char testMode = ' ';
-    int attemptCounts = 5;
+    printf("\tChoose tests output\n"
+           "\tType \"1\" for console output mod or \"2\" for writing Log.txt file.\n");
+
     clearBuffer();
-    do
-    {
-        scanf("%c", &testMode);
-        if (testMode != (char)CONSOLE && testMode != (char)LOG)
-        {
+
+    do {
+        scanf("%d", &testMode);
+        if (testMode != CONSOLE && testMode != LOG) {
             fgetc(stdin);
             if (attemptCounts > 0)
-                printf("\tType \"L\" or \"C\"\n");
-            else
-            {
+                printf("\tType \"1\" or \"2\"\n");
+            else {
                 printf("\tMaximum number of attempts WASTED.");
                 return;
             }
             --attemptCounts;
         }
-    } while (testMode != (char)CONSOLE && testMode != (char)LOG);
+    } while (testMode != CONSOLE && testMode != LOG);
 
     for (int i = 0; i < testsCount; ++i) {
-
         fscanf(input, "%lf %lf %lf %d %lf %lf", &a, &b, &c, &condition, &bPart, &dPart);
+
         if (isnan(a) || isnan(b) || isnan(c) || isnan(bPart) || isnan(dPart) || condition == UNDEF) {
-            printf("Wrong test format.");
-            return;
+            printf("\t**Wrong test format. Test #%d""**", i + 1);
+            continue;
         }
 
-        struct QuadraticEquationSolutionStatus test = {NAN, NAN, UNDEF};
         test = solveQuadCase(a, b, c);
-        if (testMode == (char)LOG) {
 
-            if (!((compareDouble(test.bPart, bPart) == EQUAL) &&
-                  (compareDouble(test.dPart, dPart) == EQUAL) &&
-                  test.condition == condition)) {
-                fprintf(output, "\t*===Test %d====*\n"
-                                "\tWrong answer.\n"
-                                "\tExpected: bPart = %lf, dPart = %lf, condition = %d\n"
-                                "\tResult: bPart = %lf, dPart = %lf, condition = %d\n"
-                                "\t*=============*\n\n",
-                        i + 1, bPart, dPart, condition,
-                        test.bPart, test.dPart, test.condition);
-                return;
-            }
-
-            else {
-                printf("\t*===Test %d====*\n"
-                       "\t  Test passed!\n"
-                       "\t*=============*\n\n", i + 1);
-            }
-        }
-        else
-        {
-            if (!((compareDouble(test.bPart, bPart) == EQUAL) &&
-                  (compareDouble(test.dPart, dPart) == EQUAL) &&
-                  test.condition == condition)) {
-                printf("\t*===Test %d====*\n"
-                       "\tWrong answer.\n"
-                       "\tExpected: bPart = %lf, dPart = %lf, condition = %d\n"
-                       "\tResult: bPart = %lf, dPart = %lf, condition = %d\n"
-                       "\t*=============*\n\n",
-                        i + 1, bPart, dPart, condition,
-                        test.bPart, test.dPart, test.condition);
-                return;
-            }
-
-            else {
-                printf("\t*===Test %d====*\n"
-                       "\t  Test passed! \n"
-                       "\t*=============*\n\n", i + 1);
-            }
+        switch (testMode) {
+            case LOG:
+                fileTestOutput(test, bPart, dPart, output, condition, i + 1);
+                break;
+            case CONSOLE:
+                consoleTestOutput(test, bPart, dPart, condition, i + 1);
+                break;
         }
     }
 }
-
 /*!
  * \brief Функция решения квадратного уравнения.
  * \author Ivan Pavlov
@@ -275,51 +281,49 @@ void unitTest()
  *       and outputs the result of the program execution to the console.
  * \example commandLineInterface
 */
-void solveQuadEquationInterface(){
+    void solveQuadEquation() {
     printf("\tHello, user! Please, choose program mode.\n "
-           "\tType \"T\" for testing and \"E\" "
-           "\tfor the program executing.\n");
+           "\tType \"1\" for testing and \"2\" "
+           "for the program executing.\n");
     char mode = ' ';
-    int attemptCounts = 5;
-    do
-    {
-        scanf("%c", &mode);
-        if (mode != (char)TESTING_MODE && mode != (char)EXECUTING_MODE) // char enum
+    int attemptCounts = MAX_ATTEMPTS_COUNT;
+    do {
+        scanf("%d", &mode);
+        if (mode != TESTING_MODE && mode != EXECUTING_MODE)
         {
             fgetc(stdin);
             if (attemptCounts > 0)
-                printf("Type \"T\" for Testing mod and \"E\" for Executing.\n");
-            else
-            {
+                printf("Type \"1\" for Testing mod and \"2\" for Executing.\n");
+            else {
                 printf("Maximum number of attempts WASTED.");
                 return;
             }
             --attemptCounts;
         }
-    } while (mode != (char)EXECUTING_MODE && mode != (char)TESTING_MODE);
+    } while (mode != EXECUTING_MODE && mode != TESTING_MODE);
 
-    if (mode == (char)TESTING_MODE)
+    if (mode == TESTING_MODE)
         unitTest();
-    else
-    {
-        struct QuadraticEquationSolutionStatus Equation = QuadEquationSolution();
+    else {
+        struct QuadraticEquationSolutionStatus Equation = quadEquationSolution();
         switch (Equation.condition) {
             case UNDEF:
                 printf("Wrong input.");
                 break;
             case RATIONAL:
                 printf("Roots are rational.\n"
-                       "x1 = %lf and x2 = %lf", Equation.bPart - Equation.dPart,
-                       Equation.bPart + Equation.dPart);
+                       "x1 = %lf and x2 = %lf", Equation.bCoefficientPart - Equation.discriminantPart,
+                       Equation.bCoefficientPart + Equation.discriminantPart);
                 break;
             case LINEAR_EXISTS:
                 printf("Root is rational.\n"
-                       "x = %lf", Equation.bPart);
+                       "x = %lf", Equation.bCoefficientPart);
                 break;
             case COMPLEX:
                 printf("Roots are complex.\n"
                        "x1 = %lf - %lf""i and x2 = %lf + %lf""i",
-                       Equation.bPart, Equation.dPart, Equation.bPart, Equation.dPart);
+                       Equation.bCoefficientPart, Equation.discriminantPart, Equation.bCoefficientPart,
+                       Equation.discriminantPart);
                 break;
             case INF:
                 printf("x belongs R");
