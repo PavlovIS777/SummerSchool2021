@@ -1,27 +1,50 @@
 #ifndef EQUATION_H
 #define EQUATION_H
-#endif //EQUATION_H
 
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
-struct Equation;
+struct EquationSolutionStatus
+{
+    double bPart, dPart;
+    int condition;
+};
 
-enum condition;
+enum CONDITION
+{
+    UNDEF = -1    ,
+    COMPLEX       ,
+    RATIONAL      ,
+    LINEAR_EXISTS ,
+    INF           ,
+    NON_EXISTENT
+};
+
+enum MODE
+{
+    TESTING_MODE = 'T'  ,
+    EXECUTING_MODE = 'E'
+};
+
+enum DOUBLE_COMPARE
+{
+    NON_EQUAL = 0 ,
+    EQUAL = 1
+};
 
 void getCoefficients(double* a, double* b, double* c);
 
-void Solve(double a, double b, double c, struct Equation* Equation);
+struct EquationSolutionStatus solveLinearCase(double a, double b);
 
-void solveLin(double a, double b, struct Equation* Equation);
+struct EquationSolutionStatus solveQuadCase(double a, double b, double c);
 
-void solveSqr(double a, double b, double c, struct Equation* Equation);
-
-void QuadEquationCLI(double* a, double* b, double* c);
+void QuadEquationSolution();
 
 int isEqualDouble(double one, double two);
 
-void testSys();
+void unitTest();
 
-void greeting(double* a, double* b, double* c);
+void commandLineInterface();
+
+#endif //EQUATION_H`
