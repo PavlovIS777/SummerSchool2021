@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "Quadratic Equation Solution"
+PROJECT_NAME           = "Quadratic Solving CLI"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -961,14 +961,12 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                = D:\Git\SummerSchool2021\0.SqrEquation\.idea \
-                         D:\Git\SummerSchool2021\0.SqrEquation\.idea \
                          D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-debug \
                          D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-minsizerel \
                          D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-release \
                          D:\Git\SummerSchool2021\0.SqrEquation\cmake-build-relwithdebinfo \
-                         D:\Git\SummerSchool2021\0.SqrEquation\.gitignore \
-                         D:\Git\SummerSchool2021\0.SqrEquation\CMakeLists.txt \
-                         D:\Git\SummerSchool2021\0.SqrEquation\Doxyfile
+                         D:\Git\SummerSchool2021\0.SqrEquation\doc \
+                         D:\Git\SummerSchool2021\0.SqrEquation\CMakeLists.txt
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded

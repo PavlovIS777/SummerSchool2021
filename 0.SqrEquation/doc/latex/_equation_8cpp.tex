@@ -1,0 +1,105 @@
+\hypertarget{_equation_8cpp}{}\doxysection{D\+:/\+Git/\+Summer\+School2021/0.Sqr\+Equation/\+Equation.cpp File Reference}
+\label{_equation_8cpp}\index{D:/Git/SummerSchool2021/0.SqrEquation/Equation.cpp@{D:/Git/SummerSchool2021/0.SqrEquation/Equation.cpp}}
+{\ttfamily \#include \char`\"{}Equation.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_equation_8cpp_af132ca5d79c10c2611517a4d9ea32a6d}{compare\+Double}} (double lhs, double rhs)
+\item 
+struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} \mbox{\hyperlink{_equation_8cpp_a5ca5f5d928acb499d5ec68e8ad80ec7b}{solve\+Quad\+Case}} (double a, double b, double c)
+\item 
+void \mbox{\hyperlink{_equation_8cpp_a20bbd4d45e3f01305dd709f5a9cc9952}{clear\+Buffer}} ()
+\item 
+struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} \mbox{\hyperlink{_equation_8cpp_adafa02cf990b67470a55b66e359ad0da}{solve\+Linear\+Case}} (double a, double b)
+\item 
+void \mbox{\hyperlink{_equation_8cpp_a6a1eedd89ebad5e93563be37d2d4b0a0}{get\+Coefficients}} (double $\ast$a, double $\ast$b, double $\ast$c)
+\item 
+void \mbox{\hyperlink{_equation_8cpp_ab21e66fd310f189c093b7f91a79a2c6c}{file\+Quad\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double first\+Root\+Re, double first\+Root\+Im, double second\+Root\+Re, double second\+Root\+Im, FILE $\ast$output, \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
+\item 
+void \mbox{\hyperlink{_equation_8cpp_ac5c2dd1836ea7a74dd833a7b5831b063}{console\+Quad\+Test\+Output}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} test, double first\+Root\+Re, double first\+Root\+Im, double second\+Root\+Re, double second\+Root\+Im, \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, int test\+Number)
+\item 
+void \mbox{\hyperlink{_equation_8cpp_a606cb8eed56b36d13d7c7193ebe439dc}{file\+Linear\+Test\+Output}} (struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} test, FILE $\ast$output, enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, double root, int test\+Number)
+\item 
+void \mbox{\hyperlink{_equation_8cpp_a35a850789dd6314d5ea9e6dd6cfaa44e}{console\+Linear\+Test\+Output}} (struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} test, \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}} condition, double root, int test\+Number)
+\item 
+void \mbox{\hyperlink{_equation_8cpp_ad36c4b2c7080a1289f22f17233075394}{unit\+Test}} ()
+\item 
+void \mbox{\hyperlink{_equation_8cpp_add049e679f57d337bae6e22878334ffd}{print\+Roots}} (struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} Quad\+Equation, struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} Lin\+Equation)
+\item 
+void \mbox{\hyperlink{_equation_8cpp_a8843773b33c7469c4860f18c0cb08b03}{solve\+Quad\+Equation\+CLI}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_equation_8cpp_a20bbd4d45e3f01305dd709f5a9cc9952}\label{_equation_8cpp_a20bbd4d45e3f01305dd709f5a9cc9952}} 
+\index{Equation.cpp@{Equation.cpp}!clearBuffer@{clearBuffer}}
+\index{clearBuffer@{clearBuffer}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{clearBuffer()}{clearBuffer()}}
+{\footnotesize\ttfamily void clear\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_af132ca5d79c10c2611517a4d9ea32a6d}\label{_equation_8cpp_af132ca5d79c10c2611517a4d9ea32a6d}} 
+\index{Equation.cpp@{Equation.cpp}!compareDouble@{compareDouble}}
+\index{compareDouble@{compareDouble}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{compareDouble()}{compareDouble()}}
+{\footnotesize\ttfamily int compare\+Double (\begin{DoxyParamCaption}\item[{double}]{lhs,  }\item[{double}]{rhs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_a35a850789dd6314d5ea9e6dd6cfaa44e}\label{_equation_8cpp_a35a850789dd6314d5ea9e6dd6cfaa44e}} 
+\index{Equation.cpp@{Equation.cpp}!consoleLinearTestOutput@{consoleLinearTestOutput}}
+\index{consoleLinearTestOutput@{consoleLinearTestOutput}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{consoleLinearTestOutput()}{consoleLinearTestOutput()}}
+{\footnotesize\ttfamily void console\+Linear\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}}}]{test,  }\item[{\mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{double}]{root,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_ac5c2dd1836ea7a74dd833a7b5831b063}\label{_equation_8cpp_ac5c2dd1836ea7a74dd833a7b5831b063}} 
+\index{Equation.cpp@{Equation.cpp}!consoleQuadTestOutput@{consoleQuadTestOutput}}
+\index{consoleQuadTestOutput@{consoleQuadTestOutput}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{consoleQuadTestOutput()}{consoleQuadTestOutput()}}
+{\footnotesize\ttfamily void console\+Quad\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{first\+Root\+Re,  }\item[{double}]{first\+Root\+Im,  }\item[{double}]{second\+Root\+Re,  }\item[{double}]{second\+Root\+Im,  }\item[{\mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_a606cb8eed56b36d13d7c7193ebe439dc}\label{_equation_8cpp_a606cb8eed56b36d13d7c7193ebe439dc}} 
+\index{Equation.cpp@{Equation.cpp}!fileLinearTestOutput@{fileLinearTestOutput}}
+\index{fileLinearTestOutput@{fileLinearTestOutput}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{fileLinearTestOutput()}{fileLinearTestOutput()}}
+{\footnotesize\ttfamily void file\+Linear\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}}}]{test,  }\item[{FILE $\ast$}]{output,  }\item[{enum \mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{double}]{root,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_ab21e66fd310f189c093b7f91a79a2c6c}\label{_equation_8cpp_ab21e66fd310f189c093b7f91a79a2c6c}} 
+\index{Equation.cpp@{Equation.cpp}!fileQuadTestOutput@{fileQuadTestOutput}}
+\index{fileQuadTestOutput@{fileQuadTestOutput}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{fileQuadTestOutput()}{fileQuadTestOutput()}}
+{\footnotesize\ttfamily void file\+Quad\+Test\+Output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{test,  }\item[{double}]{first\+Root\+Re,  }\item[{double}]{first\+Root\+Im,  }\item[{double}]{second\+Root\+Re,  }\item[{double}]{second\+Root\+Im,  }\item[{FILE $\ast$}]{output,  }\item[{\mbox{\hyperlink{_equation_8h_a278d63eb3021b2904f952c737925a79b}{EQUATION\+\_\+\+SOLUTION\+\_\+\+CONDITION}}}]{condition,  }\item[{int}]{test\+Number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_a6a1eedd89ebad5e93563be37d2d4b0a0}\label{_equation_8cpp_a6a1eedd89ebad5e93563be37d2d4b0a0}} 
+\index{Equation.cpp@{Equation.cpp}!getCoefficients@{getCoefficients}}
+\index{getCoefficients@{getCoefficients}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{getCoefficients()}{getCoefficients()}}
+{\footnotesize\ttfamily void get\+Coefficients (\begin{DoxyParamCaption}\item[{double $\ast$}]{a,  }\item[{double $\ast$}]{b,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_add049e679f57d337bae6e22878334ffd}\label{_equation_8cpp_add049e679f57d337bae6e22878334ffd}} 
+\index{Equation.cpp@{Equation.cpp}!printRoots@{printRoots}}
+\index{printRoots@{printRoots}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{printRoots()}{printRoots()}}
+{\footnotesize\ttfamily void print\+Roots (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}}}]{Quad\+Equation,  }\item[{struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}}}]{Lin\+Equation }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_adafa02cf990b67470a55b66e359ad0da}\label{_equation_8cpp_adafa02cf990b67470a55b66e359ad0da}} 
+\index{Equation.cpp@{Equation.cpp}!solveLinearCase@{solveLinearCase}}
+\index{solveLinearCase@{solveLinearCase}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{solveLinearCase()}{solveLinearCase()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_linear_equation_solution_status}{Linear\+Equation\+Solution\+Status}} solve\+Linear\+Case (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_a5ca5f5d928acb499d5ec68e8ad80ec7b}\label{_equation_8cpp_a5ca5f5d928acb499d5ec68e8ad80ec7b}} 
+\index{Equation.cpp@{Equation.cpp}!solveQuadCase@{solveQuadCase}}
+\index{solveQuadCase@{solveQuadCase}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{solveQuadCase()}{solveQuadCase()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quadratic_equation_solution_status}{Quadratic\+Equation\+Solution\+Status}} solve\+Quad\+Case (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_a8843773b33c7469c4860f18c0cb08b03}\label{_equation_8cpp_a8843773b33c7469c4860f18c0cb08b03}} 
+\index{Equation.cpp@{Equation.cpp}!solveQuadEquationCLI@{solveQuadEquationCLI}}
+\index{solveQuadEquationCLI@{solveQuadEquationCLI}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{solveQuadEquationCLI()}{solveQuadEquationCLI()}}
+{\footnotesize\ttfamily void solve\+Quad\+Equation\+CLI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_equation_8cpp_ad36c4b2c7080a1289f22f17233075394}\label{_equation_8cpp_ad36c4b2c7080a1289f22f17233075394}} 
+\index{Equation.cpp@{Equation.cpp}!unitTest@{unitTest}}
+\index{unitTest@{unitTest}!Equation.cpp@{Equation.cpp}}
+\doxysubsubsection{\texorpdfstring{unitTest()}{unitTest()}}
+{\footnotesize\ttfamily void unit\+Test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

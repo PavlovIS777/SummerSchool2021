@@ -13,10 +13,10 @@ int compareDouble(double lhs, double rhs)
 
 struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double c)
 {
-    struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, NAN, NAN, UNDEF};
+    struct QuadraticEquationSolutionStatus Equation = {NAN, NAN, NAN, NAN, UNDEF_ROOTS};
 
     if (isnan(a) || isnan(b) || isnan(c)) {
-        Equation.condition = UNDEF;
+        Equation.condition = UNDEF_ROOTS;
         return Equation;
     }
 
@@ -24,23 +24,22 @@ struct QuadraticEquationSolutionStatus solveQuadCase(double a, double b, double 
 
     if (compareDouble(disc, 0.0) == EQUAL) {
         Equation.condition = LINEAR_EXISTS;
-        Equation.discriminantPart = 0;
-        Equation.bCoefficientPart = 0;
-        Equation.firstRationalRoot = (-b) / (2 * a);
-        Equation.secondRationalRoot = 0;
-    } else if (compareDouble(disc, 0 ) == LESS) {
+        Equation.firstRoot.Re = -b / (2.0 * a);
+        Equation.firstRoot.Im = 0.0;
+        Equation.secondRoot.Im = 0.0;
+        Equation.secondRoot.Re = 0.0;
+    } else if (compareDouble(disc, 0.0) == LESS) {
         disc *= -1;
         Equation.condition = COMPLEX;
-        Equation.discriminantPart = sqrt(disc) / (2 * a);
-        Equation.bCoefficientPart = -(b) / (2 * a);
-        Equation.firstRationalRoot = 0;
-        Equation.secondRationalRoot = 0;
+        Equation.firstRoot.Im = sqrt(disc) / (2 * a);
+        Equation.secondRoot.Im = sqrt(disc) / (2 * a);
+        Equation.secondRoot.Re = Equation.firstRoot.Re = -(b) / (2 * a);
     } else {
         Equation.condition = RATIONAL;
-        Equation.firstRationalRoot = ((-b) - sqrt(disc)) / (2 * a);
-        Equation.secondRationalRoot = ((-b) + sqrt(disc)) / (2 * a);
-        Equation.discriminantPart = 0;
-        Equation.bCoefficientPart = 0;
+        Equation.firstRoot.Re = ((-b) - sqrt(disc)) / (2 * a);
+        Equation.firstRoot.Im = 0.0;
+        Equation.secondRoot.Re = ((-b) + sqrt(disc)) / (2 * a);
+        Equation.secondRoot.Im = 0.0;
     }
 
     return Equation;
@@ -54,7 +53,7 @@ void clearBuffer()
 
 struct LinearEquationSolutionStatus solveLinearCase(double a, double b)
 {
-    struct LinearEquationSolutionStatus Equation = {NAN, UNDEF};
+    struct LinearEquationSolutionStatus Equation = {NAN, UNDEF_ROOTS};
     if ((compareDouble(a, 0.0) == EQUAL) &&
         (compareDouble(b, 0.0) == EQUAL)) {
         Equation.condition = INF;
@@ -75,7 +74,6 @@ struct LinearEquationSolutionStatus solveLinearCase(double a, double b)
         return Equation;
     }
 }
-
 void getCoefficients(double* a, double* b, double* c)
 {
     printf("\tPlease, enter the coefficients.\n"
@@ -95,23 +93,25 @@ void getCoefficients(double* a, double* b, double* c)
     }
 }
 
-void fileQuadTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
-                    double firstRational, double secondRational,
-                    FILE* output,enum EQUATION_SOLUTION_CONDITION condition,int testNumber)
+void fileQuadTestOutput(struct QuadraticEquationSolutionStatus test, double firstRootRe, double firstRootIm,
+                    double secondRootRe, double secondRootIm,
+                    FILE* output, EQUATION_SOLUTION_CONDITION condition,int testNumber)
 {
-    if (!((compareDouble(test.bCoefficientPart, bPart) == EQUAL) &&
-          (compareDouble(test.discriminantPart, dPart) == EQUAL) &&
+    if (!((compareDouble(test.firstRoot.Re, firstRootRe) == EQUAL)   &&
+          (compareDouble(test.firstRoot.Im, firstRootIm) == EQUAL)   &&
+          (compareDouble(test.secondRoot.Re, secondRootRe) == EQUAL) &&
+          (compareDouble(test.secondRoot.Im, secondRootIm) == EQUAL) &&
           test.condition == condition)) {
         fprintf(output, "\t*===Test %d====*\n"
                         "\tWrong answer.\n"
-                        "\tExpected: rational(complex) = %lf, Complex disc = %lf, rationalRoot_1 = %lf,"
-                        "rationalRoot_2 = %lf condition = %d\n"
-                        "\tResult: rational(complex) = %lf, Complex disc = %lf, rationalRoot_1 = %lf,"
-                        "rationalRoot_2 = %lf condition = %d\n"
+                        "\tExpected: firstRootRe = %lf, firstRootIm = %lf, secondRootRe = %lf,"
+                        "seconRootIm = %lf condition = %d\n"
+                        "\tResult: firstRootRe = %lf, firstRootIm = %lf, secondRootRe = %lf,"
+                        "seconRootIm = %lf condition = %d\n"
                         "\t*=============*\n\n",
-                testNumber, bPart, dPart, firstRational, secondRational,  condition,
-                test.bCoefficientPart, test.discriminantPart, test.firstRationalRoot,
-                test.secondRationalRoot, test.condition);
+                testNumber, firstRootRe, firstRootIm, secondRootRe, secondRootIm,  condition,
+                test.firstRoot.Re, test.firstRoot.Im, test.secondRoot.Re,
+                test.secondRoot.Im, test.condition);
         return;
     } else {
         fprintf(output, "\t*===Test %d====*\n"
@@ -120,31 +120,32 @@ void fileQuadTestOutput(struct QuadraticEquationSolutionStatus test, double bPar
     }
 }
 
-void consoleQuadTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
-                       double firstRational, double secondRational,
-                       enum EQUATION_SOLUTION_CONDITION condition, int testNumber) {
-    if (!((compareDouble(test.bCoefficientPart, bPart) == EQUAL) &&
-          (compareDouble(test.discriminantPart, dPart) == EQUAL) &&
-          test.condition == condition && compareDouble(test.firstRationalRoot, firstRational)
-           && compareDouble(test.secondRationalRoot, secondRational))) {
+void consoleQuadTestOutput(struct QuadraticEquationSolutionStatus test, double firstRootRe, double firstRootIm,
+                    double secondRootRe, double secondRootIm,
+                    EQUATION_SOLUTION_CONDITION condition,int testNumber)
+{
+    if (!((compareDouble(test.firstRoot.Re, firstRootRe) == EQUAL)   &&
+          (compareDouble(test.firstRoot.Im, firstRootIm) == EQUAL)   &&
+          (compareDouble(test.secondRoot.Re, secondRootRe) == EQUAL) &&
+          (compareDouble(test.secondRoot.Im, secondRootIm) == EQUAL) &&
+          test.condition == condition)) {
         printf("\t*===Test %d====*\n"
-               "\tWrong answer.\n"
-               "\tExpected: rational(complex) = %lf, Complex disc = %lf, rationalRoot_1 = %lf,"
-               "rationalRoot_2 = %lf condition = %d\n"
-               "\tResult: rational(complex) = %lf, Complex disc = %lf, rationalRoot_1 = %lf,"
-               "rationalRoot_2 = %lf condition = %d\n"
-               "\t*=============*\n\n",
-               testNumber, bPart, dPart, firstRational, secondRational, condition,
-               test.bCoefficientPart, test.discriminantPart, test.firstRationalRoot,
-               test.secondRationalRoot, test.condition);
+                "\tWrong answer.\n"
+                "\tExpected: firstRootRe = %lf, firstRootIm = %lf, secondRootRe = %lf,"
+                "seconRootIm = %lf condition = %d\n"
+                "\tResult: firstRootRe = %lf, firstRootIm = %lf, secondRootRe = %lf,"
+                "seconRootIm = %lf condition = %d\n"
+                "\t*=============*\n\n",
+                testNumber, firstRootRe, firstRootIm, secondRootRe, secondRootIm,  condition,
+                test.firstRoot.Re, test.firstRoot.Im, test.secondRoot.Re,
+                test.secondRoot.Im, test.condition);
         return;
     } else {
         printf("\t*===Test %d====*\n"
-               "\t  Test passed! \n"
-               "\t*=============*\n\n", testNumber);
+                "\t  Test passed!\n"
+                "\t*=============*\n\n", testNumber);
     }
 }
-
 void fileLinearTestOutput(struct LinearEquationSolutionStatus test, FILE* output,
                           enum EQUATION_SOLUTION_CONDITION condition, double root, int testNumber)
 {
@@ -162,7 +163,7 @@ void fileLinearTestOutput(struct LinearEquationSolutionStatus test, FILE* output
 }
 
 void consoleLinearTestOutput(struct LinearEquationSolutionStatus test,
-                          enum EQUATION_SOLUTION_CONDITION condition, double root, int testNumber)
+                                EQUATION_SOLUTION_CONDITION condition, double root, int testNumber)
 {
     if(!(compareDouble(test.root, root) == EQUAL && test.condition == condition)) {
         printf("\t*===Test %d====*\n"
@@ -195,13 +196,16 @@ void unitTest() {
         printf("\tError writing output file.\n");
     }
 
-    double a = NAN, b = NAN, c = NAN, bPart = NAN;
-    enum EQUATION_SOLUTION_CONDITION condition = UNDEF;
-    enum MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS testMode = -1;
-    int testsCount = 0, inputMode = 0, attemptCounts = MAX_ATTEMPTS_COUNT;
+    double a = NAN, b = NAN, c = NAN;
 
-    struct QuadraticEquationSolutionStatus quadTest = {NAN, NAN, NAN, NAN,UNDEF};
-    struct LinearEquationSolutionStatus linearTest = {NAN, UNDEF};
+    EQUATION_SOLUTION_CONDITION condition = UNDEF_ROOTS;
+    MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS testMode = UNDEF_MODE_TESTS;
+    TESTING_DATA_INPUT_MODE inputMode = UNDEF_INPUT_DATA;
+
+    int testsCount = 0, attemptCounts = MAX_ATTEMPTS_COUNT;
+
+    struct QuadraticEquationSolutionStatus quadTest = {{NAN, NAN}, {NAN, NAN}, UNDEF_ROOTS};
+    struct LinearEquationSolutionStatus linearTest = {NAN, UNDEF_ROOTS};
     printf("\tChoose tests output\n"
            "\tType \"1\" for console output mod or \"2\" for writing Log.txt file.\n");
 
@@ -209,7 +213,7 @@ void unitTest() {
 
     do {
         scanf("%d", &testMode);
-        if (testMode != CONSOLE && testMode != LOG) {
+        if (testMode == UNDEF_MODE_TESTS) {
             fgetc(stdin);
             if (attemptCounts > 0)
                 printf("\tType \"1\" or \"2\"\n");
@@ -219,7 +223,7 @@ void unitTest() {
             }
             --attemptCounts;
         }
-    } while (testMode != CONSOLE && testMode != LOG);
+    } while (testMode == UNDEF_MODE_TESTS);
 
     printf("\tChoose tests input\n"
            "\tType \"1\" for linear input mod or \"2\" for quad input mod.\n");
@@ -228,7 +232,7 @@ void unitTest() {
 
     do {
         scanf("%d", &inputMode);
-        if (inputMode != LINEAR && inputMode != QUAD) {
+        if (inputMode == UNDEF_INPUT_DATA) {
             fgetc(stdin);
             if (attemptCounts > 0)
                 printf("\tType \"1\" or \"2\"\n");
@@ -239,16 +243,19 @@ void unitTest() {
             --attemptCounts;
         }
     } while (inputMode != LINEAR && inputMode != QUAD);
+    
+    clearBuffer();
+
 
     if (inputMode == QUAD) {
         fscanf(quadInput, "%d", &testsCount);
-        double dPart = NAN, firstRational = NAN, secondRational = NAN;
+        double firsftRootRe = NAN, firsftRootIm = NAN, secondRootRe = NAN, secondRootIm = NAN;
         for (int i = 0; i < testsCount; ++i) {
-            fscanf(quadInput, "%lf %lf %lf %d %lf %lf %lf %lf", &a, &b, &c, &condition, &bPart, &dPart,
-                   &firstRational, &secondRational);
+            fscanf(quadInput, "%lf %lf %lf %d %lf %lf %lf %lf", &a, &b, &c, &condition, &firsftRootRe, &firsftRootIm,
+                   &secondRootRe, &secondRootIm);
 
-            if (isnan(a) || isnan(b) || isnan(c) || isnan(bPart) || isnan(dPart) || condition == UNDEF
-                || isnan(firstRational) || isnan(secondRational)) {
+            if (isnan(a) || isnan(b) || isnan(c) || isnan(firsftRootRe) || isnan(firsftRootIm) || condition == UNDEF_ROOTS
+                || isnan(secondRootRe) || isnan(secondRootIm)) {
                 printf("\t**Wrong test format. Test #%d""**", i + 1);
                 continue;
             }
@@ -257,10 +264,12 @@ void unitTest() {
 
             switch (testMode) {
                 case LOG:
-                    fileQuadTestOutput(quadTest, bPart, dPart, firstRational, secondRational, output, condition, i + 1);
+                    fileQuadTestOutput(quadTest, firsftRootRe, firsftRootIm, secondRootRe, secondRootIm, output, 
+                                        condition, i+1);
                     break;
                 case CONSOLE:
-                    consoleQuadTestOutput(quadTest, bPart, dPart, firstRational, secondRational, condition, i + 1);
+                    consoleQuadTestOutput(quadTest, firsftRootRe, firsftRootIm, secondRootRe, secondRootIm, 
+                                            condition, i+1);
                     break;
             }
         }
@@ -286,33 +295,32 @@ void unitTest() {
 void printRoots(struct QuadraticEquationSolutionStatus QuadEquation, struct LinearEquationSolutionStatus LinEquation)
 {
     switch (QuadEquation.condition) {
-        case UNDEF:
+        case UNDEF_ROOTS:
             break;
         case RATIONAL:
             printf("Roots are rational.\n"
-                   "x1 = %lf and x2 = %lf", QuadEquation.firstRationalRoot, QuadEquation.secondRationalRoot);
+                   "x1 = %lf and x2 = %lf""\n", QuadEquation.firstRoot.Re, QuadEquation.secondRoot.Re);
             break;
         case LINEAR_EXISTS:
             printf("Root is rational.\n"
-                   "x = %lf", QuadEquation.firstRationalRoot);
+                   "x = %lf""\n", QuadEquation.firstRoot.Re);
             break;
         case COMPLEX:
             printf("Roots are complex.\n"
-                   "x1 = %lf - %lf""i and x2 = %lf + %lf""i",
-                   QuadEquation.bCoefficientPart, QuadEquation.discriminantPart, QuadEquation.bCoefficientPart,
-                   QuadEquation.discriminantPart);
+                   "x1 = %lf - %lf""i and x2 = %lf + %lf""i""\n", QuadEquation.firstRoot.Re, QuadEquation.firstRoot.Im,
+                   QuadEquation.secondRoot.Im, QuadEquation.secondRoot.Im);
             break;
     }
     switch (LinEquation.condition) {
         case INF:
-            printf("x belongs R");
+            printf("x belongs R\n");
             break;
         case NON_EXISTENT:
-            printf("There's no solution.");
+            printf("There's no solution.\n");
             break;
         case LINEAR_EXISTS:
             printf("Root is rational.\n"
-                   "x = %lf", LinEquation.root);
+                   "x = %lf""\n", LinEquation.root);
     }
 }
 
@@ -320,11 +328,11 @@ void solveQuadEquationCLI() {
     printf("\tHello, user! Please, choose program mode.\n "
            "\tType \"1\" for testing and \"2\" "
            "for the program executing.\n");
-    enum MODE_OF_QUADRATIC_EQUATION_PROGRAM mode = -1;
+    enum MODE_OF_QUADRATIC_EQUATION_PROGRAM mode = UNDEF_MODE;
     int attemptCounts = MAX_ATTEMPTS_COUNT;
     do {
         scanf("%d", &mode);
-        if (mode != TESTING_MODE && mode != EXECUTING_MODE) {
+        if (mode == UNDEF_MODE) {
             fgetc(stdin);
             if (attemptCounts > 0)
                 printf("Type \"1\" for Testing mod and \"2\" for Executing.\n");
@@ -334,15 +342,15 @@ void solveQuadEquationCLI() {
             }
             --attemptCounts;
         }
-    } while (mode != EXECUTING_MODE && mode != TESTING_MODE);
+    } while (mode == UNDEF_MODE);
 
     if (mode == TESTING_MODE) {
         unitTest();
     } else {
         double a = NAN, b = NAN, c = NAN;
         getCoefficients(&a, &b, &c);
-        struct QuadraticEquationSolutionStatus QuadEquation = {NAN, NAN, NAN, NAN, UNDEF};
-        struct LinearEquationSolutionStatus LinEquation = {NAN, UNDEF};
+        struct QuadraticEquationSolutionStatus QuadEquation = {{NAN, NAN}, {NAN, NAN}, UNDEF_ROOTS};
+        struct LinearEquationSolutionStatus LinEquation = {NAN, UNDEF_ROOTS};
         if (compareDouble(a, 0.0) == EQUAL){
             LinEquation = solveLinearCase(b, c);
 

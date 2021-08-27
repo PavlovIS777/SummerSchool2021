@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Quadratic Equation Solution", "index.html", [
+  [ "Quadratic Solving CLI", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -49,7 +49,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_equation_8c.html"
+"_equation_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
