@@ -8,26 +8,15 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define EPS 1e-12
+#define EPS 2e-16
 #define MAX_ATTEMPTS_COUNT 5
 
 /*!
- * \brief struct for solving linear case.
+ * \brief struct for saving roots in general.
 */
-struct LinearEquationSolutionStatus
+struct ComplexRoots
 {
-    double root;
-    int condition;
-};
-
-/*!
- * \brief struct for solving quadratic case.
-*/
-struct QuadraticEquationSolutionStatus
-{
-    double bCoefficientPart, discriminantPart,
-    firstRationalRoot, secondRationalRoot;
-    int condition;
+    double Re, Im;
 };
 
 /*!
@@ -36,12 +25,30 @@ struct QuadraticEquationSolutionStatus
 */
 enum EQUATION_SOLUTION_CONDITION
 {
-    UNDEF = -1    ,
-    COMPLEX       ,
-    RATIONAL      ,
-    LINEAR_EXISTS ,
-    INF           ,
+    UNDEF_ROOTS = -1    ,
+    COMPLEX             ,
+    RATIONAL            ,
+    LINEAR_EXISTS       ,
+    INF                 ,
     NON_EXISTENT
+};
+
+/*!
+ * \brief struct for solving linear case.
+*/
+struct LinearEquationSolutionStatus
+{
+    double root = NAN;
+    EQUATION_SOLUTION_CONDITION condition;
+};
+
+/*!
+ * \brief struct for solving quadratic case.
+*/
+struct QuadraticEquationSolutionStatus
+{
+    struct ComplexRoots firstRoot = {NAN, NAN}, secondRoot = {NAN, NAN};
+    EQUATION_SOLUTION_CONDITION condition;
 };
 
 /*!
@@ -50,7 +57,8 @@ enum EQUATION_SOLUTION_CONDITION
 */
 enum MODE_OF_QUADRATIC_EQUATION_PROGRAM
 {
-    TESTING_MODE = 1  ,
+    UNDEF_MODE      ,
+    TESTING_MODE    ,
     EXECUTING_MODE
 };
 
@@ -60,7 +68,8 @@ enum MODE_OF_QUADRATIC_EQUATION_PROGRAM
 */
 enum MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS
 {
-    CONSOLE = 1 ,
+    UNDEF_MODE_TESTS    ,
+    CONSOLE             ,
     LOG
 };
 
@@ -69,7 +78,8 @@ enum MODE_OF_QUADRATIC_EQUATION_PROGRAM_TESTS
  *        Status of input file for test-system.
 */
 enum TESTING_DATA_INPUT_MODE{
-    LINEAR = 1 ,
+    UNDEF_INPUT_DATA    ,
+    LINEAR              ,
     QUAD
 };
 
@@ -143,9 +153,9 @@ void clearBuffer();
  * \returns void
  * \example fileQuadTestOutput()
 */
-void fileQuadTestOutput(struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
-                    double firstRational, double secondRational,
-                    FILE* output,enum EQUATION_SOLUTION_CONDITION condition,int testNumber);
+void fileQuadTestOutput(struct QuadraticEquationSolutionStatus test, double firstRootRe, double firstRootIm,
+                    double secondRootRe, double secondRootIm,
+                    FILE* output, EQUATION_SOLUTION_CONDITION condition,int testNumber);
 
 /*!
  * \brief Test result of quadratic case outputs into console.
@@ -154,9 +164,9 @@ void fileQuadTestOutput(struct QuadraticEquationSolutionStatus test, double bPar
  * \returns void
  * \example consoleQuadTestOutput()
 */
-void consoleQuadTestOutput (struct QuadraticEquationSolutionStatus test, double bPart, double dPart,
-                        double firstRational, double secondRational,
-                        enum EQUATION_SOLUTION_CONDITION condition, int testNumber);
+void consoleQuadTestOutput (struct QuadraticEquationSolutionStatus test, double firstRootRe, double firstRootIm,
+                    double secondRootRe, double secondRootIm,
+                    EQUATION_SOLUTION_CONDITION condition,int testNumber);
 
 /*!
  * \brief Function of solving quadratic equation.
