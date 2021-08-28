@@ -4,7 +4,6 @@
 
 int main(void)
 {
-    //FILE* fp = fopen("input.txt", "r");
     char str[] = "312";
     char* str_test = nullptr; 
     str_test = customStrdup(str);

@@ -1,2 +1,2 @@
 all:
-	g++ -g unitTest.cpp StrLib.cpp -o outp
+	g++ -g unitTest.cpp StrLib.cpp -o output

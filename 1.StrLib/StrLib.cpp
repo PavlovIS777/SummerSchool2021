@@ -4,7 +4,6 @@ int customPuts(const char* string)
 {
     if (string == nullptr)
         return EOF;
-    size_t symbolPos = 0;
     for(size_t symbolPos = 0; string[symbolPos]; ++symbolPos)
     {
         fputc(string[symbolPos], stdout);
@@ -120,8 +119,10 @@ char* customStrdup(char* string)
     if (string == NULL)
         return nullptr;
     
-    char* copy = (char*)malloc(sizeof(*string)+sizeof(char));
+    int len = customStrlen(string) + 1;
 
+    char* copy = (char*)calloc(len, sizeof(char));
+    
     while (*string)
     {
         *copy = *string;
