@@ -3,30 +3,25 @@
 int customPuts(const char* str)
 {
     if (str == nullptr)
-        return -2;
+        return EOF; //код ошибки енам.
     size_t symbolPos = 0;
     while (str[symbolPos])
     {
-        if (str[symbolPos] == EOF) {
-            return EOF;
-        }
         fputc(str[symbolPos], stdout);
         ++symbolPos;
     }
-    printf("\n");
+    fputc('\n', stdout);
     return 1;
 }
 
-char* customStrchr(const char* string, char symbol)
+char* customStrchr(char* string, char symbol)
 {
     size_t symbolPos = 0;
 
     while (string[symbolPos])
     {
         if (string[symbolPos] == symbol) {
-            char* output = (char*)(&string[symbolPos]);
-
-            return output;
+            return string + symbolPos;
         }
         ++symbolPos;
     }
