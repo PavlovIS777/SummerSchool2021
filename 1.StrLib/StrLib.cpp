@@ -1,20 +1,23 @@
 #include "StrLib.h"
 
+
 int customPuts(const char* string)
 {
-    if (string == nullptr)
-        return EOF;
-    for(size_t symbolPos = 0; string[symbolPos]; ++symbolPos)
+    if (string == nullptr) {return EOF;}
+
+    size_t symbolPos;
+    for(symbolPos = 0; string[symbolPos]; ++symbolPos)
     {
         fputc(string[symbolPos], stdout);
     }
     fputc('\n', stdout);
-    return 1;
+    return ++symbolPos;//вернуть sy
 }
+
 
 char* customStrchr(char* string, char symbol)
 {
-    
+    if (string == nullptr || symbol < 0 || isnan(symbol)) {return nullptr;}
 
     for(size_t symbolPos = 0; string[symbolPos]; ++symbolPos)
     {
@@ -27,8 +30,11 @@ char* customStrchr(char* string, char symbol)
     return nullptr;
 }
 
+
 size_t customStrlen(const char* str)
 {
+    if (str == nullptr) {return EOF;}
+
     size_t symbolPos = 0;
     
     while (str[symbolPos])
@@ -39,35 +45,42 @@ size_t customStrlen(const char* str)
     return symbolPos;
 }
 
-int customStrcpy(const char* strToCopy, char* strToPaste)
+
+int customStrcpy(const char* destination, char* srcstr)
 {
-    if (sizeof(*strToCopy > *strToPaste))
-        return EOF;
-    while (*strToCopy != 0)
+    if(destination == nullptr || srcstr == nullptr) {return EOF;}
+
+    while (*destination)
     {
-        *strToPaste = *strToCopy;
-        ++strToCopy;
-        ++strToPaste;
+        *srcstr = *destination;
+        ++destination;
+        ++srcstr;
     }
 
     return 1;
 }
 
-void customStrncpy(const char* strToCopy, char* strToPaste, int n)
+
+int customStrncpy(const char* destination, char* srcstr, int n)
 {   
-    while (*strToCopy != 0 && *strToPaste != 0 && n)
+    if (destination == nullptr || srcstr == nullptr || isnan(n) || n < 0) {return EOF;}
+
+    while (*destination && *srcstr && n)
     {
-        *strToPaste = *strToCopy;
+        *srcstr = *destination;
         --n;
-        ++strToPaste;
-        ++strToCopy;
+        ++srcstr;
+        ++destination;
     }
     
-    return;
+    return 1;
 }
 
-void customStrcat(char* destination, char* srcstr)
+
+int customStrcat(char* destination, char* srcstr)
 {
+    if(destination == nullptr || srcstr == nullptr) {return EOF;}
+
     while(*destination)
     {
         ++destination;
@@ -79,10 +92,14 @@ void customStrcat(char* destination, char* srcstr)
         ++destination;
         ++srcstr;
     } while (*srcstr);
+    return 1;
 }
 
-void customStrncat(char* destination, char* srcstr, int n)
+
+int customStrncat(char* destination, char* srcstr, int n)
 {
+    if (destination == nullptr || srcstr == nullptr || n < 0 || isnan(n)) {return EOF;}
+
     while (*destination)
     {
         ++destination;
@@ -95,13 +112,15 @@ void customStrncat(char* destination, char* srcstr, int n)
         ++destination;
         ++srcstr;
     } while (*srcstr && n);
+
+    return n;
 }
+
 
 int customFgets(FILE* fp, int MAXLEN, char* string)
 {
-    if (fp == NULL){
-        return EOF;
-    }
+    if (fp == NULL || string == nullptr || MAXLEN < 0 || isnan(MAXLEN)) {return EOF;}
+    
     char temp;
     do
     {
@@ -114,10 +133,10 @@ int customFgets(FILE* fp, int MAXLEN, char* string)
     return 1;
 }
 
+
 char* customStrdup(char* string)
 {
-    if (string == NULL)
-        return nullptr;
+    if (string == NULL) {return nullptr;}
     
     int len = customStrlen(string) + 1;
 
@@ -128,8 +147,11 @@ char* customStrdup(char* string)
     return copy;
 }
 
-void customGetline(char* string, int MAXLEN, char separator)
+
+int customGetline(char* string, int MAXLEN, char separator)
 {
+    if (string == nullptr || MAXLEN < 0 || isnan(MAXLEN)) {return EOF;}
+
     char tmp = fgetc(stdin);
     while(tmp != separator && MAXLEN > 1)
     {
@@ -138,4 +160,6 @@ void customGetline(char* string, int MAXLEN, char separator)
         --MAXLEN;
         tmp = fgetc(stdin);
     }
+
+    return 1;
 }
