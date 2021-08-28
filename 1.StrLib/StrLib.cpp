@@ -123,12 +123,19 @@ char* customStrdup(char* string)
 
     char* copy = (char*)calloc(len, sizeof(char));
     
-    while (*string)
-    {
-        *copy = *string;
-        ++copy;
-        ++string;
-    }
+    copy = (char*)memcpy(copy, string, len);
 
     return copy;
+}
+
+void customGetline(char* string, int MAXLEN, char separator)
+{
+    char tmp = fgetc(stdin);
+    while(tmp != separator && MAXLEN > 1)
+    {
+        *string = tmp;
+        ++string;
+        --MAXLEN;
+        tmp = fgetc(stdin);
+    }
 }

@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>	
 
 int customPuts(const char* str);
 
@@ -22,4 +23,6 @@ void customStrncat(char* destination, char* srcstr, int n);
 int customFgets(FILE* fp, int MAXLEN, char* string);
 
 char* customStrdup(char* string);
+
+void customGetline(char* string, int MAXLEN, char separator);
 #endif //STRLIB_H
