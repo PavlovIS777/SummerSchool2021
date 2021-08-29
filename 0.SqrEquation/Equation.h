@@ -10,6 +10,24 @@
 
 #define EPS 2e-16
 #define MAX_ATTEMPTS_COUNT 5
+#define TEST_PASSED "\t*===Test %d====*\n"\
+                    "\t  Test passed!\n"\
+                    "\t*=============*\n\n", testNumber
+#define WRONG_TEST_ANSWER_LINEAR "\t*===Test %d====*\n"                          \
+                               "\tWrong answer.\n"                             \
+                               "\tExpected: root = %lf, condition = %d\n"      \
+                               "\tResult: rational = %lf, condition = %d\n"    \
+                               "\t*=============*\n\n", testNumber, root, condition, test.root, test.condition
+#define WRONG_TEST_ANSWER_QUAD  "\t*===Test %d====*\n" \
+                                "\tWrong answer.\n"                                                          \
+                                "\tExpected: firstRootRe = %lf, firstRootIm = %lf, secondRootRe = %lf,"      \
+                                "seconRootIm = %lf condition = %d\n"                                         \
+                                "\tResult: firstRootRe = %lf, firstRootIm = %lf, secondRootRe = %lf,"        \
+                                "seconRootIm = %lf condition = %d\n"                                         \
+                                "\t*=============*\n\n",                                                     \
+                                testNumber, firstRootRe, firstRootIm, secondRootRe, secondRootIm,  condition,\
+                                test.firstRoot.Re, test.firstRoot.Im, test.secondRoot.Re,                    \
+                                test.secondRoot.Im, test.condition
 
 /*!
  * \brief struct for saving roots in general.

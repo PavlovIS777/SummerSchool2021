@@ -1,0 +1,30 @@
+	*===Test 1====*
+	  Test passed!
+	*=============*
+
+	*===Test 2====*
+	Wrong answer.
+	Expected: root = 4.000000, condition = 3
+	Result: rational = -2.000000, condition = 2
+	*=============*
+
+	*===Test 3====*
+	Wrong answer.
+	Expected: root = 1.000000, condition = 2
+	Result: rational = -0.750000, condition = 2
+	*=============*
+
+	*===Test 1====*
+	  Test passed!
+	*=============*
+
+	*===Test 2====*
+	  Test passed!
+	*=============*
+
+	*===Test 3====*
+	Wrong answer.
+	Expected: firstRootRe = 1.000000, firstRootIm = 1.000000, secondRootRe = 1.000000,seconRootIm = 1.000000 condition = 1
+	Result: firstRootRe = -0.500000, firstRootIm = 0.866025, secondRootRe = -0.500000,seconRootIm = 0.866025 condition = 0
+	*=============*
+
