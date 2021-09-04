@@ -9,6 +9,7 @@ enum LEXSICAL_COMPARE_STATUS
     BIGGER = 2
 };
 
+void deleteNSymbol(char* s);
 
 void qsortStr(char* inputData[], int left, int right);
 

@@ -1,5 +1,10 @@
 #include "qsortStr.h"
 
+void deleteNSymbol(char* s) {
+    while (*s != '\n' && *s != '\0') { ++s; }
+    *s = '\0';
+}
+
 void swapStr(char* inputData[], int firstInd, int secondInd)
 {
     char* tmp = inputData[firstInd];
