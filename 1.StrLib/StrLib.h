@@ -15,7 +15,7 @@
 int customPuts(const char* str);
 
 //search symbol in string and returns pointer of this symbol.
-char* customStrchr(const char* string, char symbol);
+char* customStrchr(char* string, char symbol);
 
 // returns lenght of the string.
 size_t customStrlen(const char* str);

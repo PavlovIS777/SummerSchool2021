@@ -17,14 +17,13 @@ int customPuts(const char* string)
 
 char* customStrchr(char* string, char symbol)
 {
-    if (string == nullptr || symbol < 0 || isnan(symbol)) {return nullptr;}
+    if (string == nullptr) {return nullptr;}
 
-    for(size_t symbolPos = 0; string[symbolPos]; ++symbolPos)
+    for(size_t symbolPos = 0; char currentSymbol = string[symbolPos]; ++symbolPos)
     {
-        if (string[symbolPos] == symbol) {
+        if (currentSymbol == symbol) {
             return string + symbolPos;
         }
-        
     }
 
     return nullptr;
@@ -46,41 +45,43 @@ size_t customStrlen(const char* str)
 }
 
 
-int customStrcpy(const char* destination, char* srcstr)
+int customStrcpy(const char* srcstr, char* destination)
 {
     if(destination == nullptr || srcstr == nullptr) {return EOF;}
-
+    int copiesNumber = 0;
     while (*destination)
     {
-        *srcstr = *destination;
+        ++copiesNumber;
+        *destination = *srcstr;
         ++destination;
         ++srcstr;
     }
 
-    return 1;
+    return copiesNumber;
 }
 
 
-int customStrncpy(const char* destination, char* srcstr, int n)
+int customStrncpy(const char* srcstr, char* destination, int n)
 {   
-    if (destination == nullptr || srcstr == nullptr || isnan(n) || n < 0) {return EOF;}
-
+    if (destination == nullptr || srcstr == nullptr || n < 0) {return EOF;}
+    int copiesNumber = 0;
     while (*destination && *srcstr && n)
     {
-        *srcstr = *destination;
+        ++copiesNumber;
+        *destination = *srcstr;
         --n;
         ++srcstr;
         ++destination;
     }
     
-    return 1;
+    return copiesNumber;
 }
 
 
 int customStrcat(char* destination, char* srcstr)
 {
     if(destination == nullptr || srcstr == nullptr) {return EOF;}
-
+    int copiesNumber = 0;
     while(*destination)
     {
         ++destination;
@@ -88,18 +89,19 @@ int customStrcat(char* destination, char* srcstr)
 
     do
     {
+        ++copiesNumber;
         *destination = *srcstr;
         ++destination;
         ++srcstr;
     } while (*srcstr);
-    return 1;
+    return copiesNumber;
 }
 
 
 int customStrncat(char* destination, char* srcstr, int n)
 {
-    if (destination == nullptr || srcstr == nullptr || n < 0 || isnan(n)) {return EOF;}
-
+    if (destination == nullptr || srcstr == nullptr || n < 0) {return EOF;}
+    int copiesNumber = 0;
     while (*destination)
     {
         ++destination;
@@ -107,30 +109,32 @@ int customStrncat(char* destination, char* srcstr, int n)
 
     do
     {
+        ++copiesNumber;
         --n;
         *destination = *srcstr;
         ++destination;
         ++srcstr;
     } while (*srcstr && n);
 
-    return n;
+    return copiesNumber;
 }
 
 
 int customFgets(FILE* fp, int MAXLEN, char* string)
 {
-    if (fp == NULL || string == nullptr || MAXLEN < 0 || isnan(MAXLEN)) {return EOF;}
-    
+    if (fp == NULL || string == nullptr || MAXLEN < 0) {return EOF;}
+    int getsNumber = 0;
     char temp;
     do
     {
         temp = fgetc(fp);
+        ++getsNumber;
         *string = temp;
         ++string;
         --MAXLEN;
     } while (temp != '\n' && temp != EOF  && MAXLEN > 1 );
 
-    return 1;
+    return getsNumber;
 }
 
 
@@ -140,25 +144,25 @@ char* customStrdup(char* string)
     
     int len = customStrlen(string) + 1;
 
-    char* copy = (char*)calloc(len, sizeof(char));
+    char* copiedStr = (char*)calloc(len, sizeof(char));
     
-    copy = (char*)memcpy(copy, string, len);
+    copiedStr = (char*)memcpy((void*)copiedStr, (void*)string, len);
 
-    return copy;
+    return copiedStr;
 }
 
 
 int customGetline(char* string, int MAXLEN, char separator)
 {
-    if (string == nullptr || MAXLEN < 0 || isnan(MAXLEN)) {return EOF;}
+    if (string == nullptr || MAXLEN < 0) {return EOF;}
 
-    char tmp = fgetc(stdin);
-    while(tmp != separator && MAXLEN > 1)
+    char receivedChar = fgetc(stdin);
+    while(receivedChar != separator && MAXLEN > 1)
     {
-        *string = tmp;
+        *string = receivedChar;
         ++string;
         --MAXLEN;
-        tmp = fgetc(stdin);
+        receivedChar = fgetc(stdin);
     }
 
     return 1;
