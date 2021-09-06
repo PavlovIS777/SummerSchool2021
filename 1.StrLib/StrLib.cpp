@@ -6,12 +6,12 @@ int customPuts(const char* string)
     if (string == nullptr) {return EOF;}
 
     size_t symbolPos;
-    for(symbolPos = 0; string[symbolPos]; ++symbolPos)
+    for(symbolPos = 0; char tmp = string[symbolPos]; ++symbolPos)
     {
-        fputc(string[symbolPos], stdout);
+        fputc(tmp, stdout);
     }
     fputc('\n', stdout);
-    return ++symbolPos;//вернуть sy
+    return ++symbolPos;
 }
 
 
@@ -49,14 +49,15 @@ int customStrcpy(const char* srcstr, char* destination)
 {
     if(destination == nullptr || srcstr == nullptr) {return EOF;}
     int copiesNumber = 0;
-    while (*destination)
+    while (*srcstr)
     {
         ++copiesNumber;
         *destination = *srcstr;
         ++destination;
         ++srcstr;
     }
-
+    ++destination;
+    *destination = '\0';
     return copiesNumber;
 }
 
@@ -64,8 +65,10 @@ int customStrcpy(const char* srcstr, char* destination)
 int customStrncpy(const char* srcstr, char* destination, int n)
 {   
     if (destination == nullptr || srcstr == nullptr || n < 0) {return EOF;}
+
+    if (customStrlen(srcstr) < n) {return customStrcpy(srcstr, destination);}
     int copiesNumber = 0;
-    while (*destination && *srcstr && n)
+    while (*srcstr && n)
     {
         ++copiesNumber;
         *destination = *srcstr;
@@ -73,7 +76,8 @@ int customStrncpy(const char* srcstr, char* destination, int n)
         ++srcstr;
         ++destination;
     }
-    
+    ++destination;
+    *destination = '\0';
     return copiesNumber;
 }
 
@@ -94,14 +98,19 @@ int customStrcat(char* destination, char* srcstr)
         ++destination;
         ++srcstr;
     } while (*srcstr);
+    ++destination;
+    *destination = '\0';
     return copiesNumber;
 }
 
 
 int customStrncat(char* destination, char* srcstr, int n)
 {
-    if (destination == nullptr || srcstr == nullptr || n < 0) {return EOF;}
+    if (destination == nullptr || srcstr == nullptr || n <= 0) {return EOF;}
     int copiesNumber = 0;
+    if (customStrlen(srcstr) < n){
+        return customStrcat(destination, srcstr);
+    }
     while (*destination)
     {
         ++destination;
@@ -115,14 +124,15 @@ int customStrncat(char* destination, char* srcstr, int n)
         ++destination;
         ++srcstr;
     } while (*srcstr && n);
-
+    ++destination;
+    *destination = '\0';
     return copiesNumber;
 }
 
 
 int customFgets(FILE* fp, int MAXLEN, char* string)
 {
-    if (fp == NULL || string == nullptr || MAXLEN < 0) {return EOF;}
+    if (fp == NULL || string == nullptr || MAXLEN <= 0) {return EOF;}
     int getsNumber = 0;
     char temp;
     do
@@ -133,7 +143,8 @@ int customFgets(FILE* fp, int MAXLEN, char* string)
         ++string;
         --MAXLEN;
     } while (temp != '\n' && temp != EOF  && MAXLEN > 1 );
-
+    ++string;
+    *string = '\0';
     return getsNumber;
 }
 
