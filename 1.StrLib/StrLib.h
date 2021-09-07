@@ -1,21 +1,20 @@
 #ifndef STRLIB_H
 #define STRLIB_H
 
-// РєРѕРјРјРµРЅС‚С‹
+// комменты
 //
 
 
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>	
 #include <math.h>
 
 //outputs string to stdout(console), returns number of printed symbols.
 int customPuts(const char* str);
 
 //search symbol in string and returns pointer of this symbol.
-char* customStrchr(const char* string, char symbol);
+char* customStrchr(char* string, char symbol);
 
 // returns lenght of the string.
 size_t customStrlen(const char* str);
@@ -27,16 +26,16 @@ int customStrcpy(const char* destination, char* srcstr);
 int customStrncpy(const char* destination, char* srcstr, int n);
 
 //puts srcstr string to the end of destination string.
-int customStrcat(char* destination, char* srcstr);
+int customStrcat(char* destination, const char* srcstr);
 
 //puts first n symbols of the srcstr string to the end of destination string.
-int customStrncat(char* destination, char* srcstr, int n);
+int customStrncat(char* destination, const char* srcstr, int n);
 
 //writes stroke line from input file to the string.
 int customFgets(FILE* fp, int MAXLEN, char* string);
 
 //returns pointer on the copy of the string.
-char* customStrdup(char* string);
+char* customStrdup(const char* string);
 
 //writes line from the stdin(console) to the string.
 int customGetline(char* string, int MAXLEN, char separator);
