@@ -11,19 +11,19 @@
 #include <math.h>
 
 //outputs string to stdout(console), returns number of printed symbols.
-int customPuts(const char* str);
+int customPuts(const char* str, FILE* output);
 
 //search symbol in string and returns pointer of this symbol.
 char* customStrchr(char* string, char symbol);
 
 // returns lenght of the string.
-size_t customStrlen(const char* str);
+int customStrlen(const char* str);
 
 //copies srcstr string to the destination string.
-int customStrcpy(const char* destination, char* srcstr);
+int customStrcpy(const char* srcstr, char* destination);
 
 //copies first n symbol of the srcstr string to the destination string.
-int customStrncpy(const char* destination, char* srcstr, int n);
+int customStrncpy(const char* srcstr, char* destination, int n);
 
 //puts srcstr string to the end of destination string.
 int customStrcat(char* destination, const char* srcstr);

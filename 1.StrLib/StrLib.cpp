@@ -1,22 +1,22 @@
 #include "StrLib.h"
 #include <string.h>
 
-int customPuts(const char* string)
+int customPuts(const char* string, FILE* output)
 {
-    if (string == nullptr) { return EOF; }
+    if (string == nullptr || output == nullptr) { return EOF; }
 
-    size_t strLength = -1; // нет инициализации (нафиг надо, но ок)
-    for (strLength = 0; char tmp = string[strLength]; ++strLength)// плохое название ok
+    int strLength = -1;
+    for (strLength = 0; char outputSymbol = string[strLength]; ++strLength)
     {
-        fputc(tmp, stdout);
+        fputc(outputSymbol, output);
     }
-    fputc('\n', stdout);
+    fputc('\n', output);
 
-    return strLength; // а возвращаем-то int! и зачем здесь "++"? ok
+    return strLength;
 }
 
 
-char* customStrchr(char* string, char symbol) // почему не const char* string? (урыл)
+char* customStrchr(char* string, char symbol)
 {
     if (string == nullptr) { return nullptr; }
 
@@ -31,11 +31,11 @@ char* customStrchr(char* string, char symbol) // почему не const char* string? (
 }
 
 
-size_t customStrlen(const char* str)
+int customStrlen(const char* str)
 {
     if (str == nullptr) { return EOF; }
 
-    size_t symbolPos = 0;
+    int symbolPos = 0;
 
     while (str[symbolPos])
     {
@@ -46,16 +46,16 @@ size_t customStrlen(const char* str)
 }
 
 
-int customStrcpy(const char* srcstr, char* destination) // здесь есть баги
+int customStrcpy(const char* srcstr, char* destination)
 {
     if (destination == nullptr || srcstr == nullptr) { return EOF; }
 
     int copiesNumber = 0;
 
-    while (char tmp = *srcstr)
+        while (char recievedChar = *srcstr)
     {
         ++copiesNumber;
-        *destination = tmp; // дважды лезем в эту память
+        *destination = recievedChar;
         ++destination;
         ++srcstr;
     }
@@ -66,7 +66,7 @@ int customStrcpy(const char* srcstr, char* destination) // здесь есть баги
 }
 
 
-int customStrncpy(const char* srcstr, char* destination, int n)// баги....
+int customStrncpy(const char* srcstr, char* destination, int n)
 {
     if (destination == nullptr || srcstr == nullptr || n < 0) { return EOF; }
 
@@ -91,12 +91,15 @@ int customStrcat(char* destination, const char* srcstr)
     if (destination == nullptr || srcstr == nullptr) { return EOF; }
     int copiesNumber = 0;
 
-    destination += customStrlen(destination);
+    int destLem = customStrlen(destination);
+    if (destLem == -1) { return EOF; }
 
-    while (char tmp = *srcstr)
+    destination += destLem;
+
+    while (char recievedChar = *srcstr)
     {
         ++copiesNumber;
-        *destination = tmp;
+        *destination = recievedChar;
         ++destination;
         ++srcstr;
     }
@@ -107,9 +110,9 @@ int customStrcat(char* destination, const char* srcstr)
 }
 
 
-int customStrncat(char* destination, const char* srcstr, int n) // аналогичные замечания - налицо твое желание делать копипаст. АЙАЙАЙ (знаешь куда идти с такими поправками, душнила?)
-{                                                               // зачем писать что то по 10 раз если можно копипастить. 
-    if (destination == nullptr || srcstr == nullptr || n <= 0) { return EOF; }
+int customStrncat(char* destination, const char* srcstr, int n) 
+{
+    if (destination == nullptr || srcstr == nullptr || n <= 0) { return -1; }
 
     int copiesNumber = 0;
 
@@ -131,10 +134,10 @@ int customStrncat(char* destination, const char* srcstr, int n) // аналогичные з
 
 
 int customFgets(FILE* fp, int MAXLEN, char* string)
-{         // nullptr            что случилось с этим названием? (
+{
     if (fp == nullptr || string == nullptr || MAXLEN < 1) { return EOF; }
     int getsNumber = 0;
-    int receivedChar = '\0'; // инициализация; плохое название; fgetc возвращает int - фикси
+    int receivedChar = '\0';
     do
     {
         receivedChar = fgetc(fp);
@@ -151,12 +154,12 @@ int customFgets(FILE* fp, int MAXLEN, char* string)
 
 
 char* customStrdup(const char* string)
-{//             nullptr?
+{
     if (string == nullptr) { return nullptr; }
 
-    int len = customStrlen(string); // как обрабатывается EOF (да, сейчас он может быть получен только если string == nullptr, но проги иногда меняют, и это место может сгенерить баг)?
+    int len = customStrlen(string);
 
-    if (len == EOF)
+    if (len == -1)
     {
         return nullptr;
     }
@@ -171,11 +174,11 @@ char* customStrdup(const char* string)
 
 
 int customGetline(char* string, int MAXLEN, char separator)
-{//                        что с кодстайлом?
+{
     if (string == nullptr || MAXLEN <= 0) { return EOF; }
 
     int lineLength = 0;
-    int receivedChar = fgetc(stdin); // опять char?!
+    int receivedChar = fgetc(stdin);
 
     while (receivedChar != separator && MAXLEN > 1)
     {
@@ -187,5 +190,5 @@ int customGetline(char* string, int MAXLEN, char separator)
     }
 
     *string = '\0';
-    return lineLength; // возвращать размер линии?
+    return lineLength;
 }
