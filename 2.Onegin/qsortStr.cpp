@@ -5,35 +5,65 @@ void deleteNSymbol(char* s) {
     *s = '\0';
 }
 
-void swapStr(char* inputData[], int firstInd, int secondInd)
+void swapStr(void* lhv, void* rhv)
 {
-    char* tmp = inputData[firstInd];
-    inputData[firstInd] = inputData[secondInd];
-    inputData[secondInd] = tmp;
+    char** s = (char**)lhv;
+    char** tmp = (char**)calloc(1, sizeof(void*));
+    char** t = (char**)rhv;
+
+    memcpy(tmp, s, sizeof(char*));
+    memcpy(s, t, sizeof(char*));
+    memcpy(t, tmp, sizeof(char*));
+    free(tmp);
 }
 
-void qsortStr(char* inputData[], int left, int right)
+void qsortStr(void* inputData, int num, int size, int compareStr(const void* s_void, const void* t_void))
 {
-    if (left >= right) {return;}
-
-    int refStr     = (left + right) / 2;
-    int leftBoard  = left;
-    int rightBoard = right;
+    if (num <= 1) {return;}
+    
+    int left = 0;
+    int right = num - 1;
+    int mid = (left + right) / 2;
 
     do
     {
-        while(compareStr(inputData[refStr], inputData[leftBoard]) == 1)
-            ++leftBoard;
-        while(compareStr(inputData[refStr], inputData[rightBoard]) == -1)
-            --rightBoard;
-        
-        if (compareStr(inputData[leftBoard], inputData[rightBoard]) == 1)
+        while ((compareStr((char*)inputData + mid * size, (char*)inputData + left * size) > 0) && (left < num))
         {
-            swapStr(inputData, leftBoard, rightBoard);
+            ++left;
         }
-    } while (leftBoard < rightBoard);
+        while ((compareStr((char*)inputData + mid * size, (char*)inputData + right * size) < 0) && (right > 0))
+        {
+            --right;
+        }
+        
+        if (left <= right)
+        {
+            swapStr((char*)inputData + left * size, (char*)inputData + right * size);
+            --right;
+            ++left;
+        }
+        
+    } while (left <= right);
 
-    if (leftBoard < right) {qsortStr(inputData, leftBoard - 1, right);}
+    if (right > 0)
+        qsortStr(inputData, right + 1, size, compareStr);
+    if (left < num)
+        qsortStr((char*)inputData + left * size, num - left, size, compareStr);
+}
 
-    if (rightBoard > left) {qsortStr(inputData, left, rightBoard);}
+int stdQsort()
+{
+    char* buff[MAXLINES] = {};
+    FILE* input = fopen("input.txt", "r");
+    char* str = (char*)calloc(MAXLEN, sizeof(char));
+    int i;
+    for (i = 0; fgets(str, MAXLEN, input) != nullptr; ++i) {
+        deleteNSymbol(str);
+        buff[i] = str;
+        str = (char*)calloc(MAXLEN, sizeof(char));
+    }
+    qsort(buff, i, sizeof(char*), compareStr);
+    for (int j = 0; j < i; ++j)
+        printf("%s\n", buff[j]);
+    return 1;
 }
