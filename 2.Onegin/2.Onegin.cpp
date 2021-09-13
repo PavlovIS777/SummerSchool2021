@@ -3,32 +3,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void coppyBuff(char*** srcBuff, char*** destBuff, int len)
+{
+    for (int i = 0; i < len; ++i)
+    {
+        *destBuff++ = *srcBuff++;
+    }
+}
 
 
 
 int main(void) 
 {
-    char* buff[100] = {};
     FILE* input = fopen("input.txt", "r");
     char* str = (char*)calloc(MAXLEN, sizeof(char));
-    int i;
+    int strCount;
 
-    for (i = 0; fgets(str, MAXLEN, input) != nullptr; ++i) {
+    for (strCount = 0; fgets(str, MAXLEN, input) != nullptr; ++strCount);
+    
+    rewind(input);
+    
+    char** buffSorted = (char**)calloc(strCount, sizeof(char**));
+    
+    for (int k = 0; k < strCount; ++k)
+    {
+        fgets(str, MAXLEN, input);
         deleteNSymbol(str);
-        buff[i] = str;
+        *buffSorted++ = str;
         str = (char*)calloc(MAXLEN, sizeof(char));
     }
+    buffSorted -= strCount;
 
-    for (int j = 0; j < i; ++j)
-        printf("%s\n", buff[j]);
+    char** buffNotSorted = (char**)calloc(strCount, sizeof(char**));
+    coppyBuff((char***)buffSorted, (char***)buffNotSorted, strCount);
 
-    printf("\n\n*===================*\n\n");
+    qsortStr(buffSorted, strCount, sizeof(char*), compareStr);
     
-    qsortStr(buff, i, sizeof(char*), compareStr);
-    for (int j = 0; j < i; ++j)
-        printf("%s\n", buff[j]);
-
-    /*fclose(input);
-    printf("\n\n*===================*\n\n");
-    stdQsort();*/
+    printf("Sorted array:\n\n");
+    for (int k = 0; k < strCount; ++k)
+    {
+        printf("%s\n", *buffSorted++);
+    }
+    printf("\n*****************\n");
+    printf("Not sorted array:\n\n");
+    for (int k = 0; k < strCount; ++k)
+    {
+        printf("%s\n", *buffNotSorted++);
+    }
+    buffNotSorted -= strCount;
+    for (int j = 0; j < strCount; ++j)
+    {
+        free(*buffNotSorted);
+        ++buffNotSorted;
+    }
+    buffNotSorted -= strCount;
+    free(buffNotSorted);
 }

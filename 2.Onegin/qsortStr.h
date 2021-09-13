@@ -1,12 +1,8 @@
 #ifndef QSORTSTR_H
 #define QSORTSTR_H
 
-#include "compareStr.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-#define MAXLINES 1000
-#define MAXLEN 1000
+#define MAXLINES 8192
+#define MAXLEN 1024
 
 #pragma warning(disable:4996)
 

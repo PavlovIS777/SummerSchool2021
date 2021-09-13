@@ -1,4 +1,7 @@
 #include "qsortStr.h"
+#include "compareStr.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void deleteNSymbol(char* s) {
     while (*s != '\n' && *s != '\0') { ++s; }
@@ -30,23 +33,15 @@ void qsortStr(void* inputData, int num, int size, int compareStr(const void* s_v
     do
     {
 
-        while (left < num)
+        while (left < num ? (compareStr(reference, leftBoard) > 0) : 0)
         {
-            if ((compareStr(reference, leftBoard) > 0))
-            {
-                leftBoard += size;
-                ++left;
-            }
-            else break;
+            leftBoard += size;
+            ++left;
         }
-        while (right > 0)
+        while (right > 0 ? compareStr(reference, rightBoard) < 0 : 0)
         {
-            if (compareStr(reference, rightBoard) < 0)
-            {
-                rightBoard -= size;
-                --right;
-            }
-            else break;
+            rightBoard -= size;
+            --right;
         }
         
         if (left <= right)
