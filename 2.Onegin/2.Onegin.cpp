@@ -2,7 +2,6 @@
 #include "qsortStr.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 
 
@@ -29,7 +28,7 @@ int main(void)
     for (int j = 0; j < i; ++j)
         printf("%s\n", buff[j]);
 
-    fclose(input);
+    /*fclose(input);
     printf("\n\n*===================*\n\n");
-    stdQsort();
+    stdQsort();*/
 }
