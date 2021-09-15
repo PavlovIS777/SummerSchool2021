@@ -306,7 +306,7 @@ int customFgetsTest()
 		char* bufferFC = (char*)calloc(1000, sizeof(char));
 		int lenBufferFC = 0;
 		getc(input);
-		customFgets(input, 1000, bufferFgets);
+		customFgets(bufferFgets, 1000, input);
 		while ((tmp = fileBuffer[fileBufferPos]) != '\n')
 		{
 			++lenBufferFC;
@@ -380,85 +380,84 @@ int customStrdupTest()
 	return 1;
 }
 
-int customGetlineTest()
-{
-	FILE* input = freopen("customGetline.txt", "r", stdin);
-	int testsCount = -1;
-	
-	if (input == nullptr) { return 0; }
+//int customGetlineTest()
+//{
+//	FILE* input = freopen("customGetline.txt", "r", stdin);
+//	int testsCount = -1;
+//	
+//	if (input == nullptr) { return 0; }
+//
+//	fscanf(input, "%d", &testsCount);
+//
+//	for (int i = 0; i < testsCount; ++i)
+//	{
+//		char* buffer = (char*)malloc(1000 * sizeof(char));
+//		char* bufferTest = (char*)malloc(1000 * sizeof(char));
+//
+//		getc(input);
+//		getc(input);
+//		customGetline(buffer, 1000, '\n');
+//		
+//		scanf("%[^\n]", bufferTest);
+//		
+//
+//		if (!strcmp(buffer, bufferTest))
+//		{
+//			printf(TEST_PASSED);
+//		}
+//		else
+//		{
+//			printf("\t*** TEST %d ERROR ***\n"
+//				"\t*** EXPECTED: %s ***\n"
+//				"\t*** RECIEVED: %s ***\n\n", i + 1, bufferTest, buffer);
+//		}
+//		free(buffer);
+//		free(bufferTest);
+//	}
+//	fclose(input);
+//	
+//	return 1;
+//}
 
-	fscanf(input, "%d", &testsCount);
-
-	for (int i = 0; i < testsCount; ++i)
-	{
-		char* buffer = (char*)malloc(1000 * sizeof(char));
-		char* bufferTest = (char*)malloc(1000 * sizeof(char));
-
-		getc(input);
-		getc(input);
-		customGetline(buffer, 1000, '\n');
-		
-		scanf("%[^\n]", bufferTest);
-		
-
-		if (!strcmp(buffer, bufferTest))
-		{
-			printf(TEST_PASSED);
-		}
-		else
-		{
-			printf("\t*** TEST %d ERROR ***\n"
-				"\t*** EXPECTED: %s ***\n"
-				"\t*** RECIEVED: %s ***\n\n", i + 1, bufferTest, buffer);
-		}
-		free(buffer);
-		free(bufferTest);
-	}
-	fclose(input);
-	
-	return 1;
-}
-
-int customPutsTest()
-{
-	FILE* output = fopen("1312.txt", "w+");
-	FILE* input = freopen("customPutsTest.txt", "r", stdin);
-	int testsCount = -1;
-	if (input == nullptr) { return 0; }
-	
-	fscanf(input, "%d", &testsCount);
-	getc(input);
-
-	for (int i = 0; i < testsCount; ++i)
-	{
-		FILE* output = fopen("customPutsTestOutput.txt", "w+");
-		char* bufferPuts = (char*)calloc(1000, sizeof(char));
-		char* bufferTest = (char*)calloc(1000, sizeof(char));
-
-		getc(input);
-		customGetline(bufferTest, 1000, '\n');
-		customPuts(bufferTest, output);
-		fflush(output);
-		fclose(output);
-		output = fopen("customPutsTestOutput.txt", "r");
- 		fscanf(output, "%s", bufferPuts);
-		fclose(output);
-
-		if (!strcmp(bufferPuts, bufferTest))
-		{
-			printf(TEST_PASSED);
-		}
-		else
-		{
-			printf("\t*** TEST %d ERROR ***\n"
-				"\t*** EXPECTED: %s ***\n"
-				"\t*** RECIEVED: %s ***\n\n", i + 1, bufferTest, bufferPuts);
-		}
-		
-		free(bufferPuts);
-		free(bufferTest);
-	}
-	fclose(input);
-	remove("customPutsTestOutput.txt");
-	return 1;
-}
+//int customPutsTest()
+//{
+//	FILE* input = freopen("customPutsTest.txt", "r", stdin);
+//	int testsCount = -1;
+//	if (input == nullptr) { return 0; }
+//	
+//	fscanf(input, "%d", &testsCount);
+//	getc(input);
+//
+//	for (int i = 0; i < testsCount; ++i)
+//	{
+//		FILE* output = fopen("customPutsTestOutput.txt", "w+");
+//		char* bufferPuts = (char*)calloc(1000, sizeof(char));
+//		char* bufferTest = (char*)calloc(1000, sizeof(char));
+//
+//		getc(input);
+//		customGetline(bufferTest, 1000, '\n');
+//		customPuts(bufferTest, output);
+//		fflush(output);
+//		fclose(output);
+//		output = fopen("customPutsTestOutput.txt", "r");
+// 		fscanf(output, "%s", bufferPuts);
+//		fclose(output);
+//
+//		if (!strcmp(bufferPuts, bufferTest))
+//		{
+//			printf(TEST_PASSED);
+//		}
+//		else
+//		{
+//			printf("\t*** TEST %d ERROR ***\n"
+//				"\t*** EXPECTED: %s ***\n"
+//				"\t*** RECIEVED: %s ***\n\n", i + 1, bufferTest, bufferPuts);
+//		}
+//		
+//		free(bufferPuts);
+//		free(bufferTest);
+//	}
+//	fclose(input);
+//	remove("customPutsTestOutput.txt");
+//	return 1;
+//}

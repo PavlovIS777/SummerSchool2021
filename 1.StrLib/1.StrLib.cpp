@@ -5,7 +5,9 @@
 
 int main()
 {
-    customPutsTest();
-   
+    FILE* input = fopen("input.txt", "r");
+    char* dest = (char*)calloc(10, sizeof(char*));
+    customGetline(&dest, 10);
+    printf("%s", dest);
     return 0;
 }

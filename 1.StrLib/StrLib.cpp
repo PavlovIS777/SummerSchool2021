@@ -16,7 +16,7 @@ int customPuts(const char* string, FILE* output)
 }
 
 
-char* customStrchr(char* string, char symbol)
+char* customStrchr(char* string, int symbol)
 {
     if (string == nullptr) { return nullptr; }
 
@@ -46,19 +46,14 @@ int customStrlen(const char* str)
 }
 
 
-int customStrcpy(const char* srcstr, char* destination)
+int customStrcpy(char* destination, const char* srcstr)
 {
     if (destination == nullptr || srcstr == nullptr) { return EOF; }
 
     int copiesNumber = 0;
 
-        while (char recievedChar = *srcstr)
-    {
-        ++copiesNumber;
-        *destination = recievedChar;
-        ++destination;
-        ++srcstr;
-    }
+    while (*srcstr ? ++copiesNumber : 0)
+        *destination++ = *srcstr++;
 
     *destination = '\0';
 
@@ -66,20 +61,14 @@ int customStrcpy(const char* srcstr, char* destination)
 }
 
 
-int customStrncpy(const char* srcstr, char* destination, int n)
+int customStrncpy(char* destination, const char* srcstr, int n)
 {
     if (destination == nullptr || srcstr == nullptr || n < 0) { return EOF; }
 
     int copiesNumber = 0;
-    int newSymbol = '\0';
-    while ((newSymbol = *srcstr) && n)
-    {
-        ++copiesNumber;
-        *destination = newSymbol;
-        --n;
-        ++srcstr;
-        ++destination;
-    }
+
+    while (*srcstr && n-- ? ++copiesNumber : 0)
+        *destination++ = *srcstr++;
 
     *destination = '\0';
     return copiesNumber;
@@ -96,13 +85,8 @@ int customStrcat(char* destination, const char* srcstr)
 
     destination += destLem;
 
-    while (char recievedChar = *srcstr)
-    {
-        ++copiesNumber;
-        *destination = recievedChar;
-        ++destination;
-        ++srcstr;
-    }
+    while (*srcstr ? ++copiesNumber : 0)
+        *destination++ = *srcstr++;
 
     *destination = '\0';
 
@@ -117,39 +101,33 @@ int customStrncat(char* destination, const char* srcstr, int n)
     int copiesNumber = 0;
 
     destination += customStrlen(destination);
-    int newSymbol = '\0';
 
-    while ((newSymbol = *srcstr) && n)
-    {
-        ++copiesNumber;
-        *destination = newSymbol;
-        ++destination;
-        ++srcstr;
-        --n;
-    }
+    while (*srcstr && n-- ? ++copiesNumber : 0)
+        *destination++ = *srcstr++;
 
     *destination = '\0';
     return copiesNumber;
 }
 
 
-int customFgets(FILE* fp, int MAXLEN, char* string)
+char* customFgets(char* string, int MAXLEN, FILE* fp)
 {
-    if (fp == nullptr || string == nullptr || MAXLEN < 1) { return EOF; }
+    if (fp == nullptr || string == nullptr || MAXLEN < 2) { return nullptr; }
+    
     int getsNumber = 0;
-    int receivedChar = '\0';
+    int receivedChar = -1;
+    
     do
     {
         receivedChar = fgetc(fp);
+        *string++ = receivedChar;
         ++getsNumber;
-        *string = receivedChar;
-        ++string;
         --MAXLEN;
     } while (receivedChar != '\n' && receivedChar != EOF && MAXLEN > 1);
 
     *string = '\0';
 
-    return getsNumber;
+    return string - getsNumber;
 }
 
 
@@ -173,22 +151,23 @@ char* customStrdup(const char* string)
 }
 
 
-int customGetline(char* string, int MAXLEN, char separator)
+int customGetline(char** lineptr, int MAXLEN    )
 {
-    if (string == nullptr || MAXLEN <= 0) { return EOF; }
+    if (MAXLEN <= 1) { return EOF; }
+
+    lineptr = (lineptr == nullptr) ? (char**)calloc(MAXLEN, sizeof(char*)) : lineptr;
 
     int lineLength = 0;
-    int receivedChar = fgetc(stdin);
+    int chr = 0;
+    char* receivedCharPtr = *lineptr;
 
-    while (receivedChar != separator && MAXLEN > 1)
+    do
     {
-        ++lineLength;
-        *string = receivedChar;
-        ++string;
+        chr = fgetc(stdin);
+        *receivedCharPtr++ = chr;
         --MAXLEN;
-        receivedChar = fgetc(stdin);
-    }
+    } while (chr != '\n' && MAXLEN > 1);
 
-    *string = '\0';
+    *receivedCharPtr = '\0';
     return lineLength;
 }
