@@ -1,21 +1,22 @@
 #include "qsortStr.h"
-#include "compareStr.h"
+#include "comparator.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-void deleteNSymbol(char* s) {
+void deleteNSymbol(c_string s)
+{
     while (*s != '\n' && *s != '\0') { ++s; }
     *s = '\0';
 }
 
-void swapStr(void** lhv, void** rhv)
+void swap(ptr_t* lhv, ptr_t* rhv)
 {
-    void* tmp = *lhv;
+    ptr_t tmp = *lhv;
     *lhv = *rhv;
     *rhv = tmp;
 }
 
-void qsortStr(void* inputData, int num, int size, int compareStr(const void* s_void, const void* t_void))
+void myQsort(void* inputData, int num, int size, int compare(const void* s_void, const void* t_void))
 {
     if (num <= 1) {return;}
     
@@ -26,19 +27,18 @@ void qsortStr(void* inputData, int num, int size, int compareStr(const void* s_v
     ++left;
     --right;
 
-    char* leftBoard  = (char*)inputData + left * size;
-    char* rightBoard = (char*)inputData + right * size;
-    char* reference  = (char*)inputData + mid * size;
+    ptr_t leftBoard  = (ptr_t)inputData + left * size;
+    ptr_t rightBoard = (ptr_t)inputData + right * size;
+    ptr_t reference  = (ptr_t)inputData + mid * size;
 
     do
     {
-
-        while (left < num ? (compareStr(reference, leftBoard) > 0) : 0)
+        while (left < num ? (compare(reference, leftBoard) > 0) : 0)
         {
             leftBoard += size;
             ++left;
         }
-        while (right > 0 ? compareStr(reference, rightBoard) < 0 : 0)
+        while (right > 0 ? compare(reference, rightBoard) < 0 : 0)
         {
             rightBoard -= size;
             --right;
@@ -46,7 +46,7 @@ void qsortStr(void* inputData, int num, int size, int compareStr(const void* s_v
         
         if (left <= right)
         {
-            swapStr((void**)leftBoard, (void**)rightBoard);
+            swap((ptr_t*)leftBoard, (ptr_t*)rightBoard);
             leftBoard += size;
             rightBoard -= size;
             --right;
@@ -56,9 +56,9 @@ void qsortStr(void* inputData, int num, int size, int compareStr(const void* s_v
     } while (left <= right);
 
     if (right > 0)
-        qsortStr(inputData, right + 1, size, compareStr);
-    if (left < num - 1)
-        qsortStr((char*)inputData + left * size, num - left, size, compareStr);
+        myQsort((ptr_t)inputData, right + 1, size, compare);
+    if (left < num )
+        myQsort((ptr_t)inputData + left * size, num - left, size, compare);
 }
 
 int stdQsort()

@@ -1,16 +1,18 @@
 #ifndef QSORTSTR_H
 #define QSORTSTR_H
 
-#define MAXLINES 8192
-#define MAXLEN 1024
+#include "types.h"
+
+constexpr auto MAXLINES = 8192;
+constexpr auto MAXLEN   = 1024;
 
 #pragma warning(disable:4996)
 
-void deleteNSymbol(char* s);
+void deleteNSymbol(c_string s);
 
-void qsortStr(void* inputData, int num, int size, int compareStr(const void* s_void, const void* t_void));
+void myQsort(void* inputData, int num, int size, int compare(const void* s_void, const void* t_void));
 
-void swapStr(void** lhv, void** rhv);
+void swap(ptr_t* lhv, ptr_t* rhv);
 
 int stdQsort();
 
