@@ -38,6 +38,6 @@ char* customFgets(char* string, int MAXLEN, FILE* fp);
 char* customStrdup(const char* string);
 
 //writes line from the stdin(console) to the string.
-int customGetline(char** lineptr , int MAXLEN);
+int customGetline(char** lineptr , int MAXLEN, FILE* stream);
 
 #endif //STRLIB_H

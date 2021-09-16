@@ -4,7 +4,7 @@
 #pragma warning (disable:4067)
 #pragma warning (disable:2008)
 
-int strlenTest()
+int customStrlenTest()
 {
 	FILE* input = fopen("strlenTest.txt", "r");
 	int testsCount = -1;
@@ -87,7 +87,6 @@ int customStrchrTest()
 		}
 
 		free(buffer);
-		free(symbol);
 	}
 	fclose(input);
 
@@ -117,7 +116,7 @@ int customStrcpyTest()
 		getc(input);
 		fscanf(input, "%[^\n]", outp);
 
-		customStrcpy(src, dest);
+		customStrcpy(dest, src);
 
 		if (!strcmp(dest, outp))
 		{
@@ -164,7 +163,7 @@ int customStrncpyTest()
 		getc(input);
 		fscanf(input, "%[^\n]", outp);
 
-		customStrncpy(src, dest, symbolCount);
+		customStrncpy(dest, src, symbolCount);
 
 		if (!strcmp(dest, outp))
 		{
@@ -380,84 +379,84 @@ int customStrdupTest()
 	return 1;
 }
 
-//int customGetlineTest()
-//{
-//	FILE* input = freopen("customGetline.txt", "r", stdin);
-//	int testsCount = -1;
-//	
-//	if (input == nullptr) { return 0; }
-//
-//	fscanf(input, "%d", &testsCount);
-//
-//	for (int i = 0; i < testsCount; ++i)
-//	{
-//		char* buffer = (char*)malloc(1000 * sizeof(char));
-//		char* bufferTest = (char*)malloc(1000 * sizeof(char));
-//
-//		getc(input);
-//		getc(input);
-//		customGetline(buffer, 1000, '\n');
-//		
-//		scanf("%[^\n]", bufferTest);
-//		
-//
-//		if (!strcmp(buffer, bufferTest))
-//		{
-//			printf(TEST_PASSED);
-//		}
-//		else
-//		{
-//			printf("\t*** TEST %d ERROR ***\n"
-//				"\t*** EXPECTED: %s ***\n"
-//				"\t*** RECIEVED: %s ***\n\n", i + 1, bufferTest, buffer);
-//		}
-//		free(buffer);
-//		free(bufferTest);
-//	}
-//	fclose(input);
-//	
-//	return 1;
-//}
+int customGetlineTest()
+{
+	FILE* input = freopen("customGetline.txt", "r", stdin);
+	int testsCount = -1;
+	
+	if (input == nullptr) { return 0; }
 
-//int customPutsTest()
-//{
-//	FILE* input = freopen("customPutsTest.txt", "r", stdin);
-//	int testsCount = -1;
-//	if (input == nullptr) { return 0; }
-//	
-//	fscanf(input, "%d", &testsCount);
-//	getc(input);
-//
-//	for (int i = 0; i < testsCount; ++i)
-//	{
-//		FILE* output = fopen("customPutsTestOutput.txt", "w+");
-//		char* bufferPuts = (char*)calloc(1000, sizeof(char));
-//		char* bufferTest = (char*)calloc(1000, sizeof(char));
-//
-//		getc(input);
-//		customGetline(bufferTest, 1000, '\n');
-//		customPuts(bufferTest, output);
-//		fflush(output);
-//		fclose(output);
-//		output = fopen("customPutsTestOutput.txt", "r");
-// 		fscanf(output, "%s", bufferPuts);
-//		fclose(output);
-//
-//		if (!strcmp(bufferPuts, bufferTest))
-//		{
-//			printf(TEST_PASSED);
-//		}
-//		else
-//		{
-//			printf("\t*** TEST %d ERROR ***\n"
-//				"\t*** EXPECTED: %s ***\n"
-//				"\t*** RECIEVED: %s ***\n\n", i + 1, bufferTest, bufferPuts);
-//		}
-//		
-//		free(bufferPuts);
-//		free(bufferTest);
-//	}
-//	fclose(input);
-//	remove("customPutsTestOutput.txt");
-//	return 1;
-//}
+	fscanf(input, "%d", &testsCount);
+
+	for (int i = 0; i < testsCount; ++i)
+	{
+		char* buffer = (char*)malloc(1000 * sizeof(char));
+		char* bufferTest = (char*)malloc(1000 * sizeof(char));
+
+		getc(input);
+		getc(input);
+		customGetline(&buffer, 1000, input);
+		
+		scanf("%[^\n]", bufferTest);
+		
+
+		if (!strcmp(buffer, bufferTest))
+		{
+			printf(TEST_PASSED);
+		}
+		else
+		{
+			printf("\t*** TEST %d ERROR ***\n"
+				"\t*** EXPECTED: %s ***\n"
+				"\t*** RECIEVED: %s ***\n\n", i + 1, bufferTest, buffer);
+		}
+		free(buffer);
+		free(bufferTest);
+	}
+	fclose(input);
+	
+	return 1;
+}
+
+int customPutsTest()
+{
+	FILE* input = freopen("customPutsTest.txt", "r", stdin);
+	int testsCount = -1;
+	if (input == nullptr) { return 0; }
+	
+	fscanf(input, "%d", &testsCount);
+	getc(input);
+
+	for (int i = 0; i < testsCount; ++i)
+	{
+		FILE* output = fopen("customPutsTestOutput.txt", "w+");
+		char* bufferPuts = (char*)calloc(1000, sizeof(char));
+		char* bufferTest = (char*)calloc(1000, sizeof(char));
+
+		getc(input);
+		customGetline(&bufferTest, 1000, stdin);
+		customPuts(bufferTest, output);
+		fflush(output);
+		fclose(output);
+		output = fopen("customPutsTestOutput.txt", "r");
+ 		fscanf(output, "%s", bufferPuts);
+		fclose(output);
+
+		if (!strcmp(bufferPuts, bufferTest))
+		{
+			printf(TEST_PASSED);
+		}
+		else
+		{
+			printf("\t*** TEST %d ERROR ***\n"
+				"\t*** EXPECTED: %s ***\n"
+				"\t*** RECIEVED: %s ***\n\n", i + 1, bufferTest, bufferPuts);
+		}
+		
+		free(bufferPuts);
+		free(bufferTest);
+	}
+	fclose(input);
+	remove("customPutsTestOutput.txt");
+	return 1;
+}

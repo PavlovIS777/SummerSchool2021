@@ -6,8 +6,7 @@
 int main()
 {
     FILE* input = fopen("input.txt", "r");
-    char* dest = (char*)calloc(10, sizeof(char*));
-    customGetline(&dest, 10);
-    printf("%s", dest);
+    char* dest = (char*)calloc(2, sizeof(char*));
+    customStrlenTest();
     return 0;
 }

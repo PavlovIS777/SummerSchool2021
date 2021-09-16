@@ -8,7 +8,7 @@
 
 #define TEST_PASSED "\t*** TEST %d PASSED ***\n\n", i+1
 
-int strlenTest();
+int customStrlenTest();
 
 int customStrchrTest();
 
