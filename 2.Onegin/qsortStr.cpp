@@ -2,6 +2,7 @@
 #include "comparator.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 
 void deleteNSymbol(c_string s)
 {
@@ -18,6 +19,8 @@ void swap(ptr_t* lhv, ptr_t* rhv)
 
 void myQsort(void* inputData, int num, int size, int compare(const void* s_void, const void* t_void))
 {
+    assert(inputData != nullptr);
+
     if (num <= 1) {return;}
     
     int left  = -1;

@@ -1,8 +1,17 @@
 ﻿#include "CLI.h"
+#include <stdio.h>
+#include <assert.h>
 
-int main(void) 
+#pragma warning(disable:4996)
+
+int main(void)
 {
-	commandLineInterface();
+	FILE* input = fopen("input.txt", "r");
+	assert(input != nullptr);
+
+	int stringCount = stringsCount(input);
+
+	consoleSortInterface(input, stringCount);
 
 	return 0;
 }
