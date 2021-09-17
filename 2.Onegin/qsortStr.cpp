@@ -63,20 +63,3 @@ void myQsort(void* inputData, int num, int size, int compare(const void* s_void,
     if (left < num )
         myQsort((ptr_t)inputData + left * size, num - left, size, compare);
 }
-
-int stdQsort()
-{
-    char* buff[MAXLINES] = {};
-    FILE* input = fopen("input.txt", "r");
-    char* str = (char*)calloc(MAXLEN, sizeof(char));
-    int i;
-    for (i = 0; fgets(str, MAXLEN, input) != nullptr; ++i) {
-        deleteNSymbol(str);
-        buff[i] = str;
-        str = (char*)calloc(MAXLEN, sizeof(char));
-    }
-    qsort(buff, i, sizeof(char*), compareStr);
-    for (int j = 0; j < i; ++j)
-        printf("%s\n", buff[j]);
-    return 1;
-}

@@ -10,4 +10,5 @@ int compareInt(const void* x1, const void* x2);
 int compareIntRev(const void* x1, const void* x2);
 
 int endCompareStr(const void* s, const void* t);
+
 #endif //COMPARATOR_H

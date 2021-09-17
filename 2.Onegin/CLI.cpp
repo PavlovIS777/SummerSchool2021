@@ -26,9 +26,10 @@ void buffsOutput(buff buffSorted, buff buffUnsorted, buff buffStdSorted, int str
 {
     assert(buffSorted != nullptr); assert(buffUnsorted != nullptr);
 
+    printf("*****************\n");
     printf("Sorted array:\n\n");
     for (int k = 0; k < strCount; ++k) { printf("%s\n", buffSorted[k]); }
-    printf("\n*****************\n\n");
+    printf("\n*****************\n");
     printf("stdQsort Sorted array:\n\n");
     for (int k = 0; k < strCount; ++k) { printf("%s\n", buffSorted[k]); }
     printf("\n*****************\n");
