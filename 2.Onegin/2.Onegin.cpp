@@ -6,12 +6,6 @@
 
 int main(void)
 {
-	FILE* input = fopen("input.txt", "r");
-	assert(input != nullptr);
-
-	int stringCount = stringsCount(input);
-
-	consoleSortInterface(input, stringCount);
-
+	consoleSortInterface();
 	return 0;
 }

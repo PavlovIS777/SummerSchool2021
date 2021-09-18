@@ -4,14 +4,17 @@
 #include "types.h"  
 #include <stdio.h>
 
-void consoleSortInterface(FILE* input, int strCount);
+#define MAXONEGINLEN 32768
 
-void coppyBuff(buff srcBuff, buff destBuff, int len);
+void consoleSortInterface();
 
-int stringsCount(FILE* input);
+void coppyBuff(myString* srcBuff, myString* destBuff, int len);
 
-void buffsOutput(buff buffSorted, buff buffUnsorted, buff buffStdSorted, int strCount);
+void buffsOutput(myString* buffSorted, myString* buffUnsorted, myString* buffStdSorted, size_t strCount);
 
+c_string oneginStr(int* stringsCount);
+
+size_t strParser(c_string string);
 #endif // !CLI_H
 
 

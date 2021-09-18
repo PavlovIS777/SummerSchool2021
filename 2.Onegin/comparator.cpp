@@ -1,10 +1,46 @@
 #include "comparator.h"
 #include "types.h"
 #include <string.h>
+#include <ctype.h>
 
 int compareStr(const void* s_void, const void* t_void)
 {
-    return strcmp(*(c_string*)s_void, *(c_string*)t_void);
+    myString s = *(myString*)s_void;
+    myString t = *(myString*)t_void;
+    int sLen = 0;
+    int tLen = 0;
+
+    while ((sLen < s.len) && (tLen < t.len))
+    {
+        if (!isLetter(s.string[sLen])) { ++sLen; continue; }
+        if (!isLetter(t.string[tLen])) { ++tLen; continue; }
+
+        if (s.string[sLen] > t.string[tLen]) { return 1; }
+        else if (s.string[sLen] < t.string[tLen]) { return -1; }
+        ++sLen;
+        ++tLen;
+    }
+
+    int result = sLen - tLen;
+    while (sLen < s.len)
+    {
+        if (!isLetter(s.string[sLen])) { ++sLen; continue; }
+
+        if (s.string[sLen] > t.string[tLen]) { return 1; }
+        else if (s.string[sLen] < t.string[tLen]) { return -1; }
+        ++sLen;
+    }
+
+    while (tLen < t.len)
+    {
+        if (!isLetter(t.string[tLen])) { ++tLen; continue; }
+
+        if (s.string[sLen] > t.string[tLen]) { return 1; }
+        else if (s.string[sLen] < t.string[tLen]) { return -1; }
+        ++tLen;
+    }
+
+    return result;
 }
 
 int compareInt(const void* x1, const void* x2) 
@@ -14,7 +50,7 @@ int compareInt(const void* x1, const void* x2)
 
 int compareStrRev(const void* s_void, const void* t_void)
 {
-    return -strcmp(*(c_string*)s_void, *(c_string*)t_void);
+    return -1;
 }
 
 int compareIntRev(const void* x1, const void* x2)
@@ -24,38 +60,52 @@ int compareIntRev(const void* x1, const void* x2)
 
 int endCompareStr(const void* s_void, const void* t_void)
 {
-    int sLen = 0;
-    int tLen = 0;
-    c_string s = *(c_string*)s_void;
-    c_string t = *(c_string*)t_void;
-    
-    while (s[sLen] ? ++sLen : 0);
-    while (t[tLen] ? ++tLen : 0);
+    myString s = *(myString*)s_void;
+    myString t = *(myString*)t_void;
+    int sLen = s.len - 1;
+    int tLen = t.len - 1;
 
-    while (sLen && tLen)
+    while ((sLen + 1) && (tLen + 1))
     {
+        if (!isLetter(s.string[sLen])) { --sLen; continue; }
+        if (!isLetter(t.string[tLen])) { --tLen; continue; }
+
+        if (s.string[sLen] > t.string[tLen]) { return 1; }
+        else if (s.string[sLen] < t.string[tLen]) { return -1; }
         --sLen;
         --tLen;
-
-        if (s[sLen] > t[tLen]) { return 1; }
-        else if (s[sLen] < t[tLen]) { return -1; }
     }
     
     int result = sLen - tLen;
-    while (sLen)
+    while (sLen + 1)
     {
-        -sLen;
-        if (s[sLen] > t[tLen]) { return 1; }
-        else if (s[sLen] < t[tLen]) { return -1; }
+        if (!isLetter(s.string[sLen])) { --sLen; continue; }
+
+        if (s.string[sLen] > t.string[tLen]) { return 1; }
+        else if (s.string[sLen] < t.string[tLen]) { return -1; }
+        --sLen;
     }
 
-    while (tLen)
+    while (tLen + 1)
     {
+        if (!isLetter(t.string[tLen])) { --tLen; continue; }
+        
+        if (s.string[sLen] > t.string[tLen]) { return 1; }
+        else if (s.string[sLen] < t.string[tLen]) { return -1; }
         --tLen;
-        if (s[sLen] > t[tLen]) { return 1; }
-        else if (s[sLen] < t[tLen]) { return -1; }
     }
 
     return result;
 }
 
+int isLetter(int symbol)
+{
+    return ((symbol >= 'a' && symbol <= 'z') || (symbol >= 'A' && symbol <= 'Z')) ? 1 : 0;
+}
+
+int cmp(const void* s_void, const void* t_void)
+{
+    myString s = *(myString*)s_void;
+    myString t = *(myString*)t_void;
+    return strcmp(s.string, t.string);
+}

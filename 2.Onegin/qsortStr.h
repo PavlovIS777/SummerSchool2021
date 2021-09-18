@@ -8,10 +8,8 @@
 const int MAXLINES = 8192;
 const int MAXLEN   = 1024;
 
-void deleteNSymbol(c_string s);
-
 void myQsort(void* inputData, int num, int size, int compare(const void* s_void, const void* t_void));
 
-void swap(ptr_t* lhv, ptr_t* rhv);
+void swap(myString* lhv, myString* rhv);
 
 #endif //QSORTSTR_H
