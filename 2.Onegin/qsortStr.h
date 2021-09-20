@@ -10,6 +10,6 @@ const int MAXLEN   = 1024;
 
 void myQsort(void* inputData, int num, int size, int compare(const void* s_void, const void* t_void));
 
-void swap(myString* lhv, myString* rhv);
+void swap(MyString* lhv, MyString* rhv);
 
 #endif //QSORTSTR_H

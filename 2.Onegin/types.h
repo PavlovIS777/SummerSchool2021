@@ -5,7 +5,7 @@ typedef char** buff;
 typedef char* ptr_t;
 typedef char* c_string;
 
-struct myString
+struct MyString
 {
 	c_string string;
 	size_t len;

@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <assert.h>
 
-void swap(myString* lhv, myString* rhv)
+void swap(MyString* lhv, MyString* rhv)
 {
-    myString tmp = *lhv;
+    MyString tmp = *lhv;
     *lhv = *rhv;
     *rhv = tmp;
 }
@@ -40,7 +40,7 @@ void myQsort(void* inputData, int num, int size, int compare(const void* s_void,
         
         if (left <= right)
         {
-            swap((myString*)leftBoard, (myString*)rightBoard);
+            swap((MyString*)leftBoard, (MyString*)rightBoard);
             leftBoard += size;
             rightBoard -= size;
             --right;

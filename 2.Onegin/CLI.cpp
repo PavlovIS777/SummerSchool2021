@@ -1,21 +1,23 @@
 #include "CLI.h"
+#include "qsortStr.h"
+#include "comparator.h"
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <io.h>
 #include <wchar.h>
-#include "qsortStr.h"
-#include "comparator.h"
 
 
-void coppyBuff(myString* srcBuff, myString* destBuff, int len)
+void coppyBuff(MyString* srcBuff, MyString* destBuff, int len)
 {
-    memcpy(destBuff, srcBuff, len * sizeof(myString));
+    memcpy(destBuff, srcBuff, len * sizeof(MyString));
 }
 
-void buffsOutput(myString* buffSorted, myString* buffStdSorted, myString* buffUnsorted, size_t strCount)
+void buffsOutput(MyString* buffSorted, MyString* buffStdSorted, MyString* buffUnsorted, size_t strCount)
 {
-    assert(buffSorted != nullptr); assert(buffUnsorted != nullptr);
+    assert(buffSorted != nullptr); 
+    assert(buffUnsorted != nullptr);
+    assert(buffStdSorted != nullptr);
 
     printf("*****************\n");
     printf("Sorted array:\n\n");
@@ -33,9 +35,9 @@ void consoleSortInterface()
     int strCount = 0;
     c_string poem = oneginStr(&strCount);
 
-    myString* buffSorted = (myString*)calloc(strCount, sizeof(myString));
-    myString* buffStdSorted = (myString*)calloc(strCount, sizeof(myString));
-    myString* buffUnsorted = (myString*)calloc(strCount, sizeof(myString));
+    MyString* buffSorted = (MyString*)calloc(strCount, sizeof(MyString));
+    MyString* buffStdSorted = (MyString*)calloc(strCount, sizeof(MyString));
+    MyString* buffUnsorted = (MyString*)calloc(strCount, sizeof(MyString));
 
     for (size_t i = 0; i < strCount; ++i)
     {
@@ -44,13 +46,12 @@ void consoleSortInterface()
         buffSorted[i].len = len;
         poem += len + 1;
     }
-
     coppyBuff(buffSorted, buffStdSorted, strCount);
     coppyBuff(buffSorted, buffUnsorted, strCount);
 
 
-    myQsort(buffSorted, strCount, sizeof(myString), compareStr);
-    qsort(buffStdSorted, strCount, sizeof(myString), endCompareStr);
+    myQsort(buffSorted, strCount, sizeof(MyString), compareStrRev);
+    qsort(buffStdSorted, strCount, sizeof(MyString), endCompareStr);
 
     buffsOutput(buffSorted, buffStdSorted, buffUnsorted, strCount);
 }
@@ -63,7 +64,7 @@ size_t strParser(c_string string)
     while (symbol = strchr(string, '\n'))
     {
         *symbol = '\0';
-        string += strlen(string) + 1;
+        string = symbol + 1;
         ++countStr;
     }
 
@@ -85,7 +86,8 @@ c_string oneginStr(int* stringsCount)
     fread(oneginStr, sizeof(char), bytes, oneginInput);
     fwrite(oneginStr, sizeof(char), bytes, Txt);
     
-    *stringsCount = strParser(oneginStr);
+    if (stringsCount != nullptr)
+        *stringsCount = strParser(oneginStr);
 
     return oneginStr;
 }
