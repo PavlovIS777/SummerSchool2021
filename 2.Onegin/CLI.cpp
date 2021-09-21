@@ -36,12 +36,9 @@ void consoleSortInterface()
     c_string poem = oneginStr(&strCount);
     assert(poem != nullptr);
 
-    MyString* buffSorted = (MyString*)calloc(strCount, sizeof(MyString));
-    MyString* buffStdSorted = (MyString*)calloc(strCount, sizeof(MyString));
-    MyString* buffUnsorted = (MyString*)calloc(strCount, sizeof(MyString));
-    assert(buffSorted != nullptr);
-    assert(buffUnsorted != nullptr);
-    assert(buffStdSorted != nullptr);
+    MyString* buffSorted = (MyString*)safeCalloc(strCount, sizeof(MyString));
+    MyString* buffStdSorted = (MyString*)safeCalloc(strCount, sizeof(MyString));
+    MyString* buffUnsorted = (MyString*)safeCalloc(strCount, sizeof(MyString));
     
     for (size_t i = 0; i < strCount; ++i)
     {
@@ -80,14 +77,14 @@ c_string oneginStr(int* stringsCount)
     if (oneginInput == nullptr)
     {
         printf("Can't open input file");
-        return nullptr;
+        assert(oneginInput);
     }
 
     fseek(oneginInput, 0, SEEK_END);
     int bytes = ftell(oneginInput);
     rewind(oneginInput);
 
-    c_string oneginStr = (c_string)calloc(bytes, sizeof(char));
+    c_string oneginStr = (c_string)safeCalloc(bytes, sizeof(char));
 
     fread(oneginStr, sizeof(char), bytes, oneginInput);
     

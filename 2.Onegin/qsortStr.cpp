@@ -8,6 +8,7 @@
 #define rightBoard ((ptr_t)inputData + right * size)
 #define leftBoard  ((ptr_t)inputData + left * size)
 #define reference  ((ptr_t)inputData + mid * size)
+
 void* safeCalloc(size_t count, int size)
 {
     void* temp = calloc(count, size);
@@ -23,7 +24,7 @@ void* safeCalloc(size_t count, int size)
 
 void swap(void* lhv, void* rhv, size_t size)
 {
-    ptr_t tmp = (ptr_t)calloc(size, sizeof(char));
+    ptr_t tmp = (ptr_t)safeCalloc(size, sizeof(char));
     
     memcpy(tmp, lhv, size);
     memcpy(lhv, rhv, size);
@@ -39,20 +40,15 @@ void myQsort(void* inputData, int num, int size, int compare(const void* s_void,
     if (num <= 1)
         return;
     
-    int left = 0;
-    int right = num - 1;
-    int mid = num/2;
-    
-    //if (num == 2)
-    //    if (compare(leftBoard, rightBoard) > 0)
-    //    {
-    //        swap((void*)leftBoard, (void*)rightBoard, size);
-    //        return;
-    //    }
-    //    else { return; }
+    int left = -1;
+    int right = num;
+    int mid = 0;
 
     do
     {
+        ++left;
+        --right;
+
         while (left < num ? (compare(reference, leftBoard) > 0) : 0)
         {
             ++left;
@@ -65,11 +61,10 @@ void myQsort(void* inputData, int num, int size, int compare(const void* s_void,
         if (left <= right)
         {
             swap((void*)leftBoard, (void*)rightBoard, size);
-            ++left;
-            --right;
         }
-        
+
     } while (left <= right);
+    
     if (right > 0)
         myQsort(inputData, right + 1, size, compare);
     if (left < num)
