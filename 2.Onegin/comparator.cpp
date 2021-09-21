@@ -45,7 +45,9 @@ int compareStr(const void* s_void, const void* t_void)
 
 int compareInt(const void* x1, const void* x2) 
 {
-    return (*(int*)x1 - *(int*)x2);
+    int y1 = *(int*)x1;
+    int y2 = *(int*)x2;
+    return (y1 - y2);
 }
 
 int compareStrRev(const void* s_void, const void* t_void)

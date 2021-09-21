@@ -7,7 +7,7 @@
 int main(void)
 {
 	//consoleSortInterface();
-	int count = 3;
+	int count = 5;
 	int* arr = (int*)calloc(count, sizeof(int));
 
 	srand(1771894123);
