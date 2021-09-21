@@ -7,7 +7,7 @@
 
 #define rightBoard ((ptr_t)inputData + right * size)
 #define leftBoard  ((ptr_t)inputData + left * size)
-#define reference  ((ptr_t)inputData + mid * size)
+#define reference  ((ptr_t)inputData + ref * size)
 
 void* safeCalloc(size_t count, int size)
 {
@@ -42,7 +42,7 @@ void myQsort(void* inputData, int num, int size, int compare(const void* s_void,
     
     int left = -1;
     int right = num;
-    int mid = 0;
+    int ref = 0;
 
     do
     {
