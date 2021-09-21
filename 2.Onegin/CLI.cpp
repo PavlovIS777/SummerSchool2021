@@ -22,7 +22,7 @@ void buffsOutput(MyString* buffSorted, MyString* buffStdSorted, MyString* buffUn
     printf("*****************\n");
     printf("Sorted array:\n\n");
     for (int k = 0; k < strCount; ++k) { printf("%s\n", buffSorted[k].string); }
-    printf("\n*****************\n");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*****************\n");
     printf("stdQsort Sorted array:\n\n");
     for (int k = 0; k < strCount; ++k) { printf("%s\n", buffStdSorted[k].string); }
     printf("\n*****************\n");
@@ -34,11 +34,15 @@ void consoleSortInterface()
 {
     int strCount = 0;
     c_string poem = oneginStr(&strCount);
+    assert(poem != nullptr);
 
     MyString* buffSorted = (MyString*)calloc(strCount, sizeof(MyString));
     MyString* buffStdSorted = (MyString*)calloc(strCount, sizeof(MyString));
     MyString* buffUnsorted = (MyString*)calloc(strCount, sizeof(MyString));
-
+    assert(buffSorted != nullptr);
+    assert(buffUnsorted != nullptr);
+    assert(buffStdSorted != nullptr);
+    
     for (size_t i = 0; i < strCount; ++i)
     {
         size_t len = strlen(poem);
@@ -48,7 +52,6 @@ void consoleSortInterface()
     }
     coppyBuff(buffSorted, buffStdSorted, strCount);
     coppyBuff(buffSorted, buffUnsorted, strCount);
-
 
     myQsort(buffSorted, strCount, sizeof(MyString), compareStrRev);
     qsort(buffStdSorted, strCount, sizeof(MyString), endCompareStr);
@@ -73,9 +76,12 @@ size_t strParser(c_string string)
 
 c_string oneginStr(int* stringsCount)
 {
-    FILE* oneginInput = fopen("input.txt", "rb");
-    FILE* Txt = fopen("output.txt", "wb");
-    assert(oneginInput != nullptr);
+    FILE* oneginInput = fopen("onegin.bin", "rb");
+    if (oneginInput == nullptr)
+    {
+        printf("Can't open input file");
+        return nullptr;
+    }
 
     fseek(oneginInput, 0, SEEK_END);
     int bytes = ftell(oneginInput);
@@ -84,7 +90,6 @@ c_string oneginStr(int* stringsCount)
     c_string oneginStr = (c_string)calloc(bytes, sizeof(char));
 
     fread(oneginStr, sizeof(char), bytes, oneginInput);
-    fwrite(oneginStr, sizeof(char), bytes, Txt);
     
     if (stringsCount != nullptr)
         *stringsCount = strParser(oneginStr);

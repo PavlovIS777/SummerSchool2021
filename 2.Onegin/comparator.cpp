@@ -12,8 +12,8 @@ int compareStr(const void* s_void, const void* t_void)
 
     while ((sLen < s.len) && (tLen < t.len))
     {
-        if (!isLetter(s.string[sLen])) { ++sLen; continue; }
-        if (!isLetter(t.string[tLen])) { ++tLen; continue; }
+        if (!iswalpha(s.string[sLen])) { ++sLen; continue; }
+        if (!iswalpha(t.string[tLen])) { ++tLen; continue; }
 
         if (s.string[sLen] > t.string[tLen]) { return 1; }
         else if (s.string[sLen] < t.string[tLen]) { return -1; }
@@ -24,7 +24,7 @@ int compareStr(const void* s_void, const void* t_void)
     int result = sLen - tLen;
     while (sLen < s.len)
     {
-        if (!isLetter(s.string[sLen])) { ++sLen; continue; }
+        if (!iswalpha(s.string[sLen])) { ++sLen; continue; }
 
         if (s.string[sLen] > t.string[tLen]) { return 1; }
         else if (s.string[sLen] < t.string[tLen]) { return -1; }
@@ -33,7 +33,7 @@ int compareStr(const void* s_void, const void* t_void)
 
     while (tLen < t.len)
     {
-        if (!isLetter(t.string[tLen])) { ++tLen; continue; }
+        if (!iswalpha(t.string[tLen])) { ++tLen; continue; }
 
         if (s.string[sLen] > t.string[tLen]) { return 1; }
         else if (s.string[sLen] < t.string[tLen]) { return -1; }
@@ -57,8 +57,8 @@ int compareStrRev(const void* s_void, const void* t_void)
 
     while ((sLen < s.len) && (tLen < t.len))
     {
-        if (!isLetter(s.string[sLen])) { ++sLen; continue; }
-        if (!isLetter(t.string[tLen])) { ++tLen; continue; }
+        if (!iswalpha(s.string[sLen])) { ++sLen; continue; }
+        if (!iswalpha(t.string[tLen])) { ++tLen; continue; }
 
         if (s.string[sLen] > t.string[tLen]) { return -1; }
         else if (s.string[sLen] < t.string[tLen]) { return 1; }
@@ -69,7 +69,7 @@ int compareStrRev(const void* s_void, const void* t_void)
     int result = sLen - tLen;
     while (sLen < s.len)
     {
-        if (!isLetter(s.string[sLen])) { ++sLen; continue; }
+        if (!iswalpha(s.string[sLen])) { ++sLen; continue; }
 
         if (s.string[sLen] > t.string[tLen]) { return -1; }
         else if (s.string[sLen] < t.string[tLen]) { return 1; }
@@ -78,7 +78,7 @@ int compareStrRev(const void* s_void, const void* t_void)
 
     while (tLen < t.len)
     {
-        if (!isLetter(t.string[tLen])) { ++tLen; continue; }
+        if (!iswalpha(t.string[tLen])) { ++tLen; continue; }
 
         if (s.string[sLen] > t.string[tLen]) { return -1; }
         else if (s.string[sLen] < t.string[tLen]) { return 1; }
@@ -102,8 +102,8 @@ int endCompareStr(const void* s_void, const void* t_void)
 
     while ((sLen + 1) && (tLen + 1))
     {
-        if (!isalpha(s.string[sLen])) { --sLen; continue; }
-        if (!isalpha(t.string[tLen])) { --tLen; continue; }
+        if (!iswalpha(s.string[sLen])) { --sLen; continue; }
+        if (!iswalpha(t.string[tLen])) { --tLen; continue; }
 
         if (s.string[sLen] > t.string[tLen]) { return 1; }
         else if (s.string[sLen] < t.string[tLen]) { return -1; }
@@ -114,7 +114,7 @@ int endCompareStr(const void* s_void, const void* t_void)
     int result = sLen - tLen;
     while (sLen + 1)
     {
-        if (!isalpha(s.string[sLen])) { --sLen; continue; }
+        if (!iswalpha(s.string[sLen])) { --sLen; continue; }
 
         if (s.string[sLen] > t.string[tLen]) { return 1; }
         else if (s.string[sLen] < t.string[tLen]) { return -1; }
@@ -123,7 +123,7 @@ int endCompareStr(const void* s_void, const void* t_void)
 
     while (tLen + 1)
     {
-        if (!isalpha(t.string[tLen])) { --tLen; continue; }
+        if (!iswalpha(t.string[tLen])) { --tLen; continue; }
         
         if (s.string[sLen] > t.string[tLen]) { return 1; }
         else if (s.string[sLen] < t.string[tLen]) { return -1; }
@@ -133,7 +133,7 @@ int endCompareStr(const void* s_void, const void* t_void)
     return result;
 }
 
-int isLetter(int symbol)
+int iswalpha(int symbol)
 {
     return (symbol >= 'a' && symbol <= 'z') || (symbol >= 'A' && symbol <= 'Z');
 }
