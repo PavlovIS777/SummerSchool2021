@@ -35,7 +35,6 @@ void safeMemcpy(void* dest, const void* src, size_t size)
 
     while (size--)
     {
-        char t = *lhv;
         *lhv = *rhv;
         ++lhv;
         ++rhv;
@@ -47,7 +46,7 @@ void swap(ptr_t lhv, ptr_t rhv, int size)
     char tmp[128];
     size_t decimal = size / 128;
     size_t frac = size % 128;
-    for (int i = 0; i < decimal; i++, ++lhv, ++rhv)
+    for (int i = 0; i < decimal; i++, lhv += 128, rhv += 128) 
     {
         safeMemcpy(tmp, lhv, 128);
         safeMemcpy(lhv, rhv, 128);
