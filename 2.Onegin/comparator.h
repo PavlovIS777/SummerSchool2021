@@ -11,7 +11,5 @@ int compareIntRev(const void* x1, const void* x2);
 
 int endCompareStr(const void* s, const void* t);
 
-int isLetter(int symbol);
-
 int cmp(const void* s_void, const void* t_void);
 #endif //COMPARATOR_H

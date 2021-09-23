@@ -18,19 +18,48 @@ void* safeCalloc(size_t count, int size)
     {
         printf("Can't allocte memory.");
         assert(temp);
+        return nullptr;
     }
 }
 
-
-void swap(void* lhv, void* rhv, size_t size)
+void safeMemcpy(void* dest, const void* src, size_t size)
 {
-    ptr_t tmp = (ptr_t)safeCalloc(size, sizeof(char));
-    
-    memcpy(tmp, lhv, size);
-    memcpy(lhv, rhv, size);
-    memcpy(rhv, tmp, size);
+    size_t count = size / sizeof(size_t);
+    ptr_t lhv = (ptr_t)dest;
+    ptr_t rhv = (ptr_t)src;
 
-    free(tmp);
+    for (int i = 0; i < count; ++i, size -= sizeof(size_t), lhv += sizeof(size_t), rhv += sizeof(size_t))
+    {
+        *(size_t*)lhv = *(size_t*)rhv;
+    }
+
+    while (size--)
+    {
+        char t = *lhv;
+        *lhv = *rhv;
+        ++lhv;
+        ++rhv;
+    }
+}
+
+void swap(ptr_t lhv, ptr_t rhv, int size)
+{
+    char tmp[128];
+    size_t decimal = size / 128;
+    size_t frac = size % 128;
+    for (int i = 0; i < decimal; i++, ++lhv, ++rhv)
+    {
+        safeMemcpy(tmp, lhv, 128);
+        safeMemcpy(lhv, rhv, 128);
+        safeMemcpy(rhv, tmp, 128);
+    }
+    if (frac)
+    {
+        safeMemcpy(tmp, lhv, frac);
+        safeMemcpy(lhv, rhv, frac);
+        safeMemcpy(rhv, tmp, frac);
+    }
+    
 }
 
 void myQsort(void* inputData, int num, int size, int compare(const void* s_void, const void* t_void))
@@ -40,15 +69,12 @@ void myQsort(void* inputData, int num, int size, int compare(const void* s_void,
     if (num <= 1)
         return;
     
-    int left = -1;
-    int right = num;
+    int left = 0;
+    int right = num - 1;
     int ref = 0;
 
     do
     {
-        ++left;
-        --right;
-
         while (left < num ? (compare(reference, leftBoard) > 0) : 0)
         {
             ++left;
@@ -60,9 +86,11 @@ void myQsort(void* inputData, int num, int size, int compare(const void* s_void,
         
         if (left <= right)
         {
-            swap((void*)leftBoard, (void*)rightBoard, size);
+            swap(leftBoard, rightBoard, size);
+            ++left;
+            --right;
         }
-
+        
     } while (left <= right);
     
     if (right > 0)

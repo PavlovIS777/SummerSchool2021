@@ -22,7 +22,7 @@ void buffsOutput(MyString* buffSorted, MyString* buffStdSorted, MyString* buffUn
     printf("*****************\n");
     printf("Sorted array:\n\n");
     for (int k = 0; k < strCount; ++k) { printf("%s\n", buffSorted[k].string); }
-    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*****************\n");
+    printf("\n*****************\n");
     printf("stdQsort Sorted array:\n\n");
     for (int k = 0; k < strCount; ++k) { printf("%s\n", buffStdSorted[k].string); }
     printf("\n*****************\n");
