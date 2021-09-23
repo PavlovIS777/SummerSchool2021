@@ -15,4 +15,6 @@ void buffsOutput(MyString* buffSorted, MyString* buffUnsorted, MyString* buffStd
 c_string oneginStr(int* stringsCount);
 
 size_t strParser(c_string string);
+
+int normalChar(int symbol);
 #endif // !CLI_H

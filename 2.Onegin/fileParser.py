@@ -23,10 +23,10 @@ def lineParser(file):
         parsedFile.append(temp)  
     return parsedFile
 
-with open("in.txt", 'r+', encoding='utf-8') as f:
+with open("inRus.txt", 'r+', encoding='utf-8') as f:
     file = f.readlines()
     fileOutput = lineParser(file)
-    with open("onegin.bin", "wb+") as outp:
+    with open("oneginRus.bin", "wb+") as outp:
         for line in fileOutput:
             line = line.encode()
             outp.write(line)

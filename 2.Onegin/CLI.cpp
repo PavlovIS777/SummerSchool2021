@@ -6,7 +6,14 @@
 #include <assert.h>
 #include <io.h>
 #include <wchar.h>
+#include <wchar.h>
+#include <wctype.h>
+#include <locale.h>
 
+int normalChar(int symbol)
+{
+    return symbol > 0 ? symbol : 256 - symbol;
+}
 
 void coppyBuff(MyString* srcBuff, MyString* destBuff, int len)
 {
@@ -21,13 +28,13 @@ void buffsOutput(MyString* buffSorted, MyString* buffStdSorted, MyString* buffUn
 
     printf("*****************\n");
     printf("Sorted array:\n\n");
-    for (int k = 0; k < strCount; ++k) { printf("%s\n", buffSorted[k].string); }
+    for (int k = 0; k < strCount; ++k) { wprintf(L"%ls\n", buffSorted[k].string); }
     printf("\n*****************\n");
     printf("stdQsort Sorted array:\n\n");
-    for (int k = 0; k < strCount; ++k) { printf("%s\n", buffStdSorted[k].string); }
+    for (int k = 0; k < strCount; ++k) { wprintf(L"%ls\n", buffStdSorted[k].string); }
     printf("\n*****************\n");
     printf("Not sorted array:\n\n");
-    for (int k = 0; k < strCount; ++k) { printf("%s\n", buffUnsorted[k].string); }
+    for (int k = 0; k < strCount; ++k) { wprintf(L"%ls\n", buffUnsorted[k].string); }
 }
 
 void consoleSortInterface()
@@ -42,7 +49,7 @@ void consoleSortInterface()
     
     for (size_t i = 0; i < strCount; ++i)
     {
-        size_t len = strlen(poem);
+        size_t len = wcslen(poem);
         buffSorted[i].string = poem;
         buffSorted[i].len = len;
         poem += len + 1;
@@ -58,10 +65,10 @@ void consoleSortInterface()
 
 size_t strParser(c_string string)
 {
-    char* symbol    = 0;
+    wchar_t* symbol    = 0;
     size_t countStr = 0;
     
-    while (symbol = strchr(string, '\n'))
+    while (symbol = wcschr(string, '\n'))
     {
         *symbol = '\0';
         string = symbol + 1;
@@ -73,7 +80,8 @@ size_t strParser(c_string string)
 
 c_string oneginStr(int* stringsCount)
 {
-    FILE* oneginInput = fopen("onegin.bin", "rb");
+    setlocale(LC_ALL, "ru_RU.utf8");
+    FILE* oneginInput = fopen("oneginRus.bin", "rb");
     if (oneginInput == nullptr)
     {
         printf("Can't open input file");
@@ -81,15 +89,17 @@ c_string oneginStr(int* stringsCount)
     }
 
     fseek(oneginInput, 0, SEEK_END);
-    int bytes = ftell(oneginInput);
+    size_t bytes = ftell(oneginInput);
     rewind(oneginInput);
 
-    c_string oneginStr = (c_string)safeCalloc(bytes, sizeof(char));
+    char* oneginStr = (char*)safeCalloc(bytes + 1, sizeof(char));
 
     fread(oneginStr, sizeof(char), bytes, oneginInput);
-    
-    if (stringsCount != nullptr)
-        *stringsCount = strParser(oneginStr);
 
-    return oneginStr;
+    wchar_t* wcharOneginStr = (wchar_t*)safeCalloc(bytes, sizeof(wchar_t));
+    mbstowcs(wcharOneginStr, oneginStr, strlen(oneginStr));
+    if (stringsCount != nullptr)
+        *stringsCount = strParser(wcharOneginStr);
+
+    return wcharOneginStr;
 }

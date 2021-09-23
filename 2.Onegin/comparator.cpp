@@ -144,5 +144,5 @@ int cmp(const void* s_void, const void* t_void)
 {
     MyString s = *(MyString*)s_void;
     MyString t = *(MyString*)t_void;
-    return strcmp(s.string, t.string);
+    return wcscmp(s.string, t.string);
 }

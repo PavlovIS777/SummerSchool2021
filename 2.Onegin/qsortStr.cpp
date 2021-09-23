@@ -46,11 +46,13 @@ void swap(ptr_t lhv, ptr_t rhv, int size)
     char tmp[128];
     size_t decimal = size / 128;
     size_t frac = size % 128;
-    for (int i = 0; i < decimal; i++, lhv += 128, rhv += 128) 
+    for (int i = 0; i < decimal; i++) 
     {
         safeMemcpy(tmp, lhv, 128);
         safeMemcpy(lhv, rhv, 128);
         safeMemcpy(rhv, tmp, 128);
+        lhv += 128;
+        rhv += 128;
     }
     if (frac)
     {

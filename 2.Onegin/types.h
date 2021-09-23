@@ -1,9 +1,9 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-typedef char** buff;
+typedef wchar_t** buff;
 typedef char* ptr_t;
-typedef char* c_string;
+typedef wchar_t* c_string;
 
 struct MyString
 {
