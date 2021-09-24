@@ -6,7 +6,6 @@
 #include <assert.h>
 #include <io.h>
 #include <wchar.h>
-#include <wchar.h>
 #include <wctype.h>
 #include <locale.h>
 
