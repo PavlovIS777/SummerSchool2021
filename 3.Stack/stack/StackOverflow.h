@@ -1,33 +1,35 @@
 #ifndef STACKOVERFLOW_H
 #define STACKOVERFLOW_H
 
-struct ForwardList
-{
-	void* data;
-	ForwardList* next;
-
-};
+#include "stackConfig.h"
 
 struct MyStack
 {
+	canary_t firstCanary;
 	size_t len;
 	size_t size;
-	ForwardList* topBlock;
+	ptr_t data;
+	ptr_t top;
+	canary_t secondCanary;
+	size_t hash; 
+
 };
+
+void dumpStack(const MyStack* stack);
 
 void* safeCalloc(size_t count, size_t size);
 
-MyStack* createStack(size_t size);
+MyStack createStack(size_t size);
 
-ForwardList* createBlock();
+void pushMyStack(MyStack* stack, ptr_t element, size_t sizeOfElement);
 
-void push(MyStack** stack, void* data);
+void popMyStack(MyStack* stack);
 
-void pop(MyStack** stack);
+int isValidMyStack(const MyStack* stack, size_t hash);
 
-size_t stackSize(const MyStack* stack);
+size_t hashFunc(const char* str, size_t len, size_t init);
 
-void is_valid(const MyStack* stack);
+size_t hash(MyStack* stack);
 
-size_t capacity(const MyStack* stack);
+ptr_t peekMyStack(MyStack* stack, size_t elementPos);
 #endif // !STACKOVERFLOW_H

@@ -1,0 +1,20 @@
+#ifndef STACKCONFIG_H
+#define STACKCONFIG_H
+
+typedef char* ptr_t;
+typedef size_t canary_t;
+
+enum STACK_ERRORS
+{
+	NULL_PTR_ERROR	=	1	,
+	SIZE_ERROR				,
+	ARRAY_PTR_ERROR			,
+	HASH_ERROR				,
+	LEFT_CANARY_ERROR		,
+	RIGHT_CANARY_ERROR		,
+	ARRAY_LEFT_CANARY_ERROR	,
+	ARRAY_RIGHT_CANARY_ERROR
+
+};
+
+#endif // !STACKCONFIG_H
