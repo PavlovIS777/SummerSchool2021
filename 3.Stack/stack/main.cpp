@@ -1,20 +1,18 @@
 #include "StackOverflow.h"
+#include "unitTest.h"
 #include <stdio.h>
 
 int main(void)
 {
-	MyStack stack = createStack(sizeof(int));
-	int x = 10;
-	size_t s = 100;
-	int* p = &x;
-	
-	pushMyStack(&stack, (ptr_t)p, sizeof(int));
-	pushMyStack(&stack, (ptr_t)p, sizeof(int));
-	pushMyStack(&stack, (ptr_t)p, sizeof(int));
-	size_t* p2 = &s;
-	pushMyStack(&stack, (ptr_t)p, sizeof(int));
-	popMyStack(&stack);
-	pushMyStack(&stack, (ptr_t)p, sizeof(int));
-
+	stackPushPopTest();
+	MyStack stack = createStack(sizeof(char*));
+	int arr[1280];
+	char s[] = "313123";
+	char t[] = "acxzcxz";
+	pushMyStack(&stack, s, sizeof(char*));
+	pushMyStack(&stack, t, sizeof(char*));
+	char* k = popMyStack(&stack);
+	k[1] = 'G';
+	printf("%s", k);
 	return 0;
 }

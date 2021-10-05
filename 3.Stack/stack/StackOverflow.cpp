@@ -5,8 +5,9 @@
 #include <memory.h>
 #include <string.h>
 
-#define STACK_CAPACITY 10
+
 const canary_t CANARY = 0xBADCACA;
+FILE* LOG = fopen("LOG.TXT", "w+");
 
 size_t hashFunc(const char* str, size_t len, size_t init) {
     unsigned long long int hash = init;
@@ -23,17 +24,21 @@ size_t hashFunc(const char* str, size_t len, size_t init) {
     return hash;
 }
 
-size_t hash(MyStack* stack)
+size_t myHash(const MyStack* stack)
 {
     ptr_t startStack = (ptr_t) (&stack->firstCanary);
     ptr_t endStack = (ptr_t)&stack->secondCanary + sizeof(canary_t);
-    ptr_t startArray = (ptr_t)&stack->data;
+
+    size_t hash = 0;
+    for (int i = 0; i < stack->dataStruct.blockCount; ++i)
+    {
+        hash = hashFunc(stack->dataStruct.dataBlocks[i]-sizeof(canary_t), STACK_BLOCK_CAPACITY * stack->size + sizeof(canary_t), hash);
+    }
 
     size_t stackHashLen = endStack - startStack;
-    size_t hashStack = hashFunc(startStack, stackHashLen, 0);
-    size_t hash = hashFunc(startArray, STACK_CAPACITY, hashStack);
+    size_t hashStack = hashFunc(startStack, stackHashLen, hash);
 
-    return hash;
+    return hashStack;
 }
 
 void* safeCalloc(size_t count, size_t size)
@@ -49,140 +54,162 @@ void* safeCalloc(size_t count, size_t size)
     }
 }
 
+void newStackDataBlock(MyStack* stack)
+{
+    size_t extraMem = sizeof(canary_t) / stack->size;
+    ptr_t newBlock = (ptr_t)safeCalloc(256 + 2 * extraMem, stack->size);
+    *(canary_t*)newBlock = CANARY;
+    *(canary_t*)(newBlock + STACK_BLOCK_CAPACITY * stack->size + sizeof(canary_t)) = CANARY;
+    stack->dataStruct.dataBlocks[stack->dataStruct.blockCount] = newBlock + sizeof(canary_t);
+}
 MyStack createStack(size_t size)
 {
-    size_t securityMem = sizeof(size_t) / size;
-    void* stackArray = safeCalloc(STACK_CAPACITY + 3 * securityMem, size);
-    canary_t* firstCanary = (canary_t*)stackArray;
-    canary_t* secondCanary = (canary_t*)((ptr_t)stackArray + sizeof(canary_t) + STACK_CAPACITY * size);
-    *firstCanary =  CANARY;
-    *secondCanary = CANARY;
-    MyStack stack = { *firstCanary, 0, size,(char*)stackArray + sizeof(canary_t), nullptr,* secondCanary,  0 };
-    canary_t canary = CANARY;
-    
-    canary_t* tmp = (canary_t*)stackArray;
-    *tmp = canary;
-    
-    tmp = (canary_t*)((char*)stackArray + sizeof(canary_t) + STACK_CAPACITY * size);
-    *tmp++ = canary;
+    ptr_t* dataBlocks = (ptr_t*)safeCalloc(256, sizeof(ptr_t));
+    MyData dataStruct = {0, 0, dataBlocks};
 
-    stack.hash = hash(&stack);
+    MyStack stack = { CANARY, 0, size, dataStruct, nullptr, CANARY,  0 };
+    newStackDataBlock(&stack);
+    stack.dataStruct.blockCount++;
+
+    stack.hash = myHash(&stack);
+    isValidMyStack(&stack);
 
     return stack;
 }
 
 void dumpStack(const MyStack* stack)
 {  
-    printf("\t  INFO ABOUT STACK\n\n"
-           "\tLEFT CANARY:  %d\n"
+    fprintf(LOG, "\t  INFO ABOUT STACK\n\n"
+           "\tLEFT CANARY:  %zu\n"
            "\tHASH:         %zu\n"
-           "\tSIZE:         %d\n"
-           "\tLENGHT:       %d\n"
-           "\tCAPACITY:     %d\n"
-           "\tRIGHT CANARY: %d\n\n"
+           "\tSIZE:         %zu\n"
+           "\tLENGHT:       %zu\n"
+           "\tCAPACITY:     %zu\n"
+           "\tRIGHT CANARY: %zu\n\n"
            "\t\tARRAY\n\n"
            "\tLEFT ARRAY CANARY:  %zu\n"
            "\tRIGHT ARRAY CANARY: %zu\n"
            "\tARRAY PTR: %p\n\n", stack->firstCanary, stack->hash, stack->size,
-                                  stack->len, STACK_CAPACITY, stack->secondCanary,
-                                  *(canary_t*)(stack->data - sizeof(canary_t)),
-                                  *(canary_t*)(stack->data + STACK_CAPACITY * stack->size), stack->data);
+                                  stack->len, STACK_BLOCK_CAPACITY * stack->dataStruct.blockCount, stack->secondCanary,
+                                  *(canary_t*)(stack->dataStruct.dataBlocks[0] - sizeof(canary_t)),
+                                  *(canary_t*)(stack->dataStruct.dataBlocks[0] + STACK_BLOCK_CAPACITY * stack->size), stack->dataStruct.dataBlocks[0]);
     size_t len = stack->len;
-    printf("\t  STACK BLOCKS:\n\n");
-    for (int i = 0; i < len; ++i)
+    fprintf(LOG, "\t  STACK BLOCKS:\n\n");
+    for (int j = 0; j < stack->dataStruct.blockCount; ++j)
     {
-        printf("\t************\n"
-               "\tBLOCK: %d\n"
-               "\tBLOCK PTR: %p\n"
-               "\t************\n\n", i + 1, stack->data + i * stack->size);
+        fprintf(LOG, "\tARRAY %d\n", j + 1);
+        for (int i = 0;(j + 1 == stack->dataStruct.blockCount && i < stack->dataStruct.currentLen) || 
+                        (j + 1 < stack->dataStruct.blockCount && i < 256); ++i)
+        {
+            fprintf(LOG, "\t************\n"
+                         "\tBLOCK: %d\n"
+                         "\tBLOCK PTR: %p\n"
+                         "\t************\n\n", i + 1, stack->dataStruct.dataBlocks[j] + i * stack->size);
+        }
     }
 }
 
 void pushMyStack(MyStack* stack, ptr_t element, size_t sizeOfElement)
 {
-    if (isValidMyStack(stack, hash(stack)))
+    if (isValidMyStack(stack))
         abort();
-    stack->top = stack->data + stack->len * stack->size;
-    *(stack->top) = *element;
+
+    if (stack->len == 256 * stack->dataStruct.blockCount)
+    {
+        newStackDataBlock(stack);
+        stack->dataStruct.blockCount++;
+        stack->dataStruct.currentLen = 0;
+    }
+    stack->top = stack->dataStruct.dataBlocks[stack->dataStruct.blockCount - 1] + stack->dataStruct.currentLen * stack->size;
+    memcpy(stack->top, element, sizeOfElement);
     stack->len++;
-    stack->hash = hash(stack);
+    stack->dataStruct.currentLen++;
+    stack->hash = myHash(stack);
 }
 
-void popMyStack(MyStack* stack)
+ptr_t popMyStack(MyStack* stack)
 {
-    if (isValidMyStack(stack, hash(stack)))
-        return;
+    if (isValidMyStack(stack))
+        abort();
+    if (stack->len == 0) { return nullptr; }
+
+    ptr_t top = (ptr_t)safeCalloc(1, stack->size);
+    memcpy(top, stack->top, stack->size);
+
+    if (stack->dataStruct.currentLen - 1 < 0 && stack->dataStruct.blockCount > 1) 
+    {
+        free(stack->dataStruct.dataBlocks[stack->dataStruct.blockCount - 1]);
+        stack->dataStruct.currentLen = STACK_BLOCK_CAPACITY - 1;
+        stack->dataStruct.blockCount--;
+    }
+    else
+    {
+        stack->dataStruct.currentLen--;
+    }
+    stack->top -= stack->size; 
     stack->len--;
-    stack->hash = hash(stack);
+    stack->hash = myHash(stack);
+
+    return top;
 }
 
-int isValidMyStack(const MyStack* stack, size_t hash)
+int isValidMyStack(const MyStack* stack)
 {
-    int ERROR = 0;
     if (stack == nullptr) {
-        ERROR = NULL_PTR_ERROR;
-        printf("\tNULLPTR STACK\n\n");
+        fprintf(LOG, "\tNULLPTR STACK\n\n");
         dumpStack(stack);
-        return ERROR;
+        return NULL_PTR_ERROR;
     }
-    if (stack->size < 0) 
+    if (stack->dataStruct.dataBlocks == nullptr)
     {
-        ERROR = SIZE_ERROR;
-        printf("\tSIZE BELLOW ZERO\n\n");
+        fprintf(LOG, "\tNULLPTR ARRAY\n\n");
         dumpStack(stack);
-        return ERROR;
-    }
-    if (stack->data == nullptr)
-    {
-        ERROR = ARRAY_PTR_ERROR;
-        printf("\tNULLPTR ARRAY\n\n");
-        dumpStack(stack);
-        return ERROR;
+        return ARRAY_PTR_ERROR;
     }
     if (stack->firstCanary != CANARY)
     {
-        ERROR = LEFT_CANARY_ERROR;
-        printf("\tLEFT CANARY ERROR\n\n");
+        fprintf(LOG, "\tLEFT CANARY ERROR\n\n");
         dumpStack(stack);
-        return ERROR;
+        return LEFT_CANARY_ERROR;
     }
     if (stack->secondCanary != CANARY)
     {
-        ERROR = RIGHT_CANARY_ERROR;
-        printf("\tRIGHT CANARY ERROR\n\n");
+        fprintf(LOG, "\tRIGHT CANARY ERROR\n\n");
         dumpStack(stack);
-        return ERROR;
+        return RIGHT_CANARY_ERROR;
     }
-    if (*((canary_t*)(stack->data - sizeof(canary_t))) != CANARY)
+    int ERROR = NO_ERROR;
+    for (int i = 0; i < stack->dataStruct.blockCount; ++i)
     {
-        ERROR = ARRAY_LEFT_CANARY_ERROR;
-        printf("\tARRAY LEFT CANARY ERROR\n\n");
-        dumpStack(stack);
-        return ERROR;
+        if (*(canary_t*)(stack->dataStruct.dataBlocks[i] - sizeof(canary_t)) != CANARY)
+        {
+            ERROR = ARRAY_LEFT_CANARY_ERROR;
+            fprintf(LOG, "ARRAY LEFT CANARY ERROR, ARRAY BLOCK: %d\n", i+1);
+        }
     }
-    if (!(*(canary_t*)((ptr_t)stack->data + STACK_CAPACITY * stack->size) & CANARY))
+    if (ERROR == ARRAY_LEFT_CANARY_ERROR)
     {
-        ERROR = ARRAY_RIGHT_CANARY_ERROR;
-        printf("\tARRAY RIGHT CANARY ERROR\n\n");
         dumpStack(stack);
         return ERROR;
     }
-    if (stack->hash != hash)
+    for (int i = 0; i < stack->dataStruct.blockCount; ++i)
     {
-        ERROR = HASH_ERROR;
-        printf("\tHASH ERROR\n\n");
+        if (*(canary_t*)(stack->dataStruct.dataBlocks[i] + STACK_BLOCK_CAPACITY * stack->size) != CANARY)
+        {
+            ERROR = ARRAY_RIGHT_CANARY_ERROR;
+            fprintf(LOG, "ARRAY RIGHT CANARY ERROR, ARRAY BLOCK: %d\n", i+1);
+        }
+    }
+    if (ERROR == ARRAY_RIGHT_CANARY_ERROR)
+    {
         dumpStack(stack);
         return ERROR;
     }
-    return 0;
-}
-
-ptr_t peekMyStack(MyStack* stack, size_t elementPos)
-{
-    if (isValidMyStack(stack, hash(stack)))
-        abort();
-    if (elementPos > stack->len || elementPos == 0)
-        return nullptr;
-    else
-        return stack->data + stack->len - elementPos;
+    if (myHash(stack) != stack->hash)
+    {
+        fprintf(LOG, "\tHASH ERROR\n\n");
+        dumpStack(stack);
+        return HASH_ERROR;
+    }
+    return NO_ERROR;
 }

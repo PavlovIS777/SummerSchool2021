@@ -3,17 +3,25 @@
 
 #include "stackConfig.h"
 
+struct MyData
+{
+	size_t currentLen;
+	size_t blockCount;
+	ptr_t* dataBlocks;
+};
+
 struct MyStack
 {
 	canary_t firstCanary;
 	size_t len;
 	size_t size;
-	ptr_t data;
+	MyData dataStruct;
 	ptr_t top;
 	canary_t secondCanary;
 	size_t hash; 
-
 };
+
+void newStackDataBlock(MyStack* stack);
 
 void dumpStack(const MyStack* stack);
 
@@ -23,13 +31,11 @@ MyStack createStack(size_t size);
 
 void pushMyStack(MyStack* stack, ptr_t element, size_t sizeOfElement);
 
-void popMyStack(MyStack* stack);
+ptr_t popMyStack(MyStack* stack);
 
-int isValidMyStack(const MyStack* stack, size_t hash);
+int isValidMyStack(const MyStack* stack);
 
 size_t hashFunc(const char* str, size_t len, size_t init);
 
-size_t hash(MyStack* stack);
-
-ptr_t peekMyStack(MyStack* stack, size_t elementPos);
+size_t myHash(const MyStack* stack);
 #endif // !STACKOVERFLOW_H
