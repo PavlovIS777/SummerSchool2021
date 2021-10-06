@@ -4,6 +4,7 @@
 #include <memory.h>
 #include <stdlib.h>
 #include <stdio.h>
+#if PROTECTION_LEVEL == 1
 void stackPushPopTest()
 {
 	MyStack stack = createStack(sizeof(int));
@@ -114,4 +115,4 @@ void stackHashTest()
 	isValidMyStack(&stack);
 	dumpStack(&stack);
 }
-
+#endif

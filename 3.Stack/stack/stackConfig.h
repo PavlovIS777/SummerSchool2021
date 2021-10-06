@@ -3,11 +3,18 @@
 #pragma warning(disable:4996)
 #include <stdio.h>
 
-typedef char* ptr_t;
-typedef size_t canary_t;
-const size_t STACK_BLOCK_CAPACITY = 256;
-//extern FILE* LOG;
+#define PROTECTION_LEVEL 0
 
+typedef char* ptr_t;
+
+#if PROTECTION_LEVEL == 1
+typedef size_t canary_t;
+#endif
+
+const size_t STACK_BLOCK_CAPACITY = 256;
+
+
+#if PROTECTION_LEVEL == 1
 enum STACK_ERRORS
 {
 	NO_ERROR				,
@@ -20,5 +27,6 @@ enum STACK_ERRORS
 	ARRAY_LEFT_CANARY_ERROR	,
 	ARRAY_RIGHT_CANARY_ERROR
 };
+#endif
 
 #endif // !STACKCONFIG_H

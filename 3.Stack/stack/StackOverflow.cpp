@@ -5,7 +5,7 @@
 #include <memory.h>
 #include <string.h>
 
-
+#if PROTECTION_LEVEL == 1
 const canary_t CANARY = 0xBADCACA;
 FILE* LOG = fopen("LOG.TXT", "w+");
 
@@ -40,6 +40,7 @@ size_t myHash(const MyStack* stack)
 
     return hashStack;
 }
+#endif
 
 void* safeCalloc(size_t count, size_t size)
 {
@@ -56,27 +57,39 @@ void* safeCalloc(size_t count, size_t size)
 
 void newStackDataBlock(MyStack* stack)
 {
+#if PROTECTION_LEVEL == 1
+    
     size_t extraMem = sizeof(canary_t) / stack->size;
     ptr_t newBlock = (ptr_t)safeCalloc(256 + 2 * extraMem, stack->size);
     *(canary_t*)newBlock = CANARY;
     *(canary_t*)(newBlock + STACK_BLOCK_CAPACITY * stack->size + sizeof(canary_t)) = CANARY;
     stack->dataStruct.dataBlocks[stack->dataStruct.blockCount] = newBlock + sizeof(canary_t);
+
+#else
+
+    ptr_t newBlock = (ptr_t)safeCalloc(256, stack->size);
+    stack->dataStruct.dataBlocks[stack->dataStruct.blockCount] = newBlock;
+
+#endif // PROTECTION_LEVEL == 1
 }
 MyStack createStack(size_t size)
 {
     ptr_t* dataBlocks = (ptr_t*)safeCalloc(256, sizeof(ptr_t));
     MyData dataStruct = {0, 0, dataBlocks};
-
+#if PROTECTION_LEVEL == 1
     MyStack stack = { CANARY, 0, size, dataStruct, nullptr, CANARY,  0 };
+#else
+    MyStack stack = { 0, size, dataStruct, nullptr };
+#endif
     newStackDataBlock(&stack);
     stack.dataStruct.blockCount++;
-
+#if PROTECTION_LEVEL == 1
     stack.hash = myHash(&stack);
     isValidMyStack(&stack);
-
+#endif
     return stack;
 }
-
+#if PROTECTION_LEVEL == 1
 void dumpStack(const MyStack* stack)
 {  
     fprintf(LOG, "\t  INFO ABOUT STACK\n\n"
@@ -108,12 +121,14 @@ void dumpStack(const MyStack* stack)
         }
     }
 }
+#endif
 
 void pushMyStack(MyStack* stack, ptr_t element, size_t sizeOfElement)
 {
+#if PROTECTION_LEVEL == 1
     if (isValidMyStack(stack))
         abort();
-
+#endif
     if (stack->len == 256 * stack->dataStruct.blockCount)
     {
         newStackDataBlock(stack);
@@ -124,13 +139,17 @@ void pushMyStack(MyStack* stack, ptr_t element, size_t sizeOfElement)
     memcpy(stack->top, element, sizeOfElement);
     stack->len++;
     stack->dataStruct.currentLen++;
+#if PROTECTION_LEVEL == 1
     stack->hash = myHash(stack);
+#endif
 }
 
 ptr_t popMyStack(MyStack* stack)
 {
+#if PROTECTION_LEVEL == 1
     if (isValidMyStack(stack))
         abort();
+#endif
     if (stack->len == 0) { return nullptr; }
 
     ptr_t top = (ptr_t)safeCalloc(1, stack->size);
@@ -148,11 +167,13 @@ ptr_t popMyStack(MyStack* stack)
     }
     stack->top -= stack->size; 
     stack->len--;
+#if PROTECTION_LEVEL == 1
     stack->hash = myHash(stack);
-
+#endif
     return top;
 }
 
+#if PROTECTION_LEVEL == 1
 int isValidMyStack(const MyStack* stack)
 {
     if (stack == nullptr) {
@@ -213,3 +234,4 @@ int isValidMyStack(const MyStack* stack)
     }
     return NO_ERROR;
 }
+#endif

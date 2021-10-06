@@ -4,15 +4,6 @@
 
 int main(void)
 {
-	stackPushPopTest();
-	MyStack stack = createStack(sizeof(char*));
-	int arr[1280];
-	char s[] = "313123";
-	char t[] = "acxzcxz";
-	pushMyStack(&stack, s, sizeof(char*));
-	pushMyStack(&stack, t, sizeof(char*));
-	char* k = popMyStack(&stack);
-	k[1] = 'G';
-	printf("%s", k);
+	MyStack stack = createStack(sizeof(int));
 	return 0;
 }
