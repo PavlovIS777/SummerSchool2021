@@ -24,16 +24,16 @@ void buffsOutput(MyString* buffSorted, MyString* buffStdSorted, MyString* buffUn
     assert(buffSorted != nullptr); 
     assert(buffUnsorted != nullptr);
     assert(buffStdSorted != nullptr);
-
+    FILE* out = fopen("out.txt", "w+");
     printf("*****************\n");
     printf("Sorted array:\n\n");
-    for (int k = 0; k < strCount; ++k) { wprintf(L"%ls\n", buffSorted[k].string); }
-    printf("\n*****************\n");
+    for (int k = 0; k < strCount; ++k) { fprintf(out, "%ls\n", buffSorted[k].string); }
+    /*printf("\n*****************\n");
     printf("stdQsort Sorted array:\n\n");
     for (int k = 0; k < strCount; ++k) { wprintf(L"%ls\n", buffStdSorted[k].string); }
     printf("\n*****************\n");
     printf("Not sorted array:\n\n");
-    for (int k = 0; k < strCount; ++k) { wprintf(L"%ls\n", buffUnsorted[k].string); }
+    for (int k = 0; k < strCount; ++k) { wprintf(L"%ls\n", buffUnsorted[k].string); }*/
 }
 
 void consoleSortInterface()
@@ -56,7 +56,7 @@ void consoleSortInterface()
     coppyBuff(buffSorted, buffStdSorted, strCount);
     coppyBuff(buffSorted, buffUnsorted, strCount);
 
-    myQsort(buffSorted, strCount, sizeof(MyString), compareStrRev);
+    myQsort(buffSorted, strCount, sizeof(MyString), compareStr);
     qsort(buffStdSorted, strCount, sizeof(MyString), endCompareStr);
 
     buffsOutput(buffSorted, buffStdSorted, buffUnsorted, strCount);

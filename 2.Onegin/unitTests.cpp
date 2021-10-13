@@ -1,3 +1,4 @@
+#include "CLI.h"
 #include "unitTests.h"
 #include "comparator.h"
 #include "qsortStr.h"
@@ -8,21 +9,17 @@
 
 void testFunc(int compare(const void* s_void, const void* t_void))
 {
-	srand(L'И' + L'Т' + L'А' + L'Ч' + L'И');
-	size_t testStrCount = 20 + rand() % 20;
-	MyString* testBuff = (MyString*)calloc(testStrCount, sizeof(MyString));
-	for (int k = 0; k < testStrCount; ++k)
-	{
-		size_t testStrLen = 20 + rand() % 20;
-		c_string testStr = (c_string)calloc(testStrLen, sizeof(wchar_t));
-		testStr[0] = L'А' + rand() % 33 - 1;
-		for (int j = 1; j < testStrLen - 2; ++j)
-			testStr[j] = L'а' + rand() % 33 - 1;
-		testStr[testStrLen - 2] = '\n';
-		testBuff[k].string = testStr;
-		testBuff[k].len = testStrLen - 1;
-	}
+	int testStrCount = 0;
+	c_string testStr = oneginStr(&testStrCount);
 
+	MyString* testBuff = (MyString*)safeCalloc(testStrCount, sizeof(MyString));
+	for (size_t i = 0; i < testStrCount; ++i)
+	{
+		size_t len = wcslen(testStr);
+		testBuff[i].string = testStr;
+		testBuff[i].len = len;
+		testStr += len + 1;
+	}
 	myQsort(testBuff, testStrCount, sizeof(MyString), compare);
 
 	for (int l = 0; l < testStrCount - 1; ++l)
@@ -35,5 +32,9 @@ void testFunc(int compare(const void* s_void, const void* t_void))
 			wprintf(L"2-ая строка: %ls\n", testBuff[l + 1].string);
 			wprintf(L"********************\n\n");
 		}
+	}
+	for (int l = 0; l < testStrCount; ++l)
+	{
+		wprintf(L"%ls\n", testBuff[l].string);
 	}
 }
