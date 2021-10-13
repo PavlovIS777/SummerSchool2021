@@ -8,7 +8,7 @@
 #if PROTECTION_LEVEL == 1
 void stackPushPopTest()
 {
-	MyStack stack = createStack(sizeof(int));
+	MyStack stack = createStack(int);
 	int arr[1280] = {};
 	for (int i = 0; i < 1280; ++i)
 	{
@@ -46,7 +46,7 @@ void stackPushPopTest()
 
 void stackLeftCanaryTest()
 {
-	MyStack stack = createStack(sizeof(int));
+	MyStack stack = createStack(int);
 	ptr_t bug = (ptr_t)&stack - 8;
 	for (int i = 0; i < 20; ++i)
 	{
@@ -58,7 +58,7 @@ void stackLeftCanaryTest()
 
 void stackRightCanaryTest()
 {
-	MyStack stack = createStack(sizeof(int));
+	MyStack stack = createStack(int);
 	ptr_t bug = (ptr_t)&stack.secondCanary + 8;
 	for (int i = 0; i < 20; ++i)
 	{
@@ -69,7 +69,7 @@ void stackRightCanaryTest()
 
 void arrayStackLeftCanaryTest()
 {
-	MyStack stack = createStack(sizeof(int));
+	MyStack stack = createStack(int);
 	for (int k = 0; k < 1541; ++k)
 	{
 		pushMyStack(&stack, (ptr_t)&k);
@@ -87,7 +87,7 @@ void arrayStackLeftCanaryTest()
 
 void arrayStackRightCanaryTest()
 {
-	MyStack stack = createStack(sizeof(int));
+	MyStack stack = createStack(int);
 	for (int k = 0; k < 1541; ++k)
 	{
 		pushMyStack(&stack, (ptr_t)&k);
@@ -105,7 +105,7 @@ void arrayStackRightCanaryTest()
 
 void stackHashTest()
 {
-	MyStack stack = createStack(sizeof(int));
+	MyStack stack = createStack(int);
 	for (int k = 0; k < 1541; ++k)
 	{
 		pushMyStack(&stack, (ptr_t)&k);

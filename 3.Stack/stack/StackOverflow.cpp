@@ -64,11 +64,11 @@ void dumpStack(const MyStack* stack, void printElement(const MyStack* stack, siz
     {
         fprintf(LOG, "\tARRAY %d\n", j + 1);
         for (int i = 0; (j + 1 == stack->dataStruct.blockCount && i < stack->dataStruct.currentLen) ||
-            (j + 1 < stack->dataStruct.blockCount && i < 256); ++i)
+            (j + 1 < stack->dataStruct.blockCount && i < 256); i++)
         {
             fprintf(LOG, "\t************\n"
-                "\tBLOCK: %d\n"
-                "\tBLOCK PTR: %p\n", j + 1, stack->dataStruct.dataBlocks[j] + i * stack->size);
+                         "\tBLOCK: %d\n"
+                         "\tBLOCK PTR: %p\n", i + 1, (stack->dataStruct.dataBlocks[j] + i * stack->size));
             printElement((MyStack*)stack, j, i);
             fprintf(LOG, "\t************\n\n");
         }
