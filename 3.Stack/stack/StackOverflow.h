@@ -12,41 +12,44 @@ struct MyData
 
 struct MyStack
 {
-#if PROTECTION_LEVEL == 1
-	canary_t firstCanary;
-#endif
+	ENABLE_PROTECTION(canary_t firstCanary;)
 	size_t len;
 	size_t size;
 	MyData dataStruct;
 	ptr_t top;
-#if PROTECTION_LEVEL == 1
-	canary_t secondCanary;
-	size_t hash; 
-#endif
+	ENABLE_PROTECTION(canary_t secondCanary;)
+	ENABLE_PROTECTION(size_t hash;) 
 };
 
 void newStackDataBlock(MyStack* stack);
 
-#if PROTECTION_LEVEL == 1
-void dumpStack(const MyStack* stack);
-#endif
+ENABLE_DUMP
+(
+	void stackIntPrint(const MyStack* stack, size_t blockPos, size_t elemPos);
+	void dumpStack(const MyStack* stack, 
+				   void printElement(const MyStack* stack, size_t blockPos, size_t elemPos));
+)
 
 void* safeCalloc(size_t count, size_t size);
 
-MyStack createStack(size_t size);
+MyStack createStack_(size_t size);
 
-void pushMyStack(MyStack* stack, ptr_t element, size_t sizeOfElement);
+void pushMyStack(MyStack* stack, ptr_t element);
 
 ptr_t popMyStack(MyStack* stack);
 
-#if PROTECTION_LEVEL == 1
-int isValidMyStack(const MyStack* stack);
-#endif
+ENABLE_VALID_FUNCTION
+(
+	int isValidMyStack(const MyStack* stack);
+)
 
-#if PROTECTION_LEVEL == 1
-size_t hashFunc(const char* str, size_t len, size_t init);
+ENABLE_PROTECTION
+(
+	size_t hashFunc(const char* str, size_t len, size_t init);
+	size_t myHash(const MyStack* stack);
+)
 
-size_t myHash(const MyStack* stack);
-#endif
+void myStackDestructor(MyStack* stack);
 
+void stackIntPrint(const MyStack* stack, size_t blockPos, size_t elemPos);
 #endif // !STACKOVERFLOW_H

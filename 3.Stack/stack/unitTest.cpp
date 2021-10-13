@@ -4,11 +4,12 @@
 #include <memory.h>
 #include <stdlib.h>
 #include <stdio.h>
+
 #if PROTECTION_LEVEL == 1
 void stackPushPopTest()
 {
 	MyStack stack = createStack(sizeof(int));
-	int arr[1280];
+	int arr[1280] = {};
 	for (int i = 0; i < 1280; ++i)
 	{
 		arr[i] = (i * i - i / 2 + 3) % 10000000;
@@ -16,7 +17,7 @@ void stackPushPopTest()
 	for (int i = 0; i < 1024; ++i)
 	{
 		int tmp = i * i - i / 2 + 3 % 10000000;
-		pushMyStack(&stack, (ptr_t)&tmp, sizeof(int));
+		pushMyStack(&stack, (ptr_t)&tmp);
 	}
 	for (int i = 768; i < 1024; ++i)
 	{
@@ -26,15 +27,16 @@ void stackPushPopTest()
 	{
 		int tmp = i * i % 10000000;
 		arr[i] = tmp;
-		pushMyStack(&stack, (ptr_t)&tmp, sizeof(int));
+		pushMyStack(&stack, (ptr_t)&tmp);
 	}
 	int k = 0;
+	dumpStack(&stack, stackIntPrint);
 	for (int j = 0, k = 0; j < stack.dataStruct.blockCount; ++j)
 	{
 		for (int i = 0; (j + 1 == stack.dataStruct.blockCount && i < stack.dataStruct.currentLen) ||
 			(j + 1 < stack.dataStruct.blockCount && i < 256); ++i, ++k)
 		{
-			if (arr[k] != *(int*)(stack.dataStruct.dataBlocks[j] + i * stack.size))
+			if (arr[k] == *(int*)(stack.dataStruct.dataBlocks[j] + i * stack.size))
 			{
 				printf("pos: %d, arr: %d, stack: %d\n", k, arr[k], *(int*)(stack.dataStruct.dataBlocks[j] + i * stack.size));
 			}
@@ -70,7 +72,7 @@ void arrayStackLeftCanaryTest()
 	MyStack stack = createStack(sizeof(int));
 	for (int k = 0; k < 1541; ++k)
 	{
-		pushMyStack(&stack, (ptr_t)&k, sizeof(int));
+		pushMyStack(&stack, (ptr_t)&k);
 	}
 	for (int i = 0; i < stack.dataStruct.blockCount; ++i)
 	{
@@ -80,7 +82,7 @@ void arrayStackLeftCanaryTest()
 		*tmp++ = -1;
 	}
 	isValidMyStack(&stack);
-	dumpStack(&stack);
+	dumpStack(&stack, stackIntPrint);
 }
 
 void arrayStackRightCanaryTest()
@@ -88,7 +90,7 @@ void arrayStackRightCanaryTest()
 	MyStack stack = createStack(sizeof(int));
 	for (int k = 0; k < 1541; ++k)
 	{
-		pushMyStack(&stack, (ptr_t)&k, sizeof(int));
+		pushMyStack(&stack, (ptr_t)&k);
 	}
 	for (int i = 0; i+2 < stack.dataStruct.blockCount; ++i)
 	{
@@ -98,7 +100,7 @@ void arrayStackRightCanaryTest()
 		*tmp-- = -1;
 	}
 	isValidMyStack(&stack);
-	dumpStack(&stack);
+	dumpStack(&stack, stackIntPrint);
 }
 
 void stackHashTest()
@@ -106,13 +108,13 @@ void stackHashTest()
 	MyStack stack = createStack(sizeof(int));
 	for (int k = 0; k < 1541; ++k)
 	{
-		pushMyStack(&stack, (ptr_t)&k, sizeof(int));
+		pushMyStack(&stack, (ptr_t)&k);
 	}
 	int arrPos = rand() % 256;
 	int arrNum = rand() % (stack.dataStruct.blockCount - 1);
 	ptr_t tmp = stack.dataStruct.dataBlocks[arrNum] + arrPos * stack.size;
 	*tmp = rand();
 	isValidMyStack(&stack);
-	dumpStack(&stack);
+	dumpStack(&stack, stackIntPrint);
 }
 #endif
